@@ -13,11 +13,11 @@ MFRC522 mfrc522(SS_PIN, RST_PIN); // Create MFRC522 instance.
 //WiFiClient client;
 //************************************************************************
 /* Set these to your desired credentials. */
-const char *ssid = "Reyes 2.4G";
-const char *password = "tonkotsuramen";
-const char* device_token  = "af787def00038fc6";
+const char *ssid = "enter wifi ssid here";
+const char *password = "enter wifi password here";
+const char* device_token  = "get this from arduino-device registration on webpage";
+String URL = "http://192.168.50.199/rfid/rfidattendance/getdata.php"; //change the ip address to the web server (where xampp is)
 //************************************************************************
-String URL = "http://192.168.50.199/rfid/rfidattendance/getdata.php"; //computer IP or the server domain
 String getData, Link;
 String OldCardID = "";
 unsigned long previousMillis = 0;
