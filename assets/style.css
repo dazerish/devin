@@ -100,20 +100,21 @@ input[type=text], input[type=password] {
     width: 420px;
     height: 40px;
     border-radius: 10px;
-    border: 1px solid black;
+    border: 1px solid #C63F18;
 }
 
 input[type=textarea] {
     width: 420px;
     height: 200px;
     border-radius: 10px;
-    border: 1px solid black;
+    border: 1px solid #C63F18;
 }
 
 select {
     width: 418px;
     height: 45px;
     border-radius: 10px;
+    border: 1px solid #C63F18;
 }
 
 .all_btn {
