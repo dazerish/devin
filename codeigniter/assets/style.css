@@ -18,10 +18,24 @@ nav {
     position: relative;
 }
 
+.login_logo {
+    text-align: center;
+    margin-top: 10vh;
+}
+
 a {
     text-decoration: none;
     color: inherit;
-    margin-left: 40px;
+}
+
+a:hover, .nav-link:hover, .regbtn:hover {
+    color: #C63F18;
+}
+
+.nav-link, .regbtn {
+    margin-left: 5px;
+    text-decoration: none;
+    color: inherit;
 }
 
 a:hover {
@@ -40,7 +54,7 @@ a:hover {
     background-position:center center;
     background-repeat: no-repeat;
     background-size: cover;
-    background-image: url('pictures/calibr8bg.png');
+    background-image: url('');
 }
 
 /*login module*/
@@ -86,20 +100,21 @@ input[type=text], input[type=password] {
     width: 420px;
     height: 40px;
     border-radius: 10px;
-    border: 1px solid black;
+    border: 1px solid #C63F18;
 }
 
 input[type=textarea] {
     width: 420px;
     height: 200px;
     border-radius: 10px;
-    border: 1px solid black;
+    border: 1px solid #C63F18;
 }
 
 select {
     width: 418px;
     height: 45px;
     border-radius: 10px;
+    border: 1px solid #C63F18;
 }
 
 .all_btn {
@@ -111,6 +126,10 @@ select {
     margin-top: 30px;
     font-weight: 800;
     color: white;
+}
+
+.account_notice {
+    text-align: center;
 }
 
 #activebtn {color: #C63F18;}
