@@ -13,12 +13,11 @@
     
     <nav>
         <div class="logo"><img src="assets/pictures/calibr8logo.jpg" alt="Calibr8 Logo" height="30px"></div>
-        <div class="">
-        <a href="#">Dashboard</a>
-        <a href="#">View</a>
-        <a href="#">Edit</a>
-        <a href="#">Reservation</a>
-        <a href="#">Generate Reports</a>
+        <a class="nav-link" href="#">Dashboard</a>
+        <a class="nav-link" href="#">View</a>
+        <a class="nav-link" href="#">Edit</a>
+        <a class="nav-link" href="#">Reservation</a>
+        <a class="nav-link" href="#">Generate Reports</a>
         </div>
         <div class="dropdown">
             <a href="#" class="regbtn" id="activebtn">Registration</a>
@@ -42,46 +41,60 @@
     </script>
 
     <section class="main_container">
+            
         <div class="register_container">
+            
             <div class="login_box">
                 <!-- FORM HERE -->
                 <form action="#" class="register_device" method="#">
-                    <h3 class="login_header" style="text-align: center">Device Registration</h3>
+                    <p class="login_header">Device Registration</p>
+                    <div class="row">
+                        <div class="col">
+                            <label for="uniquenum" class="register_label">Device Unique Number</label><br>
+                            <input type="text" id="uniquenum" name="uniquenum"><br>
+                
+                            <label for="devicename" class="register_label">Device Name</label><br>
+                            <input type="text" id="devicename" name="devicename"><br>
+                        
+                            <label for="model" class="register_label">Device Model</label><br>
+                            <input type="text" id="model" name="model"><br>
+                       
+                            <label for="roles" class="register_label">Allowed Roles</label><br>
+                            <select name="roles" id="roles">
+                                <option value="admin">Administrator</option>
+                                <option value="employee">Employee</option>
+                                <option value="exec">Executive</option>
+                            </select><br>        
 
-                    <label for="uniquenum" class="register_label">Device Unique Number</label><br>
-                    <input type="text" id="uniquenum" name="uniquenum"><br>
+                        </div>
+                        
+                        <div class="col">
+                            <label for="manuf" class="register_label">Manufacturer</label><br>
+                            <input type="text" id="manuf" name="manuf"><br>
+                        
+                            <label for="specs" class="register_label">Specifications</label><br>
+                            <textarea rows="1" cols="50" wrap="physical" id="specs" name="specs"></textarea><br>
+                   
+                            <label for="emp-img" class="register_label">Device Image</label><br>
+                            <input type="file" id="upload" hidden/>
+                                <label for="upload" class="upload-btn">Upload image </label>
+                                <span id="file-chosen">No file chosen</span>
+                        </div>
 
-                    <label for="devicename" class="register_label">Device Name</label><br>
-                    <input type="text" id="devicename" name="devicename"><br>
-
-                    <label for="model" class="register_label">Device Model</label><br>
-                    <input type="text" id="model" name="model"><br>
-
-                    <label for="manuf" class="register_label">Manufacturer</label><br>
-                    <input type="text" id="manuf" name="manuf"><br>
-
-                    <label for="specs" class="register_label">Specifications</label><br>
-                    <input type="textarea" id="specs" name="specs"><br>
-
-                    <label for="roles" class="register_label">Allowed Roles</label><br>
-                    <select name="roles" id="roles">
-
-                        <option value="admin">Administrator</option>
-                        <option value="employee">Employee</option>
-                        <option value="exec">Executive</option>
-                    </select><br>
-
-                    <label for="emp-img" class="register_label">Device Image</label><br>
-                    <form action="/action_page.php">
-                    <input type="file" id="myFile" name="filename">
+                    </div>
+                    
                     </form>
 
-
-                    <input type="submit" class="all_btn" id="login_btn" value="REGISTER DEVICE">
+                    <div class="reg-div">
+                        <input type="submit" class="all_btn" id="reg-dev" value="REGISTER DEVICE">
+                    </div>
+                    
                 </form>
             </div>
           
         </div>    
+
+        
     </section>
    
 </body>

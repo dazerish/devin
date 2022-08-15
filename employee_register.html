@@ -39,42 +39,56 @@
   
     
     <section class="main_container">
-        <div class="register_container">
-            
-            <div class="login_box">
-                <!-- FORM HERE -->
-                <form action="#" class="register_employee" method="#">
-                    <h3 class="login_header" style="text-align: center">Employee Registration</h3>
+        
+            <div class="register_container">
+                
+                <div class="login_box">
+                    <!-- FORM HERE -->
+                    <form action="#" class="register_employee" method="#">
+                        <p class="login_header">Employee Registration</p>
+                    <div class="row">
+                        <div class="col">
+                            <label for="empid" class="register_label">Employee ID</label><br>
+                            <input type="text" id="empid" name="empid"><br>
 
-                    <label for="empid" class="register_label">Employee ID</label><br>
-                    <input type="text" id="empid" name="empid"><br>
+                            <label for="empname" class="register_label">Employee Name</label><br>
+                            <input type="text" id="empname" name="empname"><br>
 
-                    <label for="empname" class="register_label">Employee Name</label><br>
-                    <input type="text" id="empname" name="empname"><br>
+                            <label for="superior" class="register_label">Direct Superior</label><br>
+                            <input type="text" id="superior" name="superior"><br>
+                        </div>
 
-                    <label for="superior" class="register_label">Direct Superior</label><br>
-                    <input type="text" id="superior" name="superior"><br>
-
-                    <label for="roles" class="register_label">Employee Role</label><br>
-                    <select name="roles" id="roles">    
-                        <option value="admin">Administrator</option>
-                        <option value="employee">Employee</option>
-                        <option value="exec">Executive</option>
-                    </select><br>
-
-                    <label for="init-pass" class="register_label">Initial Password</label><br>
-                    <input type="text" id="superior" name="superior"><br>
-
-                    <label for="emp-img" class="register_label">Employee Image</label><br>
-                    <form action="/action_page.php">
-                    <input type="file" id="myFile" name="filename">
-                    </form>
+                        <div class="col">
+                            <label for="roles" class="register_label">Employee Role</label><br>
+                            <select name="roles" id="roles">    
+                                <option value="admin">Administrator</option>
+                                <option value="employee">Employee</option>
+                                <option value="exec">Executive</option>
+                            </select><br>
+    
+                            <label for="init-pass" class="register_label">Initial Password</label><br>
+                            <input type="text" id="superior" name="superior"><br>
+    
+                            <label for="emp-img" class="register_label">Employee Image</label><br>
+                            <form action="/action_page.php">
+                                <input type="file" id="upload" hidden/>
+                                <label for="upload" class="upload-btn">Upload image </label>
+                                <span id="file-chosen">No file chosen</span>
+                            </form>
+                        </div>
+                    </div>
+                    
+                    
                         
-                    <input type="submit" class="all_btn" id="login_btn" value="REGISTER EMPLOYEE">
-                </form>
-            </div>
-          
-        </div>   
+                       
+                    <div class="reg-div">
+                        <input type="submit" class="all_btn" id="reg-dev" value="REGISTER EMPLOYEE">
+                    </div>
+                        
+                    </form>
+                </div>
+            
+            </div> 
     </section>
    
 </body>
