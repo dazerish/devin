@@ -1,5 +1,5 @@
 <nav>
-        <div class="logo"><img src="assets/pictures/calibr8logo.jpg" alt="Calibr8 Logo" height="30px"></div>
+        <div class="logo"><img src="<?= base_url('./assets/pictures/calibr8logo.jpg');?>" alt="Calibr8 Logo" height="30px"></div>
         <a class="nav-link" href="#">Dashboard</a>
         <a class="nav-link" href="#">View</a>
         <a class="nav-link" href="#">Edit</a>
@@ -8,11 +8,12 @@
         <div class="dropdown">
             <a href="#" class="regbtn" id="activebtn">Registration</a>
             <div class="list">
-                <a href="device_register.html" class="links">Device Registration</a>
-                <a href="employee_register.html" class="links">Employee Registration</a>
+                <a href="<?= site_url('Admin/devReg_view')?>" class="links">Device Registration</a>
+                <a href="<?= site_url('Admin/empReg_view')?>" class="links">Employee Registration</a>
             </div>
         </div>
-       
+        <a class="nav-link" href="<?= site_url('Login/logout')?>">Logout</a> <!-- Temporary only -->
+
         <a href="#" class="ts">Admin</a>
         </form>
 </nav>
