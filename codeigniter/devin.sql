@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 12, 2022 at 05:10 PM
+-- Generation Time: Aug 16, 2022 at 03:48 PM
 -- Server version: 10.4.22-MariaDB
 -- PHP Version: 8.1.2
 
@@ -20,6 +20,31 @@ SET time_zone = "+00:00";
 --
 -- Database: `devin`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `device_reg`
+--
+
+CREATE TABLE `device_reg` (
+  `id` int(11) NOT NULL,
+  `unique_num` varchar(255) NOT NULL,
+  `dev_name` varchar(50) NOT NULL,
+  `dev_model` varchar(50) NOT NULL,
+  `allowed_roles` varchar(30) NOT NULL,
+  `manufacturer` varchar(50) NOT NULL,
+  `specs` varchar(255) NOT NULL,
+  `dev_image` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `device_reg`
+--
+
+INSERT INTO `device_reg` (`id`, `unique_num`, `dev_name`, `dev_model`, `allowed_roles`, `manufacturer`, `specs`, `dev_image`) VALUES
+(1, '4CE0460D0G', 'Laptop', 'Legion 5', 'administrator', 'Lenovo', 'Ryzen 7 4800H\r\nGTX 1660 Ti\r\n16GB RAM\r\n512GB NVME', 'Lenovo-Legion1.png'),
+(2, '4CE0460D1X', 'Laptop', 'Omen 15', 'employee', 'HP', 'Ryzen 7 4800H\r\nGTX 1660 Ti\r\n16GB RAM\r\n512GB NVME', 'HP-Omen1.jpg');
 
 -- --------------------------------------------------------
 
@@ -48,6 +73,12 @@ INSERT INTO `user_information` (`id`, `first_name`, `last_name`, `email`, `passw
 --
 
 --
+-- Indexes for table `device_reg`
+--
+ALTER TABLE `device_reg`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `user_information`
 --
 ALTER TABLE `user_information`
@@ -56,6 +87,12 @@ ALTER TABLE `user_information`
 --
 -- AUTO_INCREMENT for dumped tables
 --
+
+--
+-- AUTO_INCREMENT for table `device_reg`
+--
+ALTER TABLE `device_reg`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `user_information`
