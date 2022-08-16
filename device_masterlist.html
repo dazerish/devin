@@ -42,18 +42,52 @@
 
     <div class="user-container">
 
-        <h1 class="page-title"><b>View Employee Masterlist</b></h1>
-        <span class="user-count">127 users</span>
+        <h1 class="page-title"><b>View Device Masterlist</b></h1>
+        <span class="device-count">307 devices</span>
 
         <div class="searchContainer">
             <div class="search-box">
                 <div class="search">
-                <input type="text" class="searchTerm" placeholder="Search for an employee...">
+                <input type="text" class="searchTerm" placeholder="Search for a device...">
                 <button type="submit" class="searchButton">
                     <i class="fa fa-search"></i>
                 </button>
                 </div>
             </div>
+
+            <div class="searchFilters">
+                <!-- <label for="device-model">Device Model</label> -->
+                <select name="device-model" id="device-model" class="filterGroup">
+                    <option value="#">Device Model</option>
+                    <option value="Laptop">Laptop</option>
+                    <option value="Gateway">Gateway</option>
+                    <option value="Smartphone">Smartphone</option>
+                  </select>
+          
+
+<!--            
+                <label for="manufacturer">Manufacturer</label> -->
+                <select name="manufacturer" id="manufacturer" class="filterGroup">
+                    <option value="#">Manufacturer</option>
+                    <option value="Laptop">Apple</option>
+                    <option value="Gateway">Dell</option>
+                    <option value="Smartphone">Lenovo</option>
+                  </select>
+            
+
+          
+                <!-- <label for="status">Status</label> -->
+                <select name="status" id="status" class="filterGroup">
+                    <option value="#">Status</option>
+                    <option value="Available">Available</option>
+                    <option value="Reserved">Reserved</option>
+                    <option value="Removed">Removed</option>
+                  </select>
+
+                  <a href="#"><u>Clear All</u></a>
+            </div>
+
+       
         </div>
             
 
@@ -61,10 +95,10 @@
             <thead>
                 <tr class="user-details">
                     <th scope="col"></th>
-                    <th scope="col">Name</th>
-                    <th scope="col">ID</th>
-                    <th scope="col">Role</th>
-                    <th scope="col">Direct Superior</th>
+                    <th scope="col">Device Name</th>
+                    <th scope="col">Device Model</th>
+                    <th scope="col">Manufacturer</th>
+                    <th scope="col">Status</th>
                     <th scope="col">Actions</th>             
                 </tr>
             </thead>
@@ -73,12 +107,12 @@
             <tbody>
                     <tr class="align-middle">
                         <td>
-                            <img src="assets/pictures/andrea.png" alt="employee pic" class="emp-pic">
+                            <img src="assets/pictures/thinkpad.png" alt="device pic" class="device-pic">
                         </td>
-                        <td class="emp-name-bold">Andrea Blancaflor</td>
-                        <td>2022-E0001</td>
-                        <td>Administrator</td>
-                        <td>Juan Dela Cruz</td>
+                        <td class="emp-name-bold">Lenovo Thinkpad X1</td>
+                        <td>Laptop</td>
+                        <td>Lenovo</td>
+                        <td>Available</td>
             
                         <td>
                             <i class="fa fa-solid fa-eye"></i>
@@ -88,12 +122,12 @@
 
                     <tr class="align-middle">
                         <td>
-                            <img src="assets/pictures/rovic.png" alt="employee pic" class="emp-pic">
+                            <img src="assets/pictures/macbook.png" alt="device pic" class="device-pic">
                         </td>
-                        <td class="emp-name-bold">Rovic Gabriel Tabucol</td>
-                        <td>2022-E0002</td>
-                        <td>Administrator</td>
-                        <td>Juan Dela Cruz</td>
+                        <td class="emp-name-bold">Macbook Pro</td>
+                        <td>Laptop</td>
+                        <td>Apple</td>
+                        <td>Available</td>
             
                         <td>
                             <i class="fa fa-solid fa-eye"></i>
@@ -103,12 +137,12 @@
 
                     <tr class="align-middle">
                         <td>
-                            <img src="assets/pictures/jm.png" alt="employee pic" class="emp-pic">
+                            <img src="assets/pictures/gateway.png" alt="device pic" class="device-pic">
                         </td>
-                        <td class="emp-name-bold">John Michael Reyes</td>
-                        <td>2022-E0002</td>
-                        <td>Executive</td>
-                        <td>John Doe</td>
+                        <td class="emp-name-bold">Edge Gateway</td>
+                        <td>Gateway</td>
+                        <td>Dell</td>
+                        <td>Available</td>
             
                         <td>
                             <i class="fa fa-solid fa-eye"></i>
