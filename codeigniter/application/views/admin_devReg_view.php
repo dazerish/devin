@@ -1,74 +1,96 @@
 <nav>
-        <div class="logo"><img src="<?= base_url('./assets/pictures/calibr8logo.jpg');?>" alt="Calibr8 Logo" height="30px"></div>
-        <div class="">
-        <a href="#">Dashboard</a>
-        <a href="#">View</a>
-        <a href="#">Edit</a>
-        <a href="#">Reservation</a>
-        <a href="#">Generate Reports</a>
-        </div>
-        <div class="dropdown">
-            <a href="#" class="regbtn" id="activebtn">Registration</a>
-            <div class="list">
+    <div class="logo"><img src="<?= base_url('./assets/pictures/calibr8logo.jpg');?>" alt="Calibr8 Logo" height="30px"></div>
+    <a class="nav-link" href="#">Dashboard</a>
+    <a class="nav-link" href="#">View</a>
+    <a class="nav-link" href="#">Edit</a>
+    <a class="nav-link" href="#">Reservation</a>
+    <a class="nav-link" href="#">Generate Reports</a>
+    </div>
+    <div class="dropdown">
+        <a href="#" class="regbtn" id="activebtn">Registration</a>
+        <div class="list">
             <a href="<?= site_url('Admin/devReg_view')?>" class="links">Device Registration</a>
-                <a href="<?= site_url('Admin/empReg_view')?>" class="links">Employee Registration</a>
-            </div>
+            <a href="<?= site_url('Admin/empReg_view')?>" class="links">Employee Registration</a>
         </div>
-        <a class="nav-link" href="<?= site_url('Login/logout')?>">Logout</a> <!-- Temporary only -->
+    </div>
+    <a class="nav-link" href="<?= site_url('Login/logout')?>">Logout</a> <!-- Temporary only -->
 
-        <a href="#" class="ts">Admin</a>
+    <a href="#" class="ts">Admin</a>
+    
+    </form>
+    
+</nav>
+
+<script>
+    let click = document.querySelector('.regbtn');
+    let list = document.querySelector('.list');
+    click.addEventListener("click", ()=> {
+        list.classList.toggle('newList');
+    });
+</script>
+
+<section class="main_container">
         
-        </form>
+    <div class="register_container">
         
-    </nav>
+        <div class="login_box">
+            <!-- FORM HERE -->
+            <?= form_open_multipart('Admin/device_registration'); ?>    
+                <p class="login_header">Device Registration</p>
+                    <?php if($this->session->has_userdata('success')): ?>
+                            <div class="alert alert-success">
+                                <?= $this->session->userdata('success'); ?>
+                            </div>
+                    <?php endif; ?> 
+                <div class="row">
+                    <div class="col">
+                        <label for="uniquenum" class="register_label">Device Unique Number</label><br>
+                        <input type="text" id="uniquenum" name="uniquenum"><br>
+                        <span class="text-danger"><?= form_error('uniquenum') ?></span>
+            
+                        <label for="devicename" class="register_label">Device Name</label><br>
+                        <input type="text" id="devicename" name="devicename"><br>
+                        <span class="text-danger"><?= form_error('devicename') ?></span>
+                    
+                        <label for="model" class="register_label">Device Model</label><br>
+                        <input type="text" id="model" name="model"><br>
+                        <span class="text-danger"><?= form_error('model') ?></span>
+                    
+                        <label for="roles" class="register_label">Allowed Roles</label><br>
+                        <select name="roles" id="roles">
+                            <option value="administrator">Administrator</option>
+                            <option value="employee">Employee</option>
+                            <option value="executive">Executive</option>
+                        </select><br>
+                        <span class="text-danger"><?= form_error('roles') ?></span>        
 
-    <script>
-        let click = document.querySelector('.regbtn');
-        let list = document.querySelector('.list');
-        click.addEventListener("click", ()=> {
-            list.classList.toggle('newList');
-        });
-    </script>
+                    </div>
+                    
+                    <div class="col">
+                        <label for="manuf" class="register_label">Manufacturer</label><br>
+                        <input type="text" id="manuf" name="manuf"><br>
+                        <span class="text-danger"><?= form_error('manuf') ?></span>
+                    
+                        <label for="specs" class="register_label">Specifications</label><br>
+                        <textarea rows="1" cols="50" wrap="physical" id="specs" name="specs"></textarea><br>
+                        <span class="text-danger"><?= form_error('specs') ?></span>
+                
+                        <label for="emp-img" class="register_label">Device Image</label><br>
+                        <input type="file" id="upload" name="device_image" hidden/>
+                            <label for="upload" class="upload-btn">Upload image </label>
+                            <span class="text-danger" id="file-chosen"><?= form_error('device_image') ?></span>
+                    </div>
 
-    <section class="main_container">
-        <div class="register_container">
-            <div class="login_box">
-                <!-- FORM HERE -->
-                <form action="#" class="register_device" method="#">
-                    <h3 class="login_header" style="text-align: center">Device Registration</h3>
+                </div>
 
-                    <label for="uniquenum" class="register_label">Device Unique Number</label><br>
-                    <input type="text" id="uniquenum" name="uniquenum"><br>
+                <div class="reg-div">
+                    <input type="submit" class="all_btn" id="reg-dev" name ="reg-dev" value="REGISTER DEVICE">
+                </div>
+                
+            <?= form_close(); ?>
+        </div>
+        
+    </div>    
 
-                    <label for="devicename" class="register_label">Device Name</label><br>
-                    <input type="text" id="devicename" name="devicename"><br>
-
-                    <label for="model" class="register_label">Device Model</label><br>
-                    <input type="text" id="model" name="model"><br>
-
-                    <label for="manuf" class="register_label">Manufacturer</label><br>
-                    <input type="text" id="manuf" name="manuf"><br>
-
-                    <label for="specs" class="register_label">Specifications</label><br>
-                    <input type="textarea" id="specs" name="specs"><br>
-
-                    <label for="roles" class="register_label">Allowed Roles</label><br>
-                    <select name="roles" id="roles">
-
-                        <option value="admin">Administrator</option>
-                        <option value="employee">Employee</option>
-                        <option value="exec">Executive</option>
-                    </select><br>
-
-                    <label for="emp-img" class="register_label">Device Image</label><br>
-                    <form action="/action_page.php">
-                    <input type="file" id="myFile" name="filename">
-                    </form>
-
-
-                    <input type="submit" class="all_btn" id="login_btn" value="REGISTER DEVICE">
-                </form>
-            </div>
-          
-        </div>    
-    </section>
+    
+</section>
