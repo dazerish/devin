@@ -213,10 +213,9 @@ textarea {
 
 .item-row {
     display: flex;
-    border: 1px solid black;
     align-items: center;
     margin: 50px 250px 25px;
-    /* box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37); */
+    background-color: white;
     border-radius: 10px;
 }
 
@@ -225,6 +224,12 @@ textarea {
     display: flex;
     align-items: center;
 }
+
+.item-pic img {
+    height: 200px;
+    width: auto;
+}
+
 
 #reserve_btn {
     margin-right: 30px;
@@ -337,3 +342,4 @@ td i {
   .searchFilters select {
     padding: 5px;
   }
+
