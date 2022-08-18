@@ -15,7 +15,7 @@
     </div>
     <a class="nav-link" href="<?= site_url('Login/logout')?>">Logout</a> <!-- Temporary only -->
 
-    <a href="#" class="ts">Admin</a>
+    <a href="#" class="ts"><i class="far fa-user" id="nav-user-icon"></i>Admin</a>
     
     </form>
     
