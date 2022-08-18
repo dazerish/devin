@@ -10,7 +10,7 @@ class Login extends CI_Controller{
         
     public function index() {
         if ($this->session->userdata('logged_in')) {
-            redirect('User');
+            redirect('Login');
         }
 
         $data['title'] = 'Calibr8 - LOGIN';
