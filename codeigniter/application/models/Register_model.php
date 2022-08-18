@@ -7,6 +7,10 @@ class Register_model extends CI_Model {
         $this->load->database();
     }
 
+    public function employee_registration($info) {
+        $this->db->insert('users', $info);
+    }
+
     public function device_registration($info) {
         $this->db->insert('device_reg', $info);
     }
