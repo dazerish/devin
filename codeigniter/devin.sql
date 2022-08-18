@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 16, 2022 at 03:48 PM
+-- Generation Time: Aug 18, 2022 at 02:56 PM
 -- Server version: 10.4.22-MariaDB
 -- PHP Version: 8.1.2
 
@@ -49,6 +49,30 @@ INSERT INTO `device_reg` (`id`, `unique_num`, `dev_name`, `dev_model`, `allowed_
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `users`
+--
+
+CREATE TABLE `users` (
+  `id` int(11) NOT NULL,
+  `emp_id` varchar(50) NOT NULL,
+  `emp_name` varchar(50) NOT NULL,
+  `emp_email` varchar(255) NOT NULL,
+  `superior` varchar(50) NOT NULL,
+  `emp_role` varchar(30) NOT NULL,
+  `password` varchar(32) NOT NULL,
+  `emp_image` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `users`
+--
+
+INSERT INTO `users` (`id`, `emp_id`, `emp_name`, `emp_email`, `superior`, `emp_role`, `password`, `emp_image`) VALUES
+(1, '2022-E003', 'John Michael Reyes', 'johnmichaelreyes24.ol@gmail.com', 'Jose Luis Reyes', 'employee', 'e9666c721b408f3706d066e8f28bca74', 'JM1.png');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `user_information`
 --
 
@@ -79,6 +103,12 @@ ALTER TABLE `device_reg`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `users`
+--
+ALTER TABLE `users`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `user_information`
 --
 ALTER TABLE `user_information`
@@ -93,6 +123,12 @@ ALTER TABLE `user_information`
 --
 ALTER TABLE `device_reg`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT for table `users`
+--
+ALTER TABLE `users`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `user_information`
