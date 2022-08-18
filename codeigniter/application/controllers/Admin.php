@@ -33,6 +33,71 @@ class Admin extends CI_Controller{
         $this->load->view('include/footer');
     }
 
+    public function employee_registration() {
+        $image_config = array(
+            'upload_path' => './assets/employee_image',
+            'allowed_types' => 'gif|jpg|png',
+            'max_size' => 5000000000,
+            'max_width' => 204800,
+            'max_height' => 204800
+        );
+
+        $this->load->library('upload', $image_config);
+        $this->upload->initialize($image_config);
+
+        $this->form_validation->set_rules('empid', 'Employee ID', 'required', array(
+            'required' => '%s is required.'
+        ));
+        $this->form_validation->set_rules('empname', 'Employee Name', 'required', array(
+            'required' => '%s is required.'
+        ));
+        $this->form_validation->set_rules('email', 'Employee Email', 'required|valid_email|is_unique[users.emp_email]', array(
+            'required' => '%s is required.',
+            'valid_email' => 'Please enter a valid %s.',
+            'is_unique' => 'This %s is already registered.'
+        ));
+        $this->form_validation->set_rules('superior', 'Direct Superior', 'required', array(
+            'required' => '%s is required.'
+        ));
+        $this->form_validation->set_rules('roles', 'Employee Role', 'required', array(
+            'required' => '%s is required.'
+        ));
+        $this->form_validation->set_rules('init-pass', 'Initial Password', 'required|min_length[8]', array(
+            'required' => '%s is required.',
+            'min_length' => '%s should have a minimum of 8 characters'
+        ));
+
+        if($this->upload->do_upload('employee_image') == FALSE) {
+            $this->form_validation->set_rules('employee_image', 'Employee Image', 'required');
+        }
+
+        if($this->form_validation->run() == FALSE) {
+            $this->empReg_view();
+        } else {
+            $image_name = (!$this->upload->do_upload('employee_image')) ? null : $this->upload->data('file_name');
+            $register = $this->input->post('reg-emp');
+
+            if(isset($register)) {
+
+                $info = array(
+                    'emp_id' => $this->input->post('empid'),
+                    'emp_name' => $this->input->post('empname'),
+                    'emp_email' => $this->input->post('email'),
+                    'superior' => $this->input->post('superior'),
+                    'emp_role' => $this->input->post('roles'),
+                    'password' => md5($this->input->post('init-pass')),
+                    'emp_image' => $image_name
+                );
+
+                $this->Register_model->employee_registration($info);
+
+                $success = "Employee is registered successfully";
+                $this->session->set_flashdata('success', $success);
+                redirect('Admin/employee_registration');
+            }
+        }
+    }
+
     public function devReg_view() {
 
         $data['title'] = 'Calibr8 - Device Registration';
