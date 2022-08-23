@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link rel="stylesheet" href="assets/style.css">
+    <link rel = "icon" href ="assets/pictures/c8.jpg" type = "image/x-icon">
+    <title>View Employee Details</title>
+</head>
+<body>
+
+<nav>
+    <div class="logo"><img src="assets/pictures/calibr8logo.jpg" alt="Calibr8 Logo" height="30px"></div>
+    <a class="nav-link" href="#">Dashboard</a>
+    <a class="nav-link" href="#" id="activebtn">View</a>
+    <a class="nav-link" href="#">Edit</a>
+    <a class="nav-link" href="#">Reservation</a>
+    <a class="nav-link" href="#">Generate Reports</a>
+    </div>
+    <div class="dropdown">
+        <a href="#" class="regbtn">Registration</a>
+        <div class="list">
+            <a href="device_register.html" class="links">Device Registration</a>
+            <a href="employee_register.html" class="links">Employee Registration</a>
+        </div>
+    </div>
+    <a href="#" class="ts"><i class="far fa-user" id="nav-user-icon"></i>Admin</a>
+    
+    </form>
+    
+</nav>
+
+<script>
+    let click = document.querySelector('.regbtn');
+    let list = document.querySelector('.list');
+    click.addEventListener("click", ()=> {
+        list.classList.toggle('newList');
+    });
+</script>
+
+<div class="view-emp-container">
+    <h1 class="page-title"><b>View Employee Details</b></h1>
+
+        <div class="detail-container">
+            <div class="remove-btn-div">
+                <button class="remove-btn"><i class="fas fa-trash-alt" id="remove-icon"></i>Remove Employee</button>
+            </div>
+            
+            <div class="detail-header">
+                <img src="assets/pictures/lenovo.png" alt="" class="device-pic">
+                <h4>Lenovo Thinkpad X1</h4>
+                
+            </div>
+
+            
+
+            <div class="detail-table-div">
+                <table class="detail-table">
+                    <thead>
+                        <tr>
+                            <th scope="col">Device Unique ID</th>
+                            <th scope="col">Device Model</th>
+                            <th scope="col">Manufacturer</th>
+                        </tr>
+                    </thead>
+    
+                    <tbody>
+                        <tr class="align-middle">
+                            <td>2022-D0001</td>
+                            <td>Laptop</td>
+                            <td>Lenovo</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="spec-role-flex">
+                <div class="specifications">
+                    <table class="transacted">
+                        <thead>
+                            <tr>
+                                <th>Specifications</th>
+                            </tr>
+                        </thead>
+    
+                        <tbody>
+                            <tr>
+                                <td>Processor: Intel Core i7</td>
+                            </tr>
+                            <tr>
+                                <td>RAM: 16GB 3200 MHz</td>
+                            </tr>
+                            <tr>
+                                <td>Graphics: Integrated Intel HD Graphics 4000</td>
+                            </tr>
+                            <tr>
+                                <td>Hard Drive: 1TB</td>
+                            </tr>
+                            <tr>
+                                <td>Display: 14” inch; 1920 resolution</td>
+                            </tr>
+                            <tr>
+                                <td>OS: Windows 10</td>
+                            </tr>
+                            
+                        </tbody>
+                    </table>
+                </div>
+                <div class="all-roles-div">
+                    <table class="transacted">
+                        <thead>
+                            <tr>
+                                <th>Allowed Roles</th>
+                            </tr>
+                        </thead>
+    
+                        <tbody>
+                            <tr>
+                                <td>Executive</td>
+                            </tr>
+                            <tr>
+                                <td>Employee</td>
+                            </tr>
+                            
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="statuses-table">
+                <table class="detail-table">
+                    <thead>
+                        <tr>
+                            <th scope="col">Current Status</th>
+                            <th scope="col">Previous Device Status</th>
+                        </tr>
+                    </thead>
+    
+                    <tbody>
+                        <tr>
+                            <td>Available</td>
+                            <td>Reserved</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            
+        </div>
+</div>
+
+
+</body>

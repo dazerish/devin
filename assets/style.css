@@ -343,3 +343,70 @@ td i {
     padding: 5px;
   }
 
+
+  /*view employee & device css*/
+
+  .view-emp-container {
+    padding: 5rem;
+  }
+
+
+
+  .remove-btn-div {
+    text-align: right;
+  }
+
+  .remove-btn {
+    padding: 10px;
+    color: white;
+    background-color: #E30000;
+    border: none;
+    border-radius: 15px;
+    margin-bottom: 10px;
+  }
+
+  #remove-icon {
+    margin-right: 10px;
+  }
+
+  .detail-container {
+    background-color: #ffffff;
+    border-radius: 15px;
+    padding: 2rem;
+  }
+
+  .detail-header {
+    text-align: center;
+  }
+
+  .detail-table, .transacted {
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+  }
+
+  .detail-table th, .detail-table td, .transacted th, .transacted td {
+    padding: 10px;
+  }
+
+  .detail-table td {
+    background-color: #F3E0DA;
+  }
+
+  .transacted {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    padding: 1rem;
+  }
+
+  .transacted td {
+    background-color: #F3E0DA;
+  }
+
+  .spec-role-flex {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+  }
+
+  
