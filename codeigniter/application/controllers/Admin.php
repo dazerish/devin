@@ -5,9 +5,8 @@ class Admin extends CI_Controller{
         parent::__construct();
 
         $this->load->helper(['form', 'url', 'string']);
-        $this->load->library(['form_validation']);
-        $this->load->library('session');
-        $this->load->model('Register_model');
+        $this->load->library(['form_validation', 'session', 'pagination',]);
+        $this->load->model('Admin_model');
     }
 
     public function index() {
@@ -21,7 +20,178 @@ class Admin extends CI_Controller{
         
         $data['title'] = 'Calibr8 - Admin Dashboard';
         $this->load->view('include/header', $data);
-        $this->load->view('admin_devReg_view'); //Temporary view to be loaded
+        $this->load->view('admin_empReg_view'); //Temporary view to be loaded
+        $this->load->view('include/footer');
+    }
+
+    public function emp_masterlist_view() {
+        $page_config = array(
+            'base_url' => site_url('Admin/emp_masterlist_view'),
+            'total_rows' => $this->Admin_model->get_uCount(),
+            'num_links' => 3,
+            'per_page' => 5,
+
+            'full_tag_open' => '<div class="d-flex justify-content-center"><ul class="pagination">',
+            'full_tag_close' => '</ul></div>',
+
+            'first_link' => FALSE,
+            'last_link' => FALSE,
+
+            'next_link' => '&rsaquo;',
+            'next_tag_open' => '<li class="page-item">',
+            'next_tag_close' => '</li>',
+
+            'prev_link' => '&lsaquo;',
+            'prev_tag_open' => '<li class="page-item">',
+            'prev_tag_close' => '</li>',
+
+            'cur_tag_open' => '<li class="page-item active"><span class="page-link">',
+            'cur_tag_close' => '</span></li>',
+
+            'num_tag_open' => '<li class="page-item">',
+            'num_tag_close' => '</li>',
+
+            'attributes' => ['class' => 'page-link']
+        );
+
+        $page = ($this->uri->segment(3)) ? $this->uri->segment(3) : 0;
+        $this->pagination->initialize($page_config);
+
+        $data['title'] = 'Calibr8 - Employee Masterlist';
+        $data['employees'] = $this->Admin_model->get_users_table($page_config['per_page'], $page, NULL);
+        $data['total'] = $this->Admin_model->get_uCount();
+        $this->load->view('include/header', $data);
+        $this->load->view('admin_emp_masterlist');
+        $this->load->view('include/footer');
+    }
+
+    public function searchEmp() { //Temporary Search Function
+        $search = ($this->input->post("searchTerm")) ? $this->input->post("searchTerm") : "NIL";
+        $search = ($this->uri->segment(3)) ? $this->uri->segment(3) : $search;
+
+        $page_config = array(
+            'base_url' => site_url('Admin/searchEmp/$search'),
+            'total_rows' => $this->Admin_model->get_users_count($search),
+            'num_links' => 3,
+            'per_page' => 5,
+
+            'full_tag_open' => '<div class="d-flex justify-content-center"><ul class="pagination">',
+            'full_tag_close' => '</ul></div>',
+
+            'first_link' => FALSE,
+            'last_link' => FALSE,
+
+            'next_link' => '&rsaquo;',
+            'next_tag_open' => '<li class="page-item">',
+            'next_tag_close' => '</li>',
+
+            'prev_link' => '&lsaquo;',
+            'prev_tag_open' => '<li class="page-item">',
+            'prev_tag_close' => '</li>',
+
+            'cur_tag_open' => '<li class="page-item active"><span class="page-link">',
+            'cur_tag_close' => '</span></li>',
+
+            'num_tag_open' => '<li class="page-item">',
+            'num_tag_close' => '</li>',
+
+            'attributes' => ['class' => 'page-link']
+        );
+
+        $page = ($this->uri->segment(4)) ? $this->uri->segment(4) : 0;
+        $this->pagination->initialize($page_config);
+
+        $data['title'] = 'Calibr8 - Employee Masterlist';
+        $data['employees'] = $this->Admin_model->get_users_table($page_config['per_page'], $page, $search);
+        $data['total'] = $this->Admin_model->get_uCount();
+        $this->load->view('include/header', $data);
+        $this->load->view('admin_emp_masterlist');
+        $this->load->view('include/footer');
+    }
+
+
+    public function dev_masterlist_view() {
+        $page_config = array(
+            'base_url' => site_url('Admin/dev_masterlist_view'),
+            'total_rows' => $this->Admin_model->get_dCount(),
+            'num_links' => 3,
+            'per_page' => 3,
+
+            'full_tag_open' => '<div class="d-flex justify-content-center"><ul class="pagination">',
+            'full_tag_close' => '</ul></div>',
+
+            'first_link' => FALSE,
+            'last_link' => FALSE,
+
+            'next_link' => '&rsaquo;',
+            'next_tag_open' => '<li class="page-item">',
+            'next_tag_close' => '</li>',
+
+            'prev_link' => '&lsaquo;',
+            'prev_tag_open' => '<li class="page-item">',
+            'prev_tag_close' => '</li>',
+
+            'cur_tag_open' => '<li class="page-item active"><span class="page-link">',
+            'cur_tag_close' => '</span></li>',
+
+            'num_tag_open' => '<li class="page-item">',
+            'num_tag_close' => '</li>',
+
+            'attributes' => ['class' => 'page-link']
+        );
+
+        $page = ($this->uri->segment(3)) ? $this->uri->segment(3) : 0;
+        $this->pagination->initialize($page_config);
+
+        $data['title'] = 'Calibr8 - Device Masterlist';
+        $data['devices'] = $this->Admin_model->get_devices_table($page_config['per_page'], $page);
+        $data['total'] = $this->Admin_model->get_dCount();
+        $this->load->view('include/header', $data);
+        $this->load->view('admin_dev_masterlist');
+        $this->load->view('include/footer');
+    }
+
+    public function searchDev() { //Temporary Search Function
+        $search = ($this->input->post("searchTerm")) ? $this->input->post("searchTerm") : "NIL";
+        $search = ($this->uri->segment(3)) ? $this->uri->segment(3) : $search;
+
+        $page_config = array(
+            'base_url' => site_url('Admin/searchDev/$search'),
+            'total_rows' => $this->Admin_model->get_devices_count($search),
+            'num_links' => 3,
+            'per_page' => 3,
+
+            'full_tag_open' => '<div class="d-flex justify-content-center"><ul class="pagination">',
+            'full_tag_close' => '</ul></div>',
+
+            'first_link' => FALSE,
+            'last_link' => FALSE,
+
+            'next_link' => '&rsaquo;',
+            'next_tag_open' => '<li class="page-item">',
+            'next_tag_close' => '</li>',
+
+            'prev_link' => '&lsaquo;',
+            'prev_tag_open' => '<li class="page-item">',
+            'prev_tag_close' => '</li>',
+
+            'cur_tag_open' => '<li class="page-item active"><span class="page-link">',
+            'cur_tag_close' => '</span></li>',
+
+            'num_tag_open' => '<li class="page-item">',
+            'num_tag_close' => '</li>',
+
+            'attributes' => ['class' => 'page-link']
+        );
+
+        $page = ($this->uri->segment(4)) ? $this->uri->segment(4) : 0;
+        $this->pagination->initialize($page_config);
+
+        $data['title'] = 'Calibr8 - Employee Masterlist';
+        $data['devices'] = $this->Admin_model->get_devices_table($page_config['per_page'], $page, $search);
+        $data['total'] = $this->Admin_model->get_dCount();
+        $this->load->view('include/header', $data);
+        $this->load->view('admin_dev_masterlist');
         $this->load->view('include/footer');
     }
 
@@ -89,7 +259,7 @@ class Admin extends CI_Controller{
                     'emp_image' => $image_name
                 );
 
-                $this->Register_model->employee_registration($info);
+                $this->Admin_model->employee_registration($info);
 
                 $success = "Employee is registered successfully";
                 $this->session->set_flashdata('success', $success);
@@ -122,9 +292,8 @@ class Admin extends CI_Controller{
             'required' => '%s is required.',
             'alpha_numeric' => '%s should only contain alpha numeric characters.'
         ));
-        $this->form_validation->set_rules('devicename', 'Device Name', 'required|alpha', array(
-            'required' => '%s is required.',
-            'alpha' => '%s should only contain alphabets.'
+        $this->form_validation->set_rules('devicename', 'Device Name', 'required', array(
+            'required' => '%s is required.'
         ));
         $this->form_validation->set_rules('model', 'Device Model', 'required|alpha_numeric_spaces', array(
             'required' => '%s is required.',
@@ -163,7 +332,7 @@ class Admin extends CI_Controller{
                     'dev_image' => $image_name
                 );
 
-                $this->Register_model->device_registration($info);
+                $this->Admin_model->device_registration($info);
 
                 $success = "Device is registered successfully";
                 $this->session->set_flashdata('success', $success);
@@ -171,6 +340,7 @@ class Admin extends CI_Controller{
             }
         }
     }
+
 }
 
 ?>
