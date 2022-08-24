@@ -8,7 +8,7 @@
         }
 
         public function login($email, $password) {
-            $query = $this->db->get_where('user_information', ['email' => $email, 'password' => $password]);
+            $query = $this->db->get_where('user_information', ['email' => $email, 'password' => md5($password)]);
             return $query->row();
         }
     }
