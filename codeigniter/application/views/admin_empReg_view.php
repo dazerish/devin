@@ -1,7 +1,7 @@
 <nav>
     <div class="logo"><img src="<?= base_url('./assets/pictures/calibr8logo.jpg');?>" alt="Calibr8 Logo" height="30px"></div>
     <a class="nav-link" href="#">Dashboard</a>
-    <a class="nav-link" href="#">View</a>
+    <a class="nav-link" href="<?= site_url('Admin/emp_masterlist_view')?>">View</a>
     <a class="nav-link" href="#">Edit</a>
     <a class="nav-link" href="#">Reservation</a>
     <a class="nav-link" href="#">Generate Reports</a>
