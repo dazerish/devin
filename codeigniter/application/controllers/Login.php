@@ -13,7 +13,7 @@ class Login extends CI_Controller{
             redirect('Login');
         }
 
-        $data['title'] = 'Calibr8 - LOGIN';
+        $data['title'] = 'Calibr8 - Login';
         $this->load->view('include/header', $data);
         $this->load->view('login_view');
         $this->load->view('include/footer');
@@ -30,10 +30,10 @@ class Login extends CI_Controller{
             $account = $this->Login_model->login($email, $password);
 
             if(isset($account)) {
-                if($account->role == 'admin') {
+                if($account->emp_role == 'administrator') {
                     $sess_data = array(
                         'id' => $account->id,
-                        'role' => $account->role,
+                        'role' => $account->emp_role,
                         'logged_in' => TRUE
                     );
 
@@ -42,10 +42,10 @@ class Login extends CI_Controller{
                 }
 
                 // FOR EXECUTIVE
-                // if($account->role == 'executive') {
+                // if($account->emp_role == 'executive') {
                 //     $sess_data = array(
                 //         'id' => $account->id,
-                //         'role' => $account->role,
+                //         'role' => $account->emp_role,
                 //         'logged_in' => TRUE
                 //     );
 
@@ -53,10 +53,10 @@ class Login extends CI_Controller{
                 //     redirect('');
                 // }
 
-                if($account->role == 'employee') {
+                if($account->emp_role == 'employee') {
                     $sess_data = array(
                         'id' => $account->id,
-                        'role' => $account->role,
+                        'role' => $account->emp_role,
                         'logged_in' => TRUE
                     );
 
