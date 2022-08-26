@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 24, 2022 at 05:11 PM
+-- Generation Time: Aug 26, 2022 at 04:21 PM
 -- Server version: 10.4.22-MariaDB
 -- PHP Version: 8.1.2
 
@@ -43,11 +43,11 @@ CREATE TABLE `devices` (
 --
 
 INSERT INTO `devices` (`id`, `unique_num`, `dev_name`, `dev_model`, `allowed_roles`, `manufacturer`, `specs`, `dev_image`) VALUES
-(1, '4CE0460D0G', 'Lenovo ThinkPad X1', 'Laptop', 'Administrator', 'Lenovo', 'Processor: Intel Core i7\r\nRAM: 16GB 3200MHz\r\nGraphics: Integrated Intel HD Graphics 4000\r\nHard Drive: 1TB\r\nDisplay: 14\" inch; 1920x1080 Resolution\r\nOS: Windows 10', 'Lenovo-ThinkPad-X1-1.png'),
-(2, '4CE0460D1X', 'Macbook Pro', 'Laptop', 'Executive', 'Apple', 'Processor: Apple M2 Chip\r\nRAM: 16GB Memory\r\nGraphics: Intel Integrated Iris Plus Graphics 645\r\nStorage: 512GB SSD\r\nDisplay: 13.3\" inch; 2560x1600 Resolution\r\nOS: macOS', 'Macbook-Pro-1.jpg'),
-(3, '4CE0460D69', 'Edge Gateway', 'Router', 'Employee', 'Dell', 'Processor: ARM Cortex-A53\r\nRAM: 2GB\r\nStorage: 512GB SSD\r\nOS: Linux Ubuntu\r\nWeight: 820g', 'Edge-Gateway1.png'),
-(4, '4CE0460D5G', 'Oculus Rift S', 'VR Headset', 'Executive', 'Oculus', 'Platform: SteamVR, Oculus Home\r\nDisplay Type: Single LCD (Binocular)\r\nResolution: 1280x1440 (per-eye)\r\nRefresh Rate: 80hz\r\nWeight: 500g', 'Occulus-Rift-S1.jpg'),
-(5, '4CE0460D1S', 'PowerEdge-T330', 'Server', 'Administrator', 'Dell', 'Processer: Intel Xeon\r\nRAM: 64GB\r\nDrive Bays: Supports 2.5\" HDD in 3.5\" hybrid drive \r\ncarrier\r\nOS: Windows Server', 'PowerEdge-T330-1.jpg');
+(1, '4CE0460D0G', 'Lenovo ThinkPad X1', 'Laptop', 'Administrator', 'Lenovo', 'Processor: Intel Core i7<br />\r\nRAM: 16GB 3200MHz<br />\r\nGraphics: Integrated Intel HD Graphics 4000<br />\r\nHard Drive: 1TB<br />\r\nDisplay: 14\" inch; 1920x1080 Resolution<br />\r\nOS: Windows 10', 'Lenovo-ThinkPad-X1-1.png'),
+(2, '4CE0460D1X', 'Macbook Pro', 'Laptop', 'Executive', 'Apple', 'Processor: Apple M2 Chip<br />\r\nRAM: 16GB Memory<br />\r\nGraphics: Intel Integrated Iris Plus Graphics 645<br />\r\nStorage: 512GB SSD<br />\r\nDisplay: 13.3\" inch; 2560x1600 Resolution<br />\r\nOS: macOS', 'Macbook-Pro-1.jpg'),
+(3, '4CE0460D69', 'Edge Gateway', 'Router', 'Employee', 'Dell', 'Processor: ARM Cortex-A53<br />\r\nRAM: 2GB<br />\r\nStorage: 512GB SSD<br />\r\nOS: Linux Ubuntu<br />\r\nWeight: 820g', 'Edge-Gateway1.png'),
+(4, '4CE0460D5G', 'Oculus Rift S', 'VR Headset', 'Executive', 'Oculus', 'Platform: SteamVR, Oculus Home<br />\r\nDisplay Type: Single LCD (Binocular)<br />\r\nResolution: 1280x1440 (per-eye)<br />\r\nRefresh Rate: 80hz<br />\r\nWeight: 500g', 'Occulus-Rift-S1.jpg'),
+(5, '4CE0460D1S', 'PowerEdge-T330', 'Server', 'Administrator', 'Dell', 'Processer: Intel Xeon<br />\r\nRAM: 64GB<br />\r\nDrive Bays: Supports 2.5\" HDD in 3.5\" hybrid drive\r\ncarrier<br />\r\nOS: Windows Server', 'PowerEdge-T330-1.jpg');
 
 -- --------------------------------------------------------
 
@@ -129,13 +129,13 @@ ALTER TABLE `user_information`
 -- AUTO_INCREMENT for table `devices`
 --
 ALTER TABLE `devices`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `user_information`
