@@ -24,6 +24,14 @@ class Admin_model extends CI_Model {
         return $this->db->count_all('users');
     }
 
+    public function get_emp_row($id) {
+        return $this->db->get_where('users', ['id' => $id])->row();
+    }
+
+    public function remove_employee($id) {
+        $this->db->delete('users', ['id' => $id]);
+    }
+
     //View Section (Device)
     public function get_devices_table($limit, $start, $st = NULL) {
         if ($st == "NIL") $st = "";
@@ -46,7 +54,6 @@ class Admin_model extends CI_Model {
         return $this->db->count_all('devices');
     }
 
-
     // public function get_device_table($limit, $start) {
     //     $this->db->limit($limit, $start);
     //     $this->db->order_by('id', 'DESC');
@@ -57,6 +64,14 @@ class Admin_model extends CI_Model {
     // public function get_device_count() {
     //     return $this->db->count_all('devices');
     // }
+
+    public function get_dev_row($id) {
+        return $this->db->get_where('devices', ['id' => $id])->row();
+    }
+
+    public function remove_device($id) {
+        $this->db->delete('devices', ['id' => $id]);
+    }
 
     //Registration Section (Employee)
     public function employee_registration($info) { 
