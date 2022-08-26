@@ -58,9 +58,9 @@
                     
                         <label for="roles" class="register_label">Allowed Roles</label><br>
                         <select name="roles" id="roles">
-                            <option value="administrator">Administrator</option>
-                            <option value="employee">Employee</option>
-                            <option value="executive">Executive</option>
+                            <option value="Administrator">Administrator</option>
+                            <option value="Employee">Employee</option>
+                            <option value="Executive">Executive</option>
                         </select><br>
                         <span class="text-danger"><?= form_error('roles') ?></span>        
 
