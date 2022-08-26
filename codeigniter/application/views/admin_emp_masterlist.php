@@ -17,7 +17,6 @@
 
     <a href="#" class="ts"><i class="far fa-user" id="nav-user-icon"></i>Admin</a>
     
-    </form>
     
 </nav>
 
@@ -69,19 +68,19 @@
                         <img
                             <?php if(isset($employee->emp_image)): ?>
                                 class="emp-pic"
-                                src="<?= base_url('./assets/employee_image/') . $employee->emp_image ?>"
+                                src="<?= base_url('./assets/employee_image/') . $employee->emp_image; ?>"
                                 alt="employee pic"
                             <?php endif?>
                         >
                     </td>
-                    <td class="emp-name-bold"><?=$employee->emp_name ?></td>
-                    <td><?=$employee->emp_id ?></td>
-                    <td><?=$employee->emp_role ?></td>
-                    <td><?=$employee->superior ?></td>
+                    <td class="emp-name-bold"><?=$employee->emp_name; ?></td>
+                    <td><?=$employee->emp_id; ?></td>
+                    <td><?=ucfirst($employee->emp_role); ?></td>
+                    <td><?=$employee->superior; ?></td>
         
                     <td>
-                        <i class="fa fa-solid fa-eye"></i>
-                        <i class="fas fa-edit" id="edit-btn"></i>
+                        <a href="<?= site_url('Admin/employee_view/') . $employee->id; ?>"><i class="fa fa-solid fa-eye"></i></a>
+                        <a href="<?= site_url('')?>"><i class="fas fa-edit" id="edit-btn"></i></a>
                     </td>
                 </tr>
             <?php endforeach; ?>
