@@ -109,13 +109,27 @@ class Admin extends CI_Controller{
         $this->load->view('include/footer');
     }
 
+    public function employee_view($id) {
+        $data['title'] = "Calibr8 - View Employee Details";
+        $data['employee'] = $this->Admin_model->get_emp_row($id);
+
+        $this->load->view('include/header', $data);
+        $this->load->view('admin_employee_view', $data);
+        $this->load->view('include/footer');
+    }
+
+    public function remove_employee($id) { //Temporary remove func?
+        $this->Admin_model->remove_employee($id);
+        redirect('Admin/emp_masterlist_view');
+    }
+
 
     public function dev_masterlist_view() {
         $page_config = array(
             'base_url' => site_url('Admin/dev_masterlist_view'),
             'total_rows' => $this->Admin_model->get_dCount(),
             'num_links' => 3,
-            'per_page' => 3,
+            'per_page' => 5,
 
             'full_tag_open' => '<div class="d-flex justify-content-center"><ul class="pagination">',
             'full_tag_close' => '</ul></div>',
@@ -159,7 +173,7 @@ class Admin extends CI_Controller{
             'base_url' => site_url('Admin/searchDev/$search'),
             'total_rows' => $this->Admin_model->get_devices_count($search),
             'num_links' => 3,
-            'per_page' => 3,
+            'per_page' => 5,
 
             'full_tag_open' => '<div class="d-flex justify-content-center"><ul class="pagination">',
             'full_tag_close' => '</ul></div>',
@@ -193,6 +207,20 @@ class Admin extends CI_Controller{
         $this->load->view('include/header', $data);
         $this->load->view('admin_dev_masterlist');
         $this->load->view('include/footer');
+    }
+
+    public function device_view($id) {
+        $data['title'] = "Calibr8 - View Device Details";
+        $data['device'] = $this->Admin_model->get_dev_row($id);
+
+        $this->load->view('include/header', $data);
+        $this->load->view('admin_device_view', $data);
+        $this->load->view('include/footer');
+    }
+
+    public function remove_device($id) { //Temporary remove func?
+        $this->Admin_model->remove_device($id);
+        redirect('Admin/dev_masterlist_view');
     }
 
     public function empReg_view() {
@@ -328,7 +356,7 @@ class Admin extends CI_Controller{
                     'dev_model' => $this->input->post('model'),
                     'allowed_roles' => $this->input->post('roles'),
                     'manufacturer' => $this->input->post('manuf'),
-                    'specs' => $this->input->post('specs'),
+                    'specs' => nl2br($this->input->post('specs')),
                     'dev_image' => $image_name
                 );
 
