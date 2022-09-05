@@ -409,4 +409,18 @@ td i {
     gap: 15px;
   }
 
-  
+  /*edit details*/
+
+  #cancel-btn {
+    background-color: #ffffff;
+    color: #C63F18;
+    border: 1px solid #C63F18;
+  }
+
+  .save-cancel-div {
+    text-align: center;
+  }
+
+  .col-center {
+    
+  }
