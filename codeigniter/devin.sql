@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 26, 2022 at 04:21 PM
+-- Generation Time: Sep 06, 2022 at 02:09 PM
 -- Server version: 10.4.22-MariaDB
 -- PHP Version: 8.1.2
 
@@ -35,19 +35,22 @@ CREATE TABLE `devices` (
   `allowed_roles` varchar(30) NOT NULL,
   `manufacturer` varchar(50) NOT NULL,
   `specs` varchar(255) NOT NULL,
-  `dev_image` varchar(50) NOT NULL
+  `dev_image` varchar(50) NOT NULL,
+  `rfid` varchar(255) NOT NULL,
+  `cur_status` varchar(50) NOT NULL,
+  `prev_status` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `devices`
 --
 
-INSERT INTO `devices` (`id`, `unique_num`, `dev_name`, `dev_model`, `allowed_roles`, `manufacturer`, `specs`, `dev_image`) VALUES
-(1, '4CE0460D0G', 'Lenovo ThinkPad X1', 'Laptop', 'Administrator', 'Lenovo', 'Processor: Intel Core i7<br />\r\nRAM: 16GB 3200MHz<br />\r\nGraphics: Integrated Intel HD Graphics 4000<br />\r\nHard Drive: 1TB<br />\r\nDisplay: 14\" inch; 1920x1080 Resolution<br />\r\nOS: Windows 10', 'Lenovo-ThinkPad-X1-1.png'),
-(2, '4CE0460D1X', 'Macbook Pro', 'Laptop', 'Executive', 'Apple', 'Processor: Apple M2 Chip<br />\r\nRAM: 16GB Memory<br />\r\nGraphics: Intel Integrated Iris Plus Graphics 645<br />\r\nStorage: 512GB SSD<br />\r\nDisplay: 13.3\" inch; 2560x1600 Resolution<br />\r\nOS: macOS', 'Macbook-Pro-1.jpg'),
-(3, '4CE0460D69', 'Edge Gateway', 'Router', 'Employee', 'Dell', 'Processor: ARM Cortex-A53<br />\r\nRAM: 2GB<br />\r\nStorage: 512GB SSD<br />\r\nOS: Linux Ubuntu<br />\r\nWeight: 820g', 'Edge-Gateway1.png'),
-(4, '4CE0460D5G', 'Oculus Rift S', 'VR Headset', 'Executive', 'Oculus', 'Platform: SteamVR, Oculus Home<br />\r\nDisplay Type: Single LCD (Binocular)<br />\r\nResolution: 1280x1440 (per-eye)<br />\r\nRefresh Rate: 80hz<br />\r\nWeight: 500g', 'Occulus-Rift-S1.jpg'),
-(5, '4CE0460D1S', 'PowerEdge-T330', 'Server', 'Administrator', 'Dell', 'Processer: Intel Xeon<br />\r\nRAM: 64GB<br />\r\nDrive Bays: Supports 2.5\" HDD in 3.5\" hybrid drive\r\ncarrier<br />\r\nOS: Windows Server', 'PowerEdge-T330-1.jpg');
+INSERT INTO `devices` (`id`, `unique_num`, `dev_name`, `dev_model`, `allowed_roles`, `manufacturer`, `specs`, `dev_image`, `rfid`, `cur_status`, `prev_status`) VALUES
+(1, '4CE0460D1X', 'Macbook Pro', 'Laptop', 'Executive', 'Apple', 'Processor: Apple M2 Chip<br />\r\nRAM: 16GB Memory<br />\r\nGraphics: Intel Integrated Iris Plus Graphics <br />\r\n645<br />\r\nStorage: 512GB SSD<br />\r\nDisplay: 13.3\" inch; 2560x1600 Resolution<br />\r\nOS: macOS', 'Macbook-Pro-1.jpg', 'None', 'Available', 'None'),
+(2, '4CE0460D69', 'Edge Gateway', 'Router', 'Employee', 'Dell', 'Processor: ARM Cortex-A53<br />\r\nRAM: 2GB<br />\r\nStorage: 512GB SSD<br />\r\nOS: Linux Ubuntu<br />\r\nWeight: 820g', 'Edge-Gateway1.png', 'None', 'Available', 'None'),
+(3, '4CE0460D5G', 'Occulus Rift S', 'VR Headset', 'Executive', 'Oculus', 'Platform: SteamVR, Oculus Home<br />\r\nDisplay Type: Single LCD (Binocular)<br />\r\nResolution: 1280x1440 (per-eye)<br />\r\nRefresh Rate: 80hz<br />\r\nWeight: 500g', 'Occulus-Rift-S1.jpg', 'None', 'Available', 'None'),
+(4, '4CE0460D1S', 'PowerEdge-T330', 'Server', 'Administrator', 'Dell', 'Processer: Intel Xeon<br />\r\nRAM: 64GB<br />\r\nDrive Bays: Supports 2.5\" HDD in 3.5\" hybrid drive<br />\r\ncarrier<br />\r\nOS: Windows Server', 'PowerEdge-T330-1.jpg', 'None', 'Available', 'None'),
+(5, '4CE0460D0G', 'Lenovo ThinkPad X1', 'Laptop', 'Employee', 'Lenovo', 'Processor: Intel Core I7<br />\r\nRAM: 16GB Memory<br />\r\nGraphics: Intel HD Graphics 520<br />\r\nStorage: 1 TB PCIe NVMe SSD<br />\r\nDisplay: 14\" FHD (1920 x 1080) IPS<br />\r\nOS: Windows 11', 'Lenovo-ThinkPad-X1-1.png', 'None', 'Available', 'None');
 
 -- --------------------------------------------------------
 
@@ -75,7 +78,8 @@ INSERT INTO `users` (`id`, `emp_id`, `emp_name`, `emp_email`, `superior`, `emp_r
 (2, '2022-E0001', 'Andrea Blancaflor', 'andrea.blancaflor@gmail.com', 'Jose Luis Reyes', 'employee', 'ce6e92851b851beb843a47ce337bc1df', 'Andrea1.png'),
 (3, '2022-E0002', 'Rovic Gabriel Tabucol', 'rovic.tabucol@gmail.com', 'Juan Dela Cruz', 'employee', '4c4501548cb1fbf146201d6b3f1828b1', 'Rovic1.jpg'),
 (4, '2022-E0003', 'Elaine Enricoso', 'elaine.enricoso@gmail.com', 'Jane Doe', 'employee', '9c1533d53b02039a76402407d65a5e46', 'Elaine1.png'),
-(5, '2022-E0004', 'John Michael Reyes', 'jeem@gmail.com', 'Enteng Kabisote', 'employee', '11edd5475736938f90e47017c3c51b10', 'JM1.png');
+(5, '2022-E0004', 'John Michael Reyes', 'jeem@gmail.com', 'Enteng Kabisote', 'employee', '11edd5475736938f90e47017c3c51b10', 'JM1.png'),
+(8, '2022-E0002', 'Jm Reyes', 'jmreyes@gmail.com', 'Jose Luis Reyes', 'employee', '581c28e44b7348218b620147d098f55a', 'placeholder3.png');
 
 -- --------------------------------------------------------
 
@@ -129,13 +133,13 @@ ALTER TABLE `user_information`
 -- AUTO_INCREMENT for table `devices`
 --
 ALTER TABLE `devices`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `user_information`
