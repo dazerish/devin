@@ -109,15 +109,15 @@
                 <table class="detail-table">
                     <thead>
                         <tr>
-                            <th scope="col">Current Status</th> <!-- Status to follow--> 
-                            <th scope="col">Previous Device Status</th> <!-- Status to follow--> 
+                            <th scope="col">Current Status</th>
+                            <th scope="col">Previous Device Status</th> 
                         </tr>
                     </thead>
     
                     <tbody>
                         <tr>
-                            <td>Available</td> 
-                            <td>Reserved</td> 
+                            <td><?= $device->cur_status; ?></td> 
+                            <td><?= $device->prev_status; ?></td> 
                         </tr>
                     </tbody>
                 </table>
