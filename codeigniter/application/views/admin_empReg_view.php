@@ -71,7 +71,7 @@
                     <input type="password" id="init-pass" name="init-pass"><br>
                     <span class="text-danger"><?= form_error('init-pass') ?></span>
 
-                    <label for="emp-img" class="register_label">Employee Image</label><br>
+                    <label for="employee-image" class="register_label">Employee Image</label><br>
                     <input type="file" id="upload" name="employee_image" hidden/>
                         <label for="upload" class="upload-btn">Upload image </label>
                         <span class="text-danger" id="file-chosen"><?= form_error('employee_image') ?></span>
