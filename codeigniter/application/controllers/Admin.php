@@ -24,6 +24,7 @@ class Admin extends CI_Controller{
         $this->load->view('include/footer');
     }
 
+    //Employee Masterlist
     public function emp_masterlist_view() {
         $page_config = array(
             'base_url' => site_url('Admin/emp_masterlist_view'),
@@ -109,7 +110,7 @@ class Admin extends CI_Controller{
         $this->load->view('include/footer');
     }
 
-    public function employee_view($id) {
+    public function employee_view($id) { //Under Employee Masterlist
         $data['title'] = "Calibr8 - View Employee Details";
         $data['employee'] = $this->Admin_model->get_emp_row($id);
 
@@ -123,7 +124,82 @@ class Admin extends CI_Controller{
         redirect('Admin/emp_masterlist_view');
     }
 
+    public function editEmp_view($id) { //Under Employee Masterlist
+        $data['title'] = "Calibr8 - Edit Employee Details";
+        $data['employee'] = $this->Admin_model->get_emp_row($id);
 
+        $this->load->view('include/header', $data);
+        $this->load->view('admin_editEmp_view', $data);
+        $this->load->view('include/footer');
+    }
+
+    public function editEmp_details() {
+        $image_config = array(
+            'upload_path' => './assets/employee_image',
+            'allowed_types' => 'gif|jpg|png',
+            'max_size' => 5000000000,
+            'max_width' => 204800,
+            'max_height' => 204800
+        );
+        
+        $this->load->library('upload', $image_config);
+        $this->upload->initialize($image_config);
+
+        $this->form_validation->set_rules('empname', 'Employee Name', 'required', array(
+            'requied' => '%s is required.'
+        ));
+
+        $this->form_validation->set_rules('roles', 'Employee Roles', 'required', array(
+            'requied' => '%s is required.'
+        ));
+
+        $this->form_validation->set_rules('rfid', 'RFID', 'required', array(
+            'requied' => '%s is required.'
+        ));
+
+        if($this->upload->do_upload('employee_image') == FALSE) {
+            $this->form_validation->set_rules('employee_image', 'Employee Image', 'required');
+        }
+
+        if($this->form_validation->run() == FALSE) {
+            $id = $this->input->post('emp-id');
+            $this->editEmp_view($id);
+        } else {
+            $image_name = (!$this->upload->do_upload('employee_image')) ? null : $this->upload->data('file_name');
+            $save = $this->input->post('reg-dev');
+
+            if(isset($save)) {
+
+                $id = $this->input->post('emp-id');
+                $info = array(
+                    'emp_name' => $this->input->post('empname'),
+                    'emp_role' => $this->input->post('roles'),
+                    'emp_image' => $image_name,
+                    'rfid' => $this->input->post('rfid')
+                );
+
+                $this->Admin_model->update_employee($id, $info);
+
+                $success = "Employee details is updated successfully";
+                $this->session->set_flashdata('success', $success);
+                $this->editEmp_view($id);
+
+            }
+        }
+
+        $cancel = $this->input->post('cancel-btn');
+        
+        if(isset($cancel)) {
+            redirect('Admin/emp_masterlist_view');
+        }
+    }
+
+
+
+
+    
+
+    //Device Masterlist
     public function dev_masterlist_view() {
         $page_config = array(
             'base_url' => site_url('Admin/dev_masterlist_view'),
@@ -209,7 +285,7 @@ class Admin extends CI_Controller{
         $this->load->view('include/footer');
     }
 
-    public function device_view($id) {
+    public function device_view($id) { //Under device masterlist
         $data['title'] = "Calibr8 - View Device Details";
         $data['device'] = $this->Admin_model->get_dev_row($id);
 
@@ -223,8 +299,92 @@ class Admin extends CI_Controller{
         redirect('Admin/dev_masterlist_view');
     }
 
-    public function empReg_view() {
+    public function editDev_view($id) { //Under device masterlist
+        $data['title'] = "Calibr8 - Edit Device Details";
+        $data['device'] = $this->Admin_model->get_dev_row($id);
 
+        $this->load->view('include/header', $data);
+        $this->load->view('admin_editDev_view', $data);
+        $this->load->view('include/footer');
+    }
+
+    public function editDev_details() {
+        $image_config = array(
+            'upload_path' => './assets/device_image',
+            'allowed_types' => 'gif|jpg|png',
+            'max_size' => 5000000000,
+            'max_width' => 204800,
+            'max_height' => 204800
+        );
+        
+        $this->load->library('upload', $image_config);
+        $this->upload->initialize($image_config);
+
+        $this->form_validation->set_rules('devicename', 'Device Name', 'required', array(
+            'required' => '%s is required.'
+        ));
+
+        $this->form_validation->set_rules('roles', 'Allowed Roles', 'required', array(
+            'required' => '%s is required.'
+        ));
+
+        $this->form_validation->set_rules('rfid', 'RFID', 'required', array(
+            'required' => '%s is required.'
+        ));
+
+        $this->form_validation->set_rules('prev_device_status', 'Previous Device Status', 'required', array(
+            'required' => '%s is required.'
+        ));
+
+        $this->form_validation->set_rules('cur_device_status', 'Current Device Status', 'required', array(
+            'required' => '%s is required.'
+        ));
+
+        if($this->upload->do_upload('device_image') == FALSE) {
+            $this->form_validation->set_rules('device_image', 'Device Image', 'required');
+        }
+
+        if($this->form_validation->run() == FALSE) {
+            $id = $this->input->post('dev-id');
+            $this->editDev_view($id);
+        } else {
+            $image_name = (!$this->upload->do_upload('device_image')) ? null : $this->upload->data('file_name');
+            $save = $this->input->post('reg-dev');
+
+            if(isset($save)) {
+
+                $id = $this->input->post('dev-id');
+                $info = array(
+                    'dev_name' => $this->input->post('devicename'),
+                    'allowed_roles' => $this->input->post('roles'),
+                    'rfid' => $this->input->post('rfid'),
+                    'prev_status' => $this->input->post('prev_device_status'),
+                    'cur_status' => $this->input->post('cur_device_status'),
+                    'dev_image' => $image_name
+                );
+
+                $this->Admin_model->update_device($id, $info);
+
+                $success = "Device details is updated successfully";
+                $this->session->set_flashdata('success', $success);
+                $this->editDev_view($id);
+
+            }
+        }
+
+        $cancel = $this->input->post('cancel-btn');
+        
+        if(isset($cancel)) {
+            redirect('Admin/dev_masterlist_view');
+        }
+    }
+
+
+
+
+
+    //Registration Section
+    public function empReg_view() {
         $data['title'] = 'Calibr8 - Employee Registration';
         $this->load->view('include/header', $data);
         $this->load->view('admin_empReg_view');
@@ -243,8 +403,9 @@ class Admin extends CI_Controller{
         $this->load->library('upload', $image_config);
         $this->upload->initialize($image_config);
 
-        $this->form_validation->set_rules('empid', 'Employee ID', 'required', array(
-            'required' => '%s is required.'
+        $this->form_validation->set_rules('empid', 'Employee ID', 'required|is_unique[users.emp_id]', array(
+            'required' => '%s is required.',
+            'is_unique' => 'This %s is already registered.'
         ));
         $this->form_validation->set_rules('empname', 'Employee Name', 'required', array(
             'required' => '%s is required.'
@@ -277,6 +438,7 @@ class Admin extends CI_Controller{
 
             if(isset($register)) {
 
+                $id = $this->session->userdata('id');
                 $info = array(
                     'emp_id' => $this->input->post('empid'),
                     'emp_name' => $this->input->post('empname'),
@@ -284,7 +446,8 @@ class Admin extends CI_Controller{
                     'superior' => $this->input->post('superior'),
                     'emp_role' => $this->input->post('roles'),
                     'password' => md5($this->input->post('init-pass')),
-                    'emp_image' => $image_name
+                    'emp_image' => $image_name,
+                    'rfid' => 'None'
                 );
 
                 $this->Admin_model->employee_registration($info);
@@ -316,9 +479,10 @@ class Admin extends CI_Controller{
         $this->load->library('upload', $image_config);
         $this->upload->initialize($image_config);
 
-        $this->form_validation->set_rules('uniquenum', 'Device Unique Number', 'required|alpha_numeric', array(
+        $this->form_validation->set_rules('uniquenum', 'Device Unique Number', 'required|alpha_numeric|is_unique[devices.unique_num]', array(
             'required' => '%s is required.',
-            'alpha_numeric' => '%s should only contain alpha numeric characters.'
+            'alpha_numeric' => '%s should only contain alpha numeric characters.',
+            'is_unique' => 'This %s is already registered.'
         ));
         $this->form_validation->set_rules('devicename', 'Device Name', 'required', array(
             'required' => '%s is required.'
@@ -357,7 +521,10 @@ class Admin extends CI_Controller{
                     'allowed_roles' => $this->input->post('roles'),
                     'manufacturer' => $this->input->post('manuf'),
                     'specs' => nl2br($this->input->post('specs')),
-                    'dev_image' => $image_name
+                    'dev_image' => $image_name,
+                    'rfid' => 'None',
+                    'cur_status' => 'Available',
+                    'prev_status' => 'None'
                 );
 
                 $this->Admin_model->device_registration($info);
@@ -368,6 +535,7 @@ class Admin extends CI_Controller{
             }
         }
     }
+
 
 }
 
