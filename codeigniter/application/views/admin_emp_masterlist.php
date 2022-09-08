@@ -80,7 +80,7 @@
         
                     <td>
                         <a href="<?= site_url('Admin/employee_view/') . $employee->id; ?>"><i class="fa fa-solid fa-eye"></i></a>
-                        <a href="<?= site_url('')?>"><i class="fas fa-edit" id="edit-btn"></i></a>
+                        <a href="<?= site_url('Admin/editEmp_view/') . $employee->id;?>"><i class="fas fa-edit" id="edit-btn"></i></a>
                     </td>
                 </tr>
             <?php endforeach; ?>
