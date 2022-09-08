@@ -32,6 +32,10 @@ class Admin_model extends CI_Model {
         $this->db->delete('users', ['id' => $id]);
     }
 
+    public function update_employee($id, $info) {
+        $this->db->update('users', $info, ['id' => $id]);
+    }
+
     //View Section (Device)
     public function get_devices_table($limit, $start, $st = NULL) {
         if ($st == "NIL") $st = "";
@@ -72,6 +76,13 @@ class Admin_model extends CI_Model {
     public function remove_device($id) {
         $this->db->delete('devices', ['id' => $id]);
     }
+
+    public function update_device($id, $info) {
+        $this->db->update('devices', $info, ['id' => $id]);
+    }
+
+
+
 
     //Registration Section (Employee)
     public function employee_registration($info) { 

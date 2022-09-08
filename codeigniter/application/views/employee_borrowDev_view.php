@@ -1,4 +1,4 @@
-<nav>
+   <nav>
     <div class="logo"><img src="<?= base_url('./assets/pictures/calibr8logo.jpg');?>" alt="Calibr8 Logo" height="30px"></div>
     <a class="nav-link" href="#">View</a>
     <a class="nav-link" href="#" id="activebtn">Reservation</a>
