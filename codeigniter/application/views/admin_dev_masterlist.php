@@ -108,11 +108,11 @@
                     <td class="emp-name-bold"><?= $device->dev_name;?></td>
                     <td><?= $device->dev_model;?></td>
                     <td><?=$device->manufacturer; ?></td>
-                    <td>Available</td><!--"Status" to follow-->
+                    <td><?=$device->cur_status; ?></td>
         
                     <td>
                         <a href="<?= site_url('Admin/device_view/') . $device->id; ?>"><i class="fa fa-solid fa-eye"></i></a>
-                        <a href="<?= site_url('')?>"><i class="fas fa-edit" id="edit-btn"></i></a>
+                        <a href="<?= site_url('Admin/editDev_view/') . $device->id; ?>"><i class="fas fa-edit" id="edit-btn"></i></a>
                     </td>
                 </tr>
             <?php endforeach; ?>  
