@@ -16,7 +16,8 @@
 
         
 
-        public function create() {
+
+        public function login() {
             header('Content-Type: application/json');
 
 
@@ -28,7 +29,18 @@
 
 
             if(isset($account)) {
-                echo json_encode(['success' =>'True', 'email' => $email]);
+                // echo json_encode(['success' =>'True', 'email' => $email]);
+                $jwt = new JWT();
+
+                $JwtSecretKey = "DEVIN-Calibr8";
+                $data = array(
+                    'id' => $account->id,
+                    'email' => $account->emp_email,
+                    'role' => $account->emp_role
+                );
+
+                $token = $jwt->encode($data, $JwtSecretKey, 'HS256');
+                echo json_encode(['token' => $token]);
             } else {
                 echo json_encode(['error' => 'Invalid username/password']);
             }
@@ -82,25 +94,51 @@
             // }
         }
 
-        public function display() {
-            header('Content-Type: application/json');
+        public function token() { //JWT Token
+            $jwt = new JWT();
 
-            $this->load->model('Sample_model');
-            $this->Sample_model->display();
+            $JwtSecretKey = "DEVIN-Calibr8";
+            $data = array(
+                'userId' => 568,
+                'email' => 'admin@gmail.com',
+                'userType' => 'admin'
+            );
+
+            $token = $jwt->encode($data, $JwtSecretKey, 'HS256');
+            echo json_encode($token);
+        }
+
+        public function decode_token() {
+            $token = $this->uri->segment(3);
+
+            $jwt = new JWT();
+            $JwtSecretKey = "DEVIN-Calibr8";
+            
+            $decoded_token = $jwt->decode($token, $JwtSecretKey, 'HS256');
+
+            //this will return std_object
+            // echo "<pre>";
+            // print_r($decoded_token);
+
+            //it will return JSON
+            $token1 = $jwt->jsonEncode($decoded_token);
+            echo $token1;
         }
 
         public function display_emp() {
             header('Content-Type: application/json');
 
             $this->load->model('Sample_model');
-            $this->Sample_model->display_emp();
+            $response = $this->Sample_model->display_emp();
+            echo json_encode($response);
         }
 
         public function display_dev() {
             header('Content-Type: application/json');
 
             $this->load->model('Sample_model');
-            $this->Sample_model->display_dev();
+            $response = $this->Sample_model->display_dev();
+            echo json_encode($response);
         }
     }
 ?>
