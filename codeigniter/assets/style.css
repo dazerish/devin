@@ -76,6 +76,11 @@ a:hover {
     box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
     margin-bottom: 10px;
     margin-top: 50px;
+    text-align: center;
+}
+
+.login_container .login_label {
+  text-align: left;
 }
 
 .register_container {
@@ -421,6 +426,54 @@ td i {
     text-align: center;
   }
 
-  .col-center {
-    
-  }
+
+  /*VIEW PROFILE*/
+
+  .profile-container {
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.prof-pic {
+  height: 150px;
+  border-radius: 15px;
+}
+
+.profile-card, .resetpw-card {
+    background-color: #ffffff;
+    width: 500px;
+    text-align: center;
+    border-radius: 15px;
+    padding: 20px;
+}
+
+.logout-btn-div {
+  margin-top: 15px;
+}
+
+.resetpw-card {
+  margin-top: 10px;
+}
+
+#logout-btn {
+  border: 1px solid #C63F18;
+  border-radius: 15px;
+  background-color: #ffffff;
+  color: #C63F18;
+  padding: 10px;
+}
+
+#reset-btn {
+  border: 1px solid;
+  border-radius: 15px;
+  background-color: #C63F18;
+  color: #ffffff;
+  padding: 10px;
+}
+
+.btn-div {
+  margin-top: 15px;
+}
