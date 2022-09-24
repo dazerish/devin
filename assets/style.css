@@ -579,11 +579,13 @@ td i {
 .sales-boxes .box .title{
   font-size: 24px;
   font-weight: 500;
+  color: #C63F18;
   /* margin-bottom: 10px; */
 }
 .sales-boxes .sales-details li.topic{
   font-size: 20px;
   font-weight: 500;
+  color: #C63F18;
 }
 .sales-boxes .sales-details li{
   list-style: none;
