@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<!-- Designined by CodingLab | www.youtube.com/codinglabyt -->
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link rel="stylesheet" href="assets/style.css">
+    <link rel = "icon" href ="assets/pictures/c8.jpg" type = "image/x-icon">
+    <title>Dashboard</title>
+   </head>
+<body>
+  
+    <nav>
+        <div class="logo"><img src="assets/pictures/calibr8logo.png" alt="Calibr8 Logo" height="30px"></div>
+        <a class="nav-link" href="#" id="activebtn">Dashboard</a>
+        <a class="nav-link" href="#">View</a>
+        <a class="nav-link" href="#">Edit</a>
+        <a class="nav-link" href="#">Reservation</a>
+        <a class="nav-link" href="#">Generate Reports</a>
+        </div>
+        <div class="dropdown">
+            <a href="#" class="regbtn">Registration</a>
+            <div class="list">
+                <a href="device_register.html" class="links">Device Registration</a>
+                <a href="employee_register.html" class="links">Employee Registration</a>
+            </div>
+        </div>
+        <a href="#" class="ts"><i class="far fa-user" id="nav-user-icon"></i>Admin</a>
+        
+        </form>
+        
+    </nav>
+
+    <script>
+        let click = document.querySelector('.regbtn');
+        let list = document.querySelector('.list');
+        click.addEventListener("click", ()=> {
+            list.classList.toggle('newList');
+        });
+    </script>
+
+    <div class="home-content">
+
+    <h1 class="page-title"><b>Dashboard</b></h1>
+      <div class="overview-boxes">
+        <div class="box">
+          <div class="right-side">
+            <div class="box-topic">Borrowed Devices</div>
+            <div class="number">46</div>
+          </div>
+      
+        </div>
+        <div class="box">
+          <div class="right-side">
+            <div class="box-topic">Broken Devices</div>
+            <div class="number">8</div>
+          </div>
+          
+        </div>
+        <div class="box">
+          <div class="right-side">
+            <div class="box-topic">Lost Devices</div>
+            <div class="number">3</div>
+          </div>
+        
+        </div>
+     
+      </div>
+
+      <div class="sales-boxes">
+        <div class="recent-sales box">
+          <div class="title">Recent Transactions</div>
+          <div class="sales-details">
+            <ul class="details">
+              <li class="topic">Date</li>
+              <li><a href="#">02 Jan 2021</a></li>
+              <li><a href="#">02 Jan 2021</a></li>
+              <li><a href="#">02 Jan 2021</a></li>
+            
+            </ul>
+            <ul class="details">
+            <li class="topic">Employee</li>
+            <li><a href="#">Alex Doe</a></li>
+            <li><a href="#">David Mart</a></li>
+            <li><a href="#">Roe Parter</a></li>
+          </ul>
+          <ul class="details">
+            <li class="topic">Device</li>
+            <li><a href="#">Delivered</a></li>
+            <li><a href="#">Pending</a></li>
+            <li><a href="#">Returned</a></li>
+          </ul>
+        
+          </div>
+          <div class="button">
+            <a href="#">See All</a>
+          </div>
+        </div>
+        <div class="top-sales box">
+          <div class="title">Top Borrowed Devices</div>
+          <ul class="top-sales-details">
+            <li>
+            <a href="#">
+              <span class="product">Macbook Pro</span>
+            </a>
+            <span class="price">4</span>
+          </li>
+          <li>
+            <a href="#">
+              <span class="product">Edge Gateway</span>
+            </a>
+            <span class="price">3</span>
+          </li>
+          <li>
+            <a href="#">
+              <span class="product">Lenovo Thinkpad X1</span>
+            </a>
+            <span class="price">2</span>
+          </li> 
+          <li>
+            <a href="#">
+              <span class="product">Oculus VR</span>
+            </a>
+            <span class="price">1</span>
+          </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</body>
+</html>
+
