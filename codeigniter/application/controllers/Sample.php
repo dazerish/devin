@@ -132,7 +132,7 @@
 
             $value = json_decode(json_encode($decoded_token), true);
             $expiration = $value['expiration'];
-            echo $expiration;
+            echo json_encode($expiration);
 
             if(time() * 1000 >= $expiration) { //Error Handling
                 echo 'Token is expired';
@@ -159,10 +159,13 @@
 
         public function display_dev() {
             header('Content-Type: application/json');
+            $token = $this->decode_token();
 
-            $this->load->model('Sample_model');
-            $response = $this->Sample_model->display_dev();
-            echo json_encode($response);
+            if(isset($token)) {
+                $this->load->model('Sample_model');
+                $response = $this->Sample_model->display_dev();
+                echo json_encode($response);
+            }
         }
     }
 ?>
