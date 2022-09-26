@@ -742,3 +742,47 @@ td i {
     width: calc(100% - 60px);
   }
 }
+
+
+/*homepage*/
+
+#homepg-btn {
+  border: 1px solid #C63F18;
+  padding: 10px;
+  border-radius: 15px;
+  color: white;
+  background-color: #C63F18;
+}
+
+.overview {
+  background-color: #777777;
+  /* background-image: url("https://images.unsplash.com/photo-1627719172038-611c725920bc?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover; */
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+
+.overview-content{
+    color: white;
+    
+}
+
+.features {
+  
+
+}
+
+.features-content {
+  padding: 20px;
+  width: 500px;
+}
+
+
+
+
+
