@@ -39,7 +39,7 @@
                     'superior' => $account->superior,
                     'role' => $account->emp_role,
                     'image' => $account->emp_image,
-                    'expiration' => 1664005351368
+                    'expiration' => (time() * 1000) + 3600 * 1000
                     // (time() * 1000) + 3600 * 1000 - 1hr expiration
                 );
 
