@@ -29,14 +29,18 @@
 
 
             if(isset($account)) {
-                // echo json_encode(['success' =>'True', 'email' => $email]);
                 $jwt = new JWT();
 
                 $JwtSecretKey = "DEVIN-Calibr8";
                 $data = array(
                     'id' => $account->id,
+                    'name' => $account->emp_name,
                     'email' => $account->emp_email,
-                    'role' => $account->emp_role
+                    'superior' => $account->superior,
+                    'role' => $account->emp_role,
+                    'image' => $account->emp_image,
+                    'expiration' => 1664005351368
+                    // (time() * 1000) + 3600 * 1000 - 1hr expiration
                 );
 
                 $token = $jwt->encode($data, $JwtSecretKey, 'HS256');
@@ -108,8 +112,10 @@
             echo json_encode($token);
         }
 
-        public function decode_token() {
-            $token = $this->uri->segment(3);
+        public function decode_token() { //Error Handling - status code(403)
+            $headers = apache_request_headers();
+            $token = $headers['Authorization'];
+            // echo json_encode($token);
 
             $jwt = new JWT();
             $JwtSecretKey = "DEVIN-Calibr8";
@@ -122,15 +128,33 @@
 
             //it will return JSON
             $token1 = $jwt->jsonEncode($decoded_token);
-            echo $token1;
+            // return $token1;
+
+            $value = json_decode(json_encode($decoded_token), true);
+            $expiration = $value['expiration'];
+            echo $expiration;
+
+            if(time() * 1000 >= $expiration) { //Error Handling
+                echo 'Token is expired';
+            }
+            return $token1;
         }
 
         public function display_emp() {
             header('Content-Type: application/json');
+            $token = $this->decode_token();
 
-            $this->load->model('Sample_model');
-            $response = $this->Sample_model->display_emp();
-            echo json_encode($response);
+            if(isset($token)) {
+                $this->load->model('Sample_model');
+                $response = $this->Sample_model->display_emp();
+                echo json_encode($response);
+
+            }
+
+
+            // $this->load->model('Sample_model');
+            // $response = $this->Sample_model->display_emp();
+            // echo json_encode($response);
         }
 
         public function display_dev() {
