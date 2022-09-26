@@ -132,10 +132,13 @@
 
             $value = json_decode(json_encode($decoded_token), true);
             $expiration = $value['expiration'];
-            echo json_encode($expiration);
+            // echo json_encode($expiration);
+            // echo json_encode($decoded_token);
 
             if(time() * 1000 >= $expiration) { //Error Handling
                 echo 'Token is expired';
+            } else {
+                echo json_encode($decoded_token);
             }
             return $token1;
         }
