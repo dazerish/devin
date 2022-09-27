@@ -809,6 +809,16 @@ td i {
   font-size: 20px;
 }
 
+.f-feature-box {
+  border: 1px solid #C63F18;
+  border-radius: 10px;
+  padding: 50px;
+}
+
+.f-feature-box h3 {
+  font-size: 20px;
+}
+
 
 
 
