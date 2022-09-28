@@ -819,8 +819,72 @@ td i {
   font-size: 20px;
 }
 
+.borrow_module {
+  text-align: center;
+  display: flex;
+}
 
+.device-view {
+  width: 800px;
+}
 
+.device-info {
+  text-align: left;
+  color: #777777;
+  background-color: #F3E0DA;
+  border-radius: 15px;
+  width: 550px;
+  padding: 10px;
+  margin: auto;
+}
 
+.device-info ul {
+  list-style-type: none;
+}
 
+.date-picker {
+  width: 525px;
+  height: 50px;
+  border: 1px solid #C63F18;
+  border-radius: 15px;
+  padding: 10px;
+}
 
+.picker-flex {
+  display: flex;
+  align-items: center;
+}
+
+.picker-div {
+  align-items: center;
+}
+
+.btn-grp {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.btn-grp button {
+  margin: 0 20px 0px 20px;
+}
+
+.btn-grp .cancel-btn {
+  border: 3px solid #C63F18;
+  border-radius: 15px;
+  color: #C63F18;
+  font-size: 18px;
+  font-weight: 800;
+  width: 200px;
+  height: 50px;
+}
+
+.btn-grp .reserve-btn {
+  background-color: #C63F18;
+  border-radius: 15px;
+  font-size: 18px;
+  font-weight: 800;
+  width: 250px;
+  height: 50px;
+  color: white;
+  border: none;
+}
