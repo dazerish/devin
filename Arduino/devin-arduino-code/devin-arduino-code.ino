@@ -8,6 +8,9 @@
 //************************************************************************
 #define SS_PIN1  D2  //D2
 #define RST_PIN1 D1  //D1
+
+#define SS_PIN2  D3  //D2
+#define RST_PIN2 D4  //D1
 //************************************************************************
 MFRC522 mfrc522_1(SS_PIN1, RST_PIN1); // Create MFRC522 instance.
 //WiFiClient client;

@@ -20,7 +20,7 @@ class Admin extends CI_Controller{
         
         $data['title'] = 'Calibr8 - Admin Dashboard';
         $this->load->view('include/header', $data);
-        $this->load->view('admin_empReg_view'); //Temporary view to be loaded
+        $this->load->view('admin_dashboard_view'); //Temporary view to be loaded
         $this->load->view('include/footer');
     }
 
@@ -536,7 +536,13 @@ class Admin extends CI_Controller{
         }
     }
 
+    public function dashboard_view() {
 
+        $data['title'] = 'Calibr8 - Dashboard';
+        $this->load->view('include/header', $data);
+        $this->load->view('admin_dashboard_view');
+        $this->load->view('include/footer');
+    }
 }
 
 ?>
