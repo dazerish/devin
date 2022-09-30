@@ -1,5 +1,5 @@
 <div class="login_logo">
-    <img src="<?= base_url('./assets/pictures/calibr8logo.jpg');?>" alt="Calibr8 Logo" height="30px">
+    <img src="<?= base_url('./assets/pictures/calibr8logo.png');?>" alt="Calibr8 Logo" height="30px">
 </div>
     
     <section class="homepage">
