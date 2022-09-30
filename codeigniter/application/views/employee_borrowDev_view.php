@@ -61,63 +61,33 @@
        </div>
 
        <section class="main_container">
-
            <div class="reservation_container">
-               <div class="item-row">
-                   <div class="item-pic">
-                       <img src="assets/pictures/lenovo.png" alt="Lenovo Laptop">
-                       <div class="item-desc">
-                           <h6>Lenovo Thinkpad X1</h6>
-                           <h6>Status: Available</h6>
-                           <h6>Stock: <?= $totalDev; ?></h6>
+               <?php foreach ($stocks as $stock) : ?>
+                   <div class="item-row">
+                       <div class="item-pic">
+                           <img src="assets/pictures/lenovo.png" alt="Lenovo Laptop">
+                           <div class="item-desc">
+                               <h6><?= $stock->dev_name; ?></h6>
+                               <h6>Status: Available</h6>
+                               <h6>Stock: <?= $stock->stock; ?></h6>
+                           </div>
                        </div>
-                   </div>
 
-                   <div class="item-btn">
-                       <input type="submit" class="all_btn" id="reserve_btn" value="Borrow Device">
-                   </div>
-               </div>
-
-               <div class="item-row">
-                   <div class="item-pic">
-                       <img src="assets/pictures/lenovo.png" alt="Lenovo Laptop">
-                       <div class="item-desc">
-                           <h6>Lenovo Thinkpad X1</h6>
-                           <h6>Status: Available</h6>
-                           <h6>Stock: 2</h6>
-                       </div>
-                   </div>
-
-                   <div class="item-btn">
-                       <a href="<?= site_url('Employee/reservation'); ?>">
+                       <div class="item-btn">
                            <input type="submit" class="all_btn" id="reserve_btn" value="Borrow Device">
-                       </a>
-                   </div>
-               </div>
-
-               <div class="item-row">
-                   <div class="item-pic">
-                       <img src="assets/pictures/lenovo.png" alt="Lenovo Laptop">
-                       <div class="item-desc">
-                           <h6>Lenovo Thinkpad X1</h6>
-                           <h6>Status: Available</h6>
-                           <h6>Stock: 2</h6>
                        </div>
                    </div>
-
-                   <div class="item-btn">
-                       <input type="submit" class="all_btn" id="reserve_btn" value="Borrow Device">
-                   </div>
-               </div>
+               <?php endforeach; ?>
            </div>
+       </section>
 
+       <?= $this->pagination->create_links() ?>
    </div>
-
    <script>
        // passing the dashboard data from php to javascript for manipulation and display
        var stock = <?php echo json_encode($stock); ?>;
        console.log(stock)
+
+       var someArray = [1, 2, 3, 4]
+       console.log(someArray[3])
    </script>
-
-
-   </section>

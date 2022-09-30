@@ -47,10 +47,22 @@ class Employee_model extends CI_Model
 
     public function count_devModel()
     {
-        $sql = "SELECT dev_name, COUNT(dev_name) AS stock
+        // include other column names after AS
+        $sql = "SELECT dev_name, COUNT(dev_name) AS stock 
         FROM devices
         GROUP BY dev_name
         HAVING COUNT(*)>0";
+        $query = $this->db->query($sql);
+        return $query->result();
+    }
+
+    public function get_devModel($limit, $start)
+    {
+        $sql = "SELECT dev_name, COUNT(dev_name) AS stock 
+        FROM devices
+        GROUP BY dev_name
+        HAVING COUNT(*)>0
+        LIMIT $limit, $start";
         $query = $this->db->query($sql);
         return $query->result();
     }

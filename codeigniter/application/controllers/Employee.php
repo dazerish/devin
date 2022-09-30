@@ -117,9 +117,9 @@ class Employee extends CI_Controller
         $this->pagination->initialize($page_config);
 
         $data['title'] = 'Calibr8 - Device Masterlist';
-        $data['devices'] = $this->Employee_model->get_devices_table($page_config['per_page'], $page);
+        // $data['devices'] = $this->Employee_model->get_devices_table($page_config['per_page'], $page);
         $data['total'] = $this->Employee_model->get_dCount();
-        $data['stock'] = $this->Employee_model->count_devModel();
+        $data['stocks'] = $this->Employee_model->count_devModel();
         $this->load->view('include/header', $data);
         $this->load->view('employee_borrowDev_view');
         $this->load->view('include/footer');
