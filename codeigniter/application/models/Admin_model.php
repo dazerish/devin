@@ -113,10 +113,9 @@ class Admin_model extends CI_Model
 
 
     // Made by JL for admin dashboard, please move where appropriate
-    public function admin_dashboard($info)
+    public function admin_dashboard()
     {
-        $sql = "SELECT dev_model COUNT(*) 
-        AS device_count
+        $sql = "SELECT dev_model, COUNT(dev_model) AS device_count
         FROM devices
         GROUP BY dev_model
         HAVING COUNT(*)>1";

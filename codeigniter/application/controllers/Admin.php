@@ -1,7 +1,9 @@
 <?php
 
-class Admin extends CI_Controller{
-    public function __construct() {
+class Admin extends CI_Controller
+{
+    public function __construct()
+    {
         parent::__construct();
 
         $this->load->helper(['form', 'url', 'string']);
@@ -9,7 +11,8 @@ class Admin extends CI_Controller{
         $this->load->model('Admin_model');
     }
 
-    public function index() {
+    public function index()
+    {
         if (!$this->session->userdata('logged_in')) {
             redirect('Login');
         }
@@ -17,15 +20,19 @@ class Admin extends CI_Controller{
         if ($this->session->userdata('role') == 'employee') {
             redirect('Employee');
         }
-        
+
         $data['title'] = 'Calibr8 - Admin Dashboard';
+        $dashboards = $this->Admin_model->admin_dashboard();
+        // $data['dashboard'] = json_encode($dashboards);
+        $data['dashboard_results'] = $dashboards;
         $this->load->view('include/header', $data);
         $this->load->view('admin_dashboard_view'); //Temporary view to be loaded
         $this->load->view('include/footer');
     }
 
     //Employee Masterlist
-    public function emp_masterlist_view() {
+    public function emp_masterlist_view()
+    {
         $page_config = array(
             'base_url' => site_url('Admin/emp_masterlist_view'),
             'total_rows' => $this->Admin_model->get_uCount(),
@@ -66,7 +73,8 @@ class Admin extends CI_Controller{
         $this->load->view('include/footer');
     }
 
-    public function searchEmp() { //Temporary Search Function
+    public function searchEmp()
+    { //Temporary Search Function
         $search = ($this->input->post("searchTerm")) ? $this->input->post("searchTerm") : "NIL";
         $search = ($this->uri->segment(3)) ? $this->uri->segment(3) : $search;
 
@@ -110,7 +118,8 @@ class Admin extends CI_Controller{
         $this->load->view('include/footer');
     }
 
-    public function employee_view($id) { //Under Employee Masterlist
+    public function employee_view($id)
+    { //Under Employee Masterlist
         $data['title'] = "Calibr8 - View Employee Details";
         $data['employee'] = $this->Admin_model->get_emp_row($id);
 
@@ -119,12 +128,14 @@ class Admin extends CI_Controller{
         $this->load->view('include/footer');
     }
 
-    public function remove_employee($id) { //Temporary remove func?
+    public function remove_employee($id)
+    { //Temporary remove func?
         $this->Admin_model->remove_employee($id);
         redirect('Admin/emp_masterlist_view');
     }
 
-    public function editEmp_view($id) { //Under Employee Masterlist
+    public function editEmp_view($id)
+    { //Under Employee Masterlist
         $data['title'] = "Calibr8 - Edit Employee Details";
         $data['employee'] = $this->Admin_model->get_emp_row($id);
 
@@ -133,7 +144,8 @@ class Admin extends CI_Controller{
         $this->load->view('include/footer');
     }
 
-    public function editEmp_details() {
+    public function editEmp_details()
+    {
         $image_config = array(
             'upload_path' => './assets/employee_image',
             'allowed_types' => 'gif|jpg|png',
@@ -141,7 +153,7 @@ class Admin extends CI_Controller{
             'max_width' => 204800,
             'max_height' => 204800
         );
-        
+
         $this->load->library('upload', $image_config);
         $this->upload->initialize($image_config);
 
@@ -157,18 +169,18 @@ class Admin extends CI_Controller{
             'requied' => '%s is required.'
         ));
 
-        if($this->upload->do_upload('employee_image') == FALSE) {
+        if ($this->upload->do_upload('employee_image') == FALSE) {
             $this->form_validation->set_rules('employee_image', 'Employee Image', 'required');
         }
 
-        if($this->form_validation->run() == FALSE) {
+        if ($this->form_validation->run() == FALSE) {
             $id = $this->input->post('emp-id');
             $this->editEmp_view($id);
         } else {
             $image_name = (!$this->upload->do_upload('employee_image')) ? null : $this->upload->data('file_name');
             $save = $this->input->post('reg-dev');
 
-            if(isset($save)) {
+            if (isset($save)) {
 
                 $id = $this->input->post('emp-id');
                 $info = array(
@@ -183,13 +195,12 @@ class Admin extends CI_Controller{
                 $success = "Employee details is updated successfully";
                 $this->session->set_flashdata('success', $success);
                 $this->editEmp_view($id);
-
             }
         }
 
         $cancel = $this->input->post('cancel-btn');
-        
-        if(isset($cancel)) {
+
+        if (isset($cancel)) {
             redirect('Admin/emp_masterlist_view');
         }
     }
@@ -197,10 +208,11 @@ class Admin extends CI_Controller{
 
 
 
-    
+
 
     //Device Masterlist
-    public function dev_masterlist_view() {
+    public function dev_masterlist_view()
+    {
         $page_config = array(
             'base_url' => site_url('Admin/dev_masterlist_view'),
             'total_rows' => $this->Admin_model->get_dCount(),
@@ -241,7 +253,8 @@ class Admin extends CI_Controller{
         $this->load->view('include/footer');
     }
 
-    public function searchDev() { //Temporary Search Function
+    public function searchDev()
+    { //Temporary Search Function
         $search = ($this->input->post("searchTerm")) ? $this->input->post("searchTerm") : "NIL";
         $search = ($this->uri->segment(3)) ? $this->uri->segment(3) : $search;
 
@@ -285,7 +298,8 @@ class Admin extends CI_Controller{
         $this->load->view('include/footer');
     }
 
-    public function device_view($id) { //Under device masterlist
+    public function device_view($id)
+    { //Under device masterlist
         $data['title'] = "Calibr8 - View Device Details";
         $data['device'] = $this->Admin_model->get_dev_row($id);
 
@@ -294,12 +308,14 @@ class Admin extends CI_Controller{
         $this->load->view('include/footer');
     }
 
-    public function remove_device($id) { //Temporary remove func?
+    public function remove_device($id)
+    { //Temporary remove func?
         $this->Admin_model->remove_device($id);
         redirect('Admin/dev_masterlist_view');
     }
 
-    public function editDev_view($id) { //Under device masterlist
+    public function editDev_view($id)
+    { //Under device masterlist
         $data['title'] = "Calibr8 - Edit Device Details";
         $data['device'] = $this->Admin_model->get_dev_row($id);
 
@@ -308,7 +324,8 @@ class Admin extends CI_Controller{
         $this->load->view('include/footer');
     }
 
-    public function editDev_details() {
+    public function editDev_details()
+    {
         $image_config = array(
             'upload_path' => './assets/device_image',
             'allowed_types' => 'gif|jpg|png',
@@ -316,7 +333,7 @@ class Admin extends CI_Controller{
             'max_width' => 204800,
             'max_height' => 204800
         );
-        
+
         $this->load->library('upload', $image_config);
         $this->upload->initialize($image_config);
 
@@ -340,18 +357,18 @@ class Admin extends CI_Controller{
             'required' => '%s is required.'
         ));
 
-        if($this->upload->do_upload('device_image') == FALSE) {
+        if ($this->upload->do_upload('device_image') == FALSE) {
             $this->form_validation->set_rules('device_image', 'Device Image', 'required');
         }
 
-        if($this->form_validation->run() == FALSE) {
+        if ($this->form_validation->run() == FALSE) {
             $id = $this->input->post('dev-id');
             $this->editDev_view($id);
         } else {
             $image_name = (!$this->upload->do_upload('device_image')) ? null : $this->upload->data('file_name');
             $save = $this->input->post('reg-dev');
 
-            if(isset($save)) {
+            if (isset($save)) {
 
                 $id = $this->input->post('dev-id');
                 $info = array(
@@ -368,13 +385,12 @@ class Admin extends CI_Controller{
                 $success = "Device details is updated successfully";
                 $this->session->set_flashdata('success', $success);
                 $this->editDev_view($id);
-
             }
         }
 
         $cancel = $this->input->post('cancel-btn');
-        
-        if(isset($cancel)) {
+
+        if (isset($cancel)) {
             redirect('Admin/dev_masterlist_view');
         }
     }
@@ -384,14 +400,16 @@ class Admin extends CI_Controller{
 
 
     //Registration Section
-    public function empReg_view() {
+    public function empReg_view()
+    {
         $data['title'] = 'Calibr8 - Employee Registration';
         $this->load->view('include/header', $data);
         $this->load->view('admin_empReg_view');
         $this->load->view('include/footer');
     }
 
-    public function employee_registration() {
+    public function employee_registration()
+    {
         $image_config = array(
             'upload_path' => './assets/employee_image',
             'allowed_types' => 'gif|jpg|png',
@@ -426,17 +444,17 @@ class Admin extends CI_Controller{
             'min_length' => '%s should have a minimum of 8 characters'
         ));
 
-        if($this->upload->do_upload('employee_image') == FALSE) {
+        if ($this->upload->do_upload('employee_image') == FALSE) {
             $this->form_validation->set_rules('employee_image', 'Employee Image', 'required');
         }
 
-        if($this->form_validation->run() == FALSE) {
+        if ($this->form_validation->run() == FALSE) {
             $this->empReg_view();
         } else {
             $image_name = (!$this->upload->do_upload('employee_image')) ? null : $this->upload->data('file_name');
             $register = $this->input->post('reg-emp');
 
-            if(isset($register)) {
+            if (isset($register)) {
 
                 $id = $this->session->userdata('id');
                 $info = array(
@@ -459,7 +477,8 @@ class Admin extends CI_Controller{
         }
     }
 
-    public function devReg_view() {
+    public function devReg_view()
+    {
 
         $data['title'] = 'Calibr8 - Device Registration';
         $this->load->view('include/header', $data);
@@ -467,7 +486,8 @@ class Admin extends CI_Controller{
         $this->load->view('include/footer');
     }
 
-    public function device_registration() {
+    public function device_registration()
+    {
         $image_config = array(
             'upload_path' => './assets/device_image',
             'allowed_types' => 'gif|jpg|png',
@@ -502,17 +522,17 @@ class Admin extends CI_Controller{
             'required' => '%s is required.',
         ));
 
-        if($this->upload->do_upload('device_image') == FALSE) {
+        if ($this->upload->do_upload('device_image') == FALSE) {
             $this->form_validation->set_rules('device_image', 'Device Image', 'required');
         }
 
-        if($this->form_validation->run() == FALSE) {
+        if ($this->form_validation->run() == FALSE) {
             $this->devReg_view();
         } else {
             $image_name = (!$this->upload->do_upload('device_image')) ? null : $this->upload->data('file_name');
             $register = $this->input->post('reg-dev');
 
-            if(isset($register)) {
+            if (isset($register)) {
 
                 $info = array(
                     'unique_num' => $this->input->post('uniquenum'),
@@ -536,7 +556,8 @@ class Admin extends CI_Controller{
         }
     }
 
-    public function dashboard_view() {
+    public function dashboard_view()
+    {
 
         $data['title'] = 'Calibr8 - Dashboard';
         $this->load->view('include/header', $data);
@@ -544,5 +565,3 @@ class Admin extends CI_Controller{
         $this->load->view('include/footer');
     }
 }
-
-?>

@@ -1,7 +1,9 @@
 <?php
 
-class Employee extends CI_Controller{
-    public function __construct() {
+class Employee extends CI_Controller
+{
+    public function __construct()
+    {
         parent::__construct();
 
         $this->load->helper(['form', 'url', 'string']);
@@ -9,7 +11,8 @@ class Employee extends CI_Controller{
         $this->load->model('Employee_model');
     }
 
-    public function index() {
+    public function index()
+    {
         if (!$this->session->userdata('logged_in')) {
             redirect('Login');
         }
@@ -25,38 +28,39 @@ class Employee extends CI_Controller{
         $this->load->view('include/footer');
     }
 
-    public function reset_password() {
+    public function reset_password()
+    {
         $reset = $this->input->post('reset-btn');
-        
-        $this->form_validation->set_rules('oldPass', 'Current Password', 'required|min_length[8]|callback_validate_password' ,array(
+
+        $this->form_validation->set_rules('oldPass', 'Current Password', 'required|min_length[8]|callback_validate_password', array(
             'required' => 'Please provide your %s.',
             'min_length' => '%s should have a minimum of 8 characters.'
         ));
 
-        $this->form_validation->set_rules('newPass', 'New Password', 'required|min_length[8]' ,array(
+        $this->form_validation->set_rules('newPass', 'New Password', 'required|min_length[8]', array(
             'required' => 'Please provide your %s.',
             'min_length' => '%s should have a minimum of 8 characters.'
         ));
 
-        $this->form_validation->set_rules('confNewPass', 'Confirm New Password', 'required|min_length[8]|matches[newPass]' ,array(
+        $this->form_validation->set_rules('confNewPass', 'Confirm New Password', 'required|min_length[8]|matches[newPass]', array(
             'required' => 'Please confirm your New Password.',
             'min_length' => '%s should have a minimum of 8 characters.',
             'matches' => '%s does not match your New Password.'
         ));
 
-        if(isset($reset)) {
+        if (isset($reset)) {
             $newPass = md5($this->input->post('newPass'));
 
-            if($this->form_validation->run() == FALSE) {
+            if ($this->form_validation->run() == FALSE) {
                 $this->index();
-            }else {
+            } else {
                 $id = $this->session->userdata('id');
                 $info = array(
-                   'password' => $newPass
+                    'password' => $newPass
                 );
 
                 $this->Employee_model->update_employee($id, $info);
-                
+
                 $success = "Password is updated successfully";
                 $this->session->set_flashdata('success', $success);
                 $this->index();
@@ -64,12 +68,13 @@ class Employee extends CI_Controller{
         }
     }
 
-    public function validate_password($oldPass) {
+    public function validate_password($oldPass)
+    {
         $id = $this->session->userdata('id');
         $oldPassword = md5($oldPass);
         $currPass = $this->Employee_model->get_emp_row($id)->password;
 
-        if($oldPassword != $currPass) {
+        if ($oldPassword != $currPass) {
             $this->form_validation->set_message('validate_password', '%s field does not match your current password.');
             return FALSE;
         }
@@ -77,7 +82,8 @@ class Employee extends CI_Controller{
         return TRUE;
     }
 
-    public function devList_view() {
+    public function devList_view()
+    {
         $page_config = array(
             'base_url' => site_url('Employee/employee_borrowDev_view'),
             'total_rows' => $this->Employee_model->get_dCount(),
@@ -113,12 +119,14 @@ class Employee extends CI_Controller{
         $data['title'] = 'Calibr8 - Device Masterlist';
         $data['devices'] = $this->Employee_model->get_devices_table($page_config['per_page'], $page);
         $data['total'] = $this->Employee_model->get_dCount();
+        $data['stock'] = $this->Employee_model->count_devModel();
         $this->load->view('include/header', $data);
         $this->load->view('employee_borrowDev_view');
         $this->load->view('include/footer');
     }
 
-    public function searchDev() { //Temporary Search Function
+    public function searchDev()
+    { //Temporary Search Function
         $search = ($this->input->post("searchTerm")) ? $this->input->post("searchTerm") : "NIL";
         $search = ($this->uri->segment(3)) ? $this->uri->segment(3) : $search;
 
@@ -161,6 +169,13 @@ class Employee extends CI_Controller{
         $this->load->view('employee_borrowDev_view');
         $this->load->view('include/footer');
     }
-}
 
-?>
+    public function reservation()
+    {
+
+        $data['title'] = 'Calibr8 - Borrow This Device';
+        $this->load->view('include/header', $data);
+        $this->load->view('employee_reservation_view');
+        $this->load->view('include/footer');
+    }
+}
