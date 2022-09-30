@@ -888,3 +888,35 @@ td i {
   color: white;
   border: none;
 }
+
+/*emp view - equipment packages*/
+
+.equipment-col {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.equipment-row {
+  text-align: center;
+  border: 1px solid #C63F18;
+  border-radius: 15px;
+  background-color: #ffffff;
+  padding: 50px;
+}
+
+.equipment-row ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+.select-btn {
+  margin-top: 25px;
+  border: none;
+  width: 150px;
+  height: 50px;
+  border-radius: 15px;
+  font-weight: 800;
+  background-color: #C63F18;
+  color: white;
+}
