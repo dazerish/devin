@@ -8,25 +8,16 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <link rel="stylesheet" href="assets/style.css">
     <link rel = "icon" href ="assets/pictures/c8.jpg" type = "image/x-icon">
-    <title>View Employee Masterlist</title>
+    <title>Device Masterlist</title>
 </head>
 <body>
     <nav>
-        <div class="logo"><img src="assets/pictures/calibr8logo.jpg" alt="Calibr8 Logo" height="30px"></div>
-        <a class="nav-link" href="#">Dashboard</a>
-        <a class="nav-link" href="#" id="activebtn">View</a>
-        <a class="nav-link" href="#">Edit</a>
+        <div class="logo"><img src="assets/pictures/calibr8logo.png" alt="Calibr8 Logo" height="30px"></div>
+        <a class="nav-link" href="#" >View</a>
         <a class="nav-link" href="#">Reservation</a>
-        <a class="nav-link" href="#">Generate Reports</a>
+        <a class="nav-link" href="#" id="activebtn">Device Masterlist</a>
         </div>
-        <div class="dropdown">
-            <a href="#" class="regbtn">Registration</a>
-            <div class="list">
-                <a href="device_register.html" class="links">Device Registration</a>
-                <a href="employee_register.html" class="links">Employee Registration</a>
-            </div>
-        </div>
-        <a href="#" class="ts"><i class="far fa-user" id="nav-user-icon"></i>Admin</a>
+        <a href="#" class="ts"><i class="far fa-user" id="nav-user-icon"></i>Employee</a>
         
         </form>
         
@@ -40,59 +31,59 @@
         });
     </script>
 
-    <div class="user-container">
+<div class="user-container">
 
-        <h1 class="page-title"><b>View Device Masterlist</b></h1>
-       
-        </div>
-            
+<h1 class="page-title"><b>Device Masterlist</b></h1>
 
-        <table class="table">
-            <thead>
-                <tr class="user-details">
-                    <th scope="col"></th>
-                    <th scope="col">Device Name</th>
-                    <th scope="col">Device Model</th>
-                    <th scope="col">Manufacturer</th>
-                    <th scope="col">Status</th>     
-                </tr>
-            </thead>
+<table class="table">
+    <thead>
+        <tr class="user-details">
+            <th scope="col"></th>
+            <th scope="col">Device Name</th>
+            <th scope="col">Device Model</th>
+            <th scope="col">Manufacturer</th>
+            <th scope="col">Status</th>           
+        </tr>
+    </thead>
 
-            <!--placed a placeholder so it can easily be identified and replaced with php function-->
-            <tbody>
-                    <tr class="align-middle">
-                        <td>
-                            <img src="assets/pictures/thinkpad.png" alt="device pic" class="device-pic">
-                        </td>
-                        <td class="emp-name-bold">Lenovo Thinkpad X1</td>
-                        <td>Laptop</td>
-                        <td>Lenovo</td>
-                        <td>Available</td>
-                    </tr>
-
-                    <tr class="align-middle">
-                        <td>
-                            <img src="assets/pictures/macbook.png" alt="device pic" class="device-pic">
-                        </td>
-                        <td class="emp-name-bold">Macbook Pro</td>
-                        <td>Laptop</td>
-                        <td>Apple</td>
-                        <td>Available</td>
-            
-                    </tr>
-
-                    <tr class="align-middle">
-                        <td>
-                            <img src="assets/pictures/gateway.png" alt="device pic" class="device-pic">
-                        </td>
-                        <td class="emp-name-bold">Edge Gateway</td>
-                        <td>Gateway</td>
-                        <td>Dell</td>
-                        <td>Available</td>
+    <!--placed a placeholder so it can easily be identified and replaced with php function-->
+    <tbody>
+            <tr class="align-middle">
+                <td>
+                    <img src="assets/pictures/thinkpad.png" alt="device pic" class="device-pic">
+                </td>
+                <td class="emp-name-bold">Lenovo Thinkpad X1</td>
+                <td>Laptop</td>
+                <td>Lenovo</td>
+                <td>Available</td>
+    
         
-                    </tr>
-            </tbody>
-        </table>
-    </div>
+            </tr>
+
+            <tr class="align-middle">
+                <td>
+                    <img src="assets/pictures/macbook.png" alt="device pic" class="device-pic">
+                </td>
+                <td class="emp-name-bold">Macbook Pro</td>
+                <td>Laptop</td>
+                <td>Apple</td>
+                <td>Available</td>
+    
+             
+            </tr>
+
+            <tr class="align-middle">
+                <td>
+                    <img src="assets/pictures/gateway.png" alt="device pic" class="device-pic">
+                </td>
+                <td class="emp-name-bold">Edge Gateway</td>
+                <td>Gateway</td>
+                <td>Dell</td>
+                <td>Available</td>
+    
+            </tr>
+    </tbody>
+</table>
+</div>
 </body>
 </html>

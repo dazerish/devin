@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link rel="stylesheet" href="assets/style.css">
+    <link rel = "icon" href ="assets/pictures/c8.jpg" type = "image/x-icon">
+    <title>Device Template Selection</title>
+</head>
+<body>
+    <nav>
+        <div class="logo"><img src="assets/pictures/calibr8logo.png" alt="Calibr8 Logo" height="30px"></div>
+        <a class="nav-link" href="#" >View</a>
+        <a class="nav-link" href="#">Reservation</a>
+        <a class="nav-link" href="#" id="activebtn">Device Masterlist</a>
+        </div>
+        <a href="#" class="ts"><i class="far fa-user" id="nav-user-icon"></i>Employee</a>
+        
+        </form>
+        
+    </nav>
+
+    <script>
+        let click = document.querySelector('.regbtn');
+        let list = document.querySelector('.list');
+        click.addEventListener("click", ()=> {
+            list.classList.toggle('newList');
+        });
+    </script>
+
+    <div class="user-container">
+
+        <h1 class="page-title"><b>Equipment Packages</b></h1>
+
+        <div class="searchContainer">
+            <div class="search-box">
+                <div class="search">
+                <input type="text" class="searchTerm" placeholder="Search for a device...">
+                <button type="submit" class="searchButton">
+                    <i class="fa fa-search"></i>
+                </button>
+                </div>
+            </div>
+
+            <div class="searchFilters">
+                <!-- <label for="device-model">Device Model</label> -->
+                <select name="device-model" id="device-model" class="filterGroup">
+                    <option value="#">Device Model</option>
+                    <option value="Laptop">Laptop</option>
+                    <option value="Gateway">Gateway</option>
+                    <option value="Smartphone">Smartphone</option>
+                </select>
+        
+
+    <!--            
+                <label for="manufacturer">Manufacturer</label> -->
+                <select name="manufacturer" id="manufacturer" class="filterGroup">
+                    <option value="#">Manufacturer</option>
+                    <option value="Laptop">Apple</option>
+                    <option value="Gateway">Dell</option>
+                    <option value="Smartphone">Lenovo</option>
+                </select>
+            
+
+        
+                <!-- <label for="status">Status</label> -->
+                <select name="status" id="status" class="filterGroup">
+                    <option value="#">Status</option>
+                    <option value="Available">Available</option>
+                    <option value="Reserved">Reserved</option>
+                    <option value="Removed">Removed</option>
+                </select>
+
+                <a href="#"><u>Clear All</u></a>
+            </div>
+
+    
+        </div>
+
+
+        <div class="equipment-col">
+            <div class="equipment-row">
+                <h4 class="template-title">Proof of Concept</h4>
+                <ul class="template-list">
+                    <li>Gateway</li>
+                    <li>Monitor</li>
+                    <li>Mouse</li>
+                    <li>Keyboard</li>
+                    <li>RJ45</li>
+                </ul>
+
+                <button class="select-btn">SELECT</button>
+            </div>
+            <div class="equipment-row">
+                <h4 class="template-title">Employee Equipment</h4>
+                <ul class="template-list">
+                    <li>Gateway</li>
+                    <li>Monitor</li>
+                  
+                </ul>
+
+                <button class="select-btn">SELECT</button>
+            </div>
+            <div class="equipment-row">
+                <h4 class="template-title">Server Equipment</h4>
+                <ul class="template-list">
+                    <li>Router</li>
+                    <li>Modem</li>
+                    <li>RJ45</li>
+                    <li>Server Rack</li>
+                </ul>
+
+                <button class="select-btn">SELECT</button>
+            </div>
+
+        </div>
+
+
+    </div>
+</body>
+</html>
