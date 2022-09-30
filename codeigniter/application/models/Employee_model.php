@@ -40,9 +40,24 @@ class Employee_model extends CI_Model
         return $query->num_rows();
     }
 
+
+
+
     public function get_dCount()
     {
         return $this->db->count_all('devices');
+    }
+
+
+    public function get_devModel($limit, $start)
+    {
+        $sql = "SELECT dev_name, COUNT(dev_name) AS stock
+        FROM devices
+        GROUP BY dev_name
+        HAVING COUNT(*)>0
+        LIMIT $start , $limit";
+        $query = $this->db->query($sql);
+        return $query->result();
     }
 
     public function count_devModel()
@@ -53,19 +68,9 @@ class Employee_model extends CI_Model
         GROUP BY dev_name
         HAVING COUNT(*)>0";
         $query = $this->db->query($sql);
-        return $query->result();
+        return $query->num_rows();
     }
 
-    public function get_devModel($limit, $start)
-    {
-        $sql = "SELECT dev_name, COUNT(dev_name) AS stock 
-        FROM devices
-        GROUP BY dev_name
-        HAVING COUNT(*)>0
-        LIMIT $limit, $start";
-        $query = $this->db->query($sql);
-        return $query->result();
-    }
 
     // public function count_devModel() {
     //     $this->db->select('*');
