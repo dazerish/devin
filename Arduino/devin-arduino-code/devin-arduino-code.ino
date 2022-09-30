@@ -6,10 +6,10 @@
 #include <ESP8266WiFi.h>
 #include <ESP8266HTTPClient.h>
 //************************************************************************
-#define SS_PIN  D2  //D2
-#define RST_PIN D1  //D1
+#define SS_PIN1  D2  //D2
+#define RST_PIN1 D1  //D1
 //************************************************************************
-MFRC522 mfrc522(SS_PIN, RST_PIN); // Create MFRC522 instance.
+MFRC522 mfrc522_1(SS_PIN1, RST_PIN1); // Create MFRC522 instance.
 //WiFiClient client;
 //************************************************************************
 /* Set these to your desired credentials. */
@@ -26,7 +26,7 @@ void setup() {
   delay(1000);
   Serial.begin(115200);
   SPI.begin();  // Init SPI bus
-  mfrc522.PCD_Init(); // Init MFRC522 card
+  mfrc522_1.PCD_Init(); // Init MFRC522 card
   //---------------------------------------------
   connectToWiFi();
 }
@@ -44,16 +44,16 @@ void loop() {
   delay(50);
   //---------------------------------------------
   //look for new card
-  if ( ! mfrc522.PICC_IsNewCardPresent()) {
+  if ( ! mfrc522_1.PICC_IsNewCardPresent()) {
     return;//got to start of loop if there is no card present
   }
   // Select one of the cards
-  if ( ! mfrc522.PICC_ReadCardSerial()) {
+  if ( ! mfrc522_1.PICC_ReadCardSerial()) {
     return;//if read card serial(0) returns 1, the uid struct contians the ID of the read card.
   }
   String CardID ="";
-  for (byte i = 0; i < mfrc522.uid.size; i++) {
-    CardID += mfrc522.uid.uidByte[i];
+  for (byte i = 0; i < mfrc522_1.uid.size; i++) {
+    CardID += mfrc522_1.uid.uidByte[i];
   }
   //---------------------------------------------
   if( CardID == OldCardID ){
