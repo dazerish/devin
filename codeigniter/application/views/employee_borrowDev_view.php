@@ -1,7 +1,8 @@
    <nav>
     <div class="logo"><img src="<?= base_url('./assets/pictures/calibr8logo.jpg');?>" alt="Calibr8 Logo" height="30px"></div>
-    <a class="nav-link" href="<?= site_url('Employee/index')?>">View</a>
+    <a class="nav-link" href="<?= site_url('Employee')?>">View</a>
     <a class="nav-link" href="#" id="activebtn">Reservation</a>
+    <a class="nav-link" href="<?= site_url('Employee/devList_view')?>">Device Masterlist</a>
 
     <a class="nav-link" href="<?= site_url('Login/logout')?>">Logout</a> <!-- Temporary only -->
 
@@ -13,7 +14,7 @@
 <div class="user-container">
 
     <h1 class="page-title"><b>Borrowable Device List</b></h1>
-    <span class="device-count">189 devices</span>
+    <span class="device-count"><?=$total;?> devices</span>
 
     <div class="searchContainer">
         <div class="search-box">
@@ -68,7 +69,7 @@
                     <div class="item-desc">
                         <h6>Lenovo Thinkpad X1</h6>
                         <h6>Status: Available</h6>
-                        <h6>Stock: 2</h6>
+                        <h6>Stock: <?= $totalDev; ?></h6>
                     </div>
                 </div>
     
@@ -88,7 +89,9 @@
                 </div>
     
                 <div class="item-btn">
-                    <input type="submit" class="all_btn" id="reserve_btn" value="Borrow Device">
+                    <a href="<?= site_url('Employee/reservation'); ?>">
+                        <input type="submit" class="all_btn" id="reserve_btn" value="Borrow Device">
+                    </a>
                 </div>  
             </div>
 

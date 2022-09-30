@@ -113,6 +113,7 @@ class Employee extends CI_Controller{
         $data['title'] = 'Calibr8 - Device Masterlist';
         $data['devices'] = $this->Employee_model->get_devices_table($page_config['per_page'], $page);
         $data['total'] = $this->Employee_model->get_dCount();
+        $data['totalDev'] = $this->Employee_model->count_devModel();
         $this->load->view('include/header', $data);
         $this->load->view('employee_borrowDev_view');
         $this->load->view('include/footer');
@@ -159,6 +160,14 @@ class Employee extends CI_Controller{
         $data['total'] = $this->Employee_model->get_dCount();
         $this->load->view('include/header', $data);
         $this->load->view('employee_borrowDev_view');
+        $this->load->view('include/footer');
+    }
+
+    public function reservation() {
+
+        $data['title'] = 'Calibr8 - Borrow This Device';
+        $this->load->view('include/header', $data);
+        $this->load->view('employee_reservation_view');
         $this->load->view('include/footer');
     }
 }

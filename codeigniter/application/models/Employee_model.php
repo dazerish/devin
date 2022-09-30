@@ -37,6 +37,15 @@ class Employee_model extends CI_Model {
     public function get_dCount() {
         return $this->db->count_all('devices');
     }
+
+
+
+    // public function count_devModel() {
+    //     $this->db->select('*');
+    //     $this->db->from('devices');
+    //     $this->db->like('dev_model', 'Server');
+    //     return $this->db->count_all_results();
+    // }
 }
 
 ?>
