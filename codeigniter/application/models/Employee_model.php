@@ -1,22 +1,27 @@
-<?php 
+<?php
 
-class Employee_model extends CI_Model {
-    public function __construct() {
+class Employee_model extends CI_Model
+{
+    public function __construct()
+    {
         parent::__construct();
 
         $this->load->database();
     }
 
-    public function get_emp_row($id) {
+    public function get_emp_row($id)
+    {
         return $this->db->get_where('users', ['id' => $id])->row();
     }
 
-    public function update_employee($id,$info) {
+    public function update_employee($id, $info)
+    {
         $this->db->update('users', $info, ['id' => $id]);
     }
 
     //Borrowable Device List
-    public function get_devices_table($limit, $start, $st = NULL) {
+    public function get_devices_table($limit, $start, $st = NULL)
+    {
         if ($st == "NIL") $st = "";
         $sql = "select * from devices where dev_name like '%$st%' 
                 or dev_model like '%$st%'
@@ -25,7 +30,8 @@ class Employee_model extends CI_Model {
         $query = $this->db->query($sql);
         return $query->result();
     }
-    public function get_devices_count($st = NULL) {
+    public function get_devices_count($st = NULL)
+    {
         if ($st == "NIL") $st = "";
         $sql = "select * from devices where dev_name like '%$st%' 
                 or dev_model like '%$st%'
@@ -33,8 +39,9 @@ class Employee_model extends CI_Model {
         $query = $this->db->query($sql);
         return $query->num_rows();
     }
-    
-    public function get_dCount() {
+
+    public function get_dCount()
+    {
         return $this->db->count_all('devices');
     }
 
@@ -43,7 +50,7 @@ class Employee_model extends CI_Model {
         $sql = "SELECT dev_name, COUNT(dev_name) AS stock
         FROM devices
         GROUP BY dev_name
-        HAVING COUNT(*)>1";
+        HAVING COUNT(*)>0";
         $query = $this->db->query($sql);
         return $query->result();
     }
