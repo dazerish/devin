@@ -1,34 +1,3 @@
-<nav>
-    <div class="logo"><img src="<?= base_url('./assets/pictures/calibr8logo.jpg');?>" alt="Calibr8 Logo" height="30px"></div>
-    <a class="nav-link" href="#">Dashboard</a>
-    <a class="nav-link" href="<?= site_url('Admin/emp_masterlist_view')?>" id="activebtn">View</a>
-    <a class="nav-link" href="#">Edit</a>
-    <a class="nav-link" href="#">Reservation</a>
-    <a class="nav-link" href="#">Generate Reports</a>
-    </div>
-    <div class="dropdown">
-        <a href="#" class="regbtn">Registration</a>
-        <div class="list">
-            <a href="<?= site_url('Admin/devReg_view')?>" class="links">Device Registration</a>
-            <a href="<?= site_url('Admin/empReg_view')?>" class="links">Employee Registration</a>
-        </div>
-    </div>
-    <a class="nav-link" href="<?= site_url('Login/logout')?>">Logout</a> <!-- Temporary only -->
-
-    <a href="#" class="ts"><i class="far fa-user" id="nav-user-icon"></i>Admin</a>
-    
-    </form>
-    
-</nav>
-
-<script>
-    let click = document.querySelector('.regbtn');
-    let list = document.querySelector('.list');
-    click.addEventListener("click", ()=> {
-        list.classList.toggle('newList');
-    });
-</script>
-
 <section class="main_container">
     
     <div class="register_container">

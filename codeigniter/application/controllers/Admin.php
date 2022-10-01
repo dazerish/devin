@@ -68,7 +68,7 @@ class Admin extends CI_Controller
         $data['title'] = 'Calibr8 - Employee Masterlist';
         $data['employees'] = $this->Admin_model->get_users_table($page_config['per_page'], $page, NULL);
         $data['total'] = $this->Admin_model->get_uCount();
-        $this->load->view('include/admin_admin_header', $data);
+        $this->load->view('include/admin_header', $data);
         $this->load->view('admin_emp_masterlist');
         $this->load->view('include/footer');
     }
