@@ -18,10 +18,9 @@
         <a href="#" class="regbtn">View</a>
         <div class="list">
             <a href="<?= site_url('Admin/dev_masterlist_view') ?>" class="links">Device Masterlist</a><br>
-            <a href="<?= site_url('Admin/emp_masterlist_view') ?>" class="links">Employee Registration</a>
+            <a href="<?= site_url('Admin/emp_masterlist_view') ?>" class="links">Employee Masterlist</a>
         </div>
     </div>
-    <a class="nav-link" href="<?= site_url('Admin/dev_masterlist_view') ?>" id="activebtn">View</a>
     <a class="nav-link" href="#">Edit</a>
     <a class="nav-link" href="#">Reservation</a>
     <a class="nav-link" href="#">Generate Reports</a>
