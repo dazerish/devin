@@ -121,33 +121,55 @@ class Admin_model extends CI_Model
         GROUP BY dev_model
         HAVING COUNT(*)>0";
         $pie_query = $this->db->query($pie_sql);
-        $pie_data = $pie_query->result()
+        $pie_data = $pie_query->result();
 
         // DEVICE IN
 
-        //count the number of devices where the status is available
-        // $pie_sql = "SELECT dev_model, COUNT(dev_model) AS device_count
-        // FROM devices
-        // GROUP BY dev_model
-        // HAVING COUNT(*)>0";
-        // $pie_query = $this->db->query($pie_sql);
-        // $pie_data = $pie_query->result()
+        // count the number of devices where the status is available
+        $device_in_sql = "SELECT COUNT(*) AS device_count
+        FROM devices
+        WHERE cur_status='Available'";
+        $device_in_query = $this->db->query($device_in_sql);
+        $device_in_data = $device_in_query->result();
 
         // DEVICE OUT
 
-        //count the number of devices where the status is reserved
+        // count the number of devices where the status is borrowed
+        $device_out_sql = "SELECT COUNT(*) AS device_count
+        FROM devices
+        WHERE cur_status='Borrowed'";
+        $device_out_query = $this->db->query($device_out_sql);
+        $device_out_data = $device_out_query->result();
+
+        // RESERVED
+
+        // count the number of devices where the status is reserved
+        $reserved_sql = "SELECT COUNT(*) AS device_count
+        FROM devices
+        WHERE cur_status='Reserved'";
+        $reserved_query = $this->db->query($reserved_sql);
+        $reserved_data = $reserved_query->result();
 
         // BROKEN DEVICES
 
         //count the number of devices where the status is broken
+        $broken_sql = "SELECT COUNT(*) AS device_count
+        FROM devices
+        WHERE cur_status='Broken'";
+        $broken_query = $this->db->query($broken_sql);
+        $broken_data = $broken_query->result();
 
         // DEVICES IN MAINTENANCE
 
         //count the number of devices where the status is maintenance
+        $maintenance_sql = "SELECT COUNT(*) AS device_count
+        FROM devices
+        WHERE cur_status='Maintenance'";
+        $maintenance_query = $this->db->query($maintenance_sql);
+        $maintenance_data = $maintenance_query->result();
 
         // pass data to dashboard
-        // $results = array();
-        // return $query->result();
-        return $pie_data;
+        $results = array($pie_data, $device_in_data, $device_out_data, $reserved_data, $broken_data, $maintenance_data);
+        return $results;
     }
 }
