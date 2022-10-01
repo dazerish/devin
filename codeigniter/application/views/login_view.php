@@ -1,12 +1,12 @@
 <div class="login_logo">
-    <img src="<?= base_url('./assets/pictures/calibr8logo.jpg');?>" alt="Calibr8 Logo" height="30px">
+    <img src="<?= base_url('./assets/pictures/calibr8logo.png');?>" alt="Calibr8 Logo" height="30px">
 </div>
     
     <section class="homepage">
         
             <div class="login_box">
                 <div class="login_container">
-                    <h3 class="login_header">Sign in your Calibr8 Account</h3>    
+                    <h3 class="login_header">Sign in your Calibrrr8 Account</h3>    
                 
                 <?= form_open('Login/login_validate'); ?>
                     <?php if($this->session->has_userdata('error')): ?>
