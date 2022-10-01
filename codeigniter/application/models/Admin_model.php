@@ -121,7 +121,7 @@ class Admin_model extends CI_Model
         GROUP BY dev_model
         HAVING COUNT(*)>0";
         $pie_query = $this->db->query($pie_sql);
-        $pie_data = $pie_query->result()
+        $pie_data = $pie_query->result();
 
         // DEVICE IN
 
