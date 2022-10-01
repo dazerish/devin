@@ -13,11 +13,11 @@
 
 <nav>
     <div class="logo"><img src="<?= base_url('./assets/pictures/calibr8logo.jpg'); ?>" alt="Calibr8 Logo" height="30px"></div>
-    <a class="nav-link" href="#">Dashboard</a>
+    <a class="nav-link" href="#" id="activebtn">Dashboard</a>
     <div class="dropdown">
         <a href="#" class="regbtn">View</a>
         <div class="list">
-            <a href="<?= site_url('Admin/dev_masterlist_view') ?>" class="links">Device Masterlist</a><br>
+            <a href="<?= site_url('Admin/dev_masterlist_view') ?>" class="links">Device Masterlist</a>
             <a href="<?= site_url('Admin/emp_masterlist_view') ?>" class="links">Employee Masterlist</a>
         </div>
     </div>
@@ -28,7 +28,7 @@
     <div class="dropdown">
         <a href="#" class="regbtn">Registration</a>
         <div class="list">
-            <a href="<?= site_url('Admin/devReg_view') ?>" class="links">Device Registration</a><br>
+            <a href="<?= site_url('Admin/devReg_view') ?>" class="links">Device Registration</a>
             <a href="<?= site_url('Admin/empReg_view') ?>" class="links">Employee Registration</a>
         </div>
     </div>
@@ -39,13 +39,6 @@
 
 </nav>
 
-<script>
-    let click = document.querySelector('.regbtn');
-    let list = document.querySelector('.list');
-    click.addEventListener("click", () => {
-        list.classList.toggle('newList');
-    });
-</script>
 <script src="//cdn.amcharts.com/lib/4/core.js"></script>
 <script src="//cdn.amcharts.com/lib/4/charts.js"></script>
 

@@ -1,5 +1,5 @@
 <div class="view-emp-container">
-    <h1 class="page-title"><b>View Employee Details</b></h1>
+    <h1 class="page-title"><b>Dashboard</b></h1>
     <div class="detail-container">
         <script>
             // Create chart instance
