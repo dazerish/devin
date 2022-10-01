@@ -115,11 +115,39 @@ class Admin_model extends CI_Model
     // Made by JL for admin dashboard, please move where appropriate
     public function admin_dashboard()
     {
-        $sql = "SELECT dev_model, COUNT(dev_model) AS device_count
+        // pie chart query
+        $pie_sql = "SELECT dev_model, COUNT(dev_model) AS device_count
         FROM devices
         GROUP BY dev_model
         HAVING COUNT(*)>0";
-        $query = $this->db->query($sql);
-        return $query->result();
+        $pie_query = $this->db->query($pie_sql);
+        $pie_data = $pie_query->result()
+
+        // DEVICE IN
+
+        //count the number of devices where the status is available
+        // $pie_sql = "SELECT dev_model, COUNT(dev_model) AS device_count
+        // FROM devices
+        // GROUP BY dev_model
+        // HAVING COUNT(*)>0";
+        // $pie_query = $this->db->query($pie_sql);
+        // $pie_data = $pie_query->result()
+
+        // DEVICE OUT
+
+        //count the number of devices where the status is reserved
+
+        // BROKEN DEVICES
+
+        //count the number of devices where the status is broken
+
+        // DEVICES IN MAINTENANCE
+
+        //count the number of devices where the status is maintenance
+
+        // pass data to dashboard
+        // $results = array();
+        // return $query->result();
+        return $pie_data;
     }
 }
