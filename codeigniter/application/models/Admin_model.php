@@ -118,7 +118,7 @@ class Admin_model extends CI_Model
         $sql = "SELECT dev_model, COUNT(dev_model) AS device_count
         FROM devices
         GROUP BY dev_model
-        HAVING COUNT(*)>1";
+        HAVING COUNT(*)>0";
         $query = $this->db->query($sql);
         return $query->result();
     }
