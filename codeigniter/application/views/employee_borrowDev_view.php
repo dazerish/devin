@@ -68,13 +68,15 @@
                            <img src="assets/pictures/lenovo.png" alt="Lenovo Laptop">
                            <div class="item-desc">
                                <h6><?= $stock->dev_name; ?></h6>
-                               <h6>Status: Available</h6>
+                               <h6>Status: Available </h6>
                                <h6>Stock: <?= $stock->stock; ?></h6>
                            </div>
                        </div>
 
                        <div class="item-btn">
-                           <input type="submit" class="all_btn" id="reserve_btn" value="Borrow Device">
+                           <a href="<?= site_url('Employee/reserveDev/') . $stock->dev_name; ?>">
+                               <input type="submit" class="all_btn" id="reserve_btn" value="Borrow Device">
+                           </a>
                        </div>
                    </div>
                <?php endforeach; ?>
@@ -83,11 +85,3 @@
 
        <?= $this->pagination->create_links() ?>
    </div>
-   <script>
-       // passing the dashboard data from php to javascript for manipulation and display
-       var stock = <?php echo json_encode($stock); ?>;
-       console.log(stock)
-
-       var someArray = [1, 2, 3, 4]
-       console.log(someArray[3])
-   </script>
