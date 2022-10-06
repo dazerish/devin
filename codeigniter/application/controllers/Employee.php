@@ -170,55 +170,12 @@ class Employee extends CI_Controller
         $this->load->view('include/footer');
     }
 
-    public function reserveDev($dev_name)
+    public function reservation()
     {
 
         $data['title'] = 'Calibr8 - Borrow This Device';
-        $dev_name = str_replace('%20', ' ', $dev_name);
-        $data['stocks'] = $this->Employee_model->reserveDev($dev_name);
-        $id = $this->session->userdata('id');
-        $data['employee'] = $this->Employee_model->get_emp_row($id);
         $this->load->view('include/header', $data);
-        $this->load->view('employee_reservation_view', $data);
+        $this->load->view('employee_reservation_view');
         $this->load->view('include/footer');
-    }
-
-    public function set_reserveDate()
-    {
-
-        $this->form_validation->set_rules('reservation-date', 'Reservation Date', 'required', array(
-            'required' => 'Please set a %s'
-        ));
-
-        if ($this->form_validation->run() == FALSE) {
-            $dev_name = $this->input->post('dev-name');
-            $this->reserveDev($dev_name);
-        } else {
-            $borrow = $this->input->post('borrow-device');
-
-            if (isset($borrow)) {
-                $dev_name = $this->input->post('dev-name');
-                $device_name = str_replace('%20', ' ', $dev_name);
-                $info = array(
-                    'transaction_status' => 'Pending',
-                    'borrower' => $this->input->post('borrower'),
-                    'borrowedDev_id' => $this->input->post('unique-num'),
-                    'request_time' => date("Y/m/d"),
-                    'decision_time' => $this->input->post('reservation-date'),
-                    'return_date' => date("Y/m/d", strtotime('+2 months'))
-                );
-
-                $this->Employee_model->set_reserveDate($info);
-                $success = "Reserve Date is set successfully. Please wait for approval.";
-                $this->session->set_flashdata('success', $success);
-                $this->reserveDev($device_name);
-            }
-        }
-
-        $cancel = $this->input->post('cancel-button');
-
-        if (isset($cancel)) {
-            redirect('Employee/devList_view');
-        }
     }
 }
