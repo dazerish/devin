@@ -6,10 +6,14 @@
             var chart = am4core.create("device_types_pie_div", am4charts.PieChart);
 
             // passing the dashboard data from php to javascript for manipulation and display
-            var pie_data = <?php echo json_encode($dashboard_results[0]); ?>;
-
-            console.log($dashboard_results)
-
+            var pie_data = <?php echo json_encode($dashboard_data[0]); ?>;
+            <?php $device_in_data = json_encode($dashboard_data[1][0]->device_count); ?>;
+            <?php $device_out_data = json_encode($dashboard_data[2][0]->device_count); ?>;
+            <?php $reserved_data = json_encode($dashboard_data[3][0]->device_count); ?>;
+            <?php $broken_data = json_encode($dashboard_data[4][0]->device_count); ?>;
+            <?php $maintenance_data = json_encode($dashboard_data[5][0]->device_count); ?>;
+        
+            console.log(pie_data)
             // Pie Chart
 
             chart.data = pie_data;
@@ -19,7 +23,28 @@
             pieSeries.dataFields.category = "dev_model";
         </script>
         <div id="device_types_pie_div" style="width: 100%; height: 400px;"></div>
-
     </div>
-
+    <div>
+        <div>
+            <!-- str_replace removes the double quotes from the echoed data -->
+            <h2>Device In</h2>
+            <p><?=str_replace('"', '', $device_in_data)?></p>
+        </div>
+        <div>
+            <h2>Device Out</h2>
+            <p><?=str_replace('"', '', $device_out_data)?></p>
+        </div>
+        <div>
+            <h2>Reserved</h2>
+            <p><?=str_replace('"', '', $reserved_data)?></p>
+        </div>
+        <div>
+            <h2>Broken</h2>
+            <p><?=str_replace('"', '', $broken_data)?></p>
+        </div>
+        <div>
+            <h2>Maintenance</h2>
+            <p><?=str_replace('"', '', $maintenance_data)?></p>
+        </div>
+    </div>
 </div>
