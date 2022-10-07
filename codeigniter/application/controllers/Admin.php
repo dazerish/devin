@@ -25,7 +25,7 @@ class Admin extends CI_Controller
         $dashboards = $this->Admin_model->admin_dashboard();
         // $data['dashboard'] = json_encode($dashboards);
         $data['dashboard_results'] = $dashboards;
-        $this->load->view('include/admin_admin_header', $data);
+        $this->load->view('include/admin_header', $data);
         $this->load->view('admin_dashboard_view'); //Temporary view to be loaded
         $this->load->view('include/footer');
     }
