@@ -2,9 +2,6 @@
     <h1 class="page-title"><b>View Device Details</b></h1>
 
         <div class="detail-container">
-            <div class="remove-btn-div">
-                <a class="remove-btn" href="<?= site_url('Admin/remove_device/') . $device->id; ?>"><i class="fas fa-trash-alt" id="remove-icon"></i>Remove Device</a>
-            </div>
             
             <div class="detail-header">
                 <img 

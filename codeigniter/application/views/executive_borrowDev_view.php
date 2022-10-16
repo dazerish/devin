@@ -7,7 +7,7 @@
     <div class="searchContainer">
         <div class="search-box">
             <div class="search">
-                <input type="text" class="searchTerm" placeholder="Search for a device...">
+                <input type="text" id="searchTerm" class="searchTerm" placeholder="Search for a device...">
                 <button type="submit" class="searchButton">
                     <i class="fa fa-search"></i>
                 </button>
@@ -62,7 +62,7 @@
                     </div>
 
                     <div class="item-btn">
-                        <a href="<?= site_url('Employee/reserveDev/') . $stock->dev_name; ?>">
+                        <a href="<?= site_url('Executive/reserveDev/') . $stock->dev_name; ?>">
                             <input type="submit" class="all_btn" id="reserve_btn" value="Borrow Device">
                         </a>
                     </div>

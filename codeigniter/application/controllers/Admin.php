@@ -21,6 +21,10 @@ class Admin extends CI_Controller
             redirect('Employee');
         }
 
+        if ($this->session->userdata('role') == 'executive') {
+            redirect('Executive');
+        }
+
         $data['title'] = 'Calibr8 - Admin Dashboard';
         $data['dashboard_data'] = $this->Admin_model->admin_dashboard();
         // echo(json_encode($data['dashboard_data']));
@@ -148,7 +152,7 @@ class Admin extends CI_Controller
     public function editEmp_details()
     {
         $image_config = array(
-            'upload_path' => './assets/employee_image',
+            'upload_path' => './assets/user_image',
             'allowed_types' => 'gif|jpg|png',
             'max_size' => 5000000000,
             'max_width' => 204800,
@@ -412,7 +416,7 @@ class Admin extends CI_Controller
     public function employee_registration()
     {
         $image_config = array(
-            'upload_path' => './assets/employee_image',
+            'upload_path' => './assets/user_image',
             'allowed_types' => 'gif|jpg|png',
             'max_size' => 5000000000,
             'max_width' => 204800,
@@ -555,14 +559,5 @@ class Admin extends CI_Controller
                 redirect('Admin/device_registration');
             }
         }
-    }
-
-    public function dashboard_view()
-    {
-
-        $data['title'] = 'Calibr8 - Dashboard';
-        $this->load->view('include/admin_header', $data);
-        $this->load->view('admin_dashboard_view');
-        $this->load->view('include/footer');
     }
 }

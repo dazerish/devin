@@ -41,17 +41,17 @@ class Login extends CI_Controller{
                     redirect('Admin');
                 }
 
-                // FOR EXECUTIVE
-                // if($account->emp_role == 'executive') {
-                //     $sess_data = array(
-                //         'id' => $account->id,
-                //         'role' => $account->emp_role,
-                //         'logged_in' => TRUE
-                //     );
+                
+                if($account->emp_role == 'executive') {
+                    $sess_data = array(
+                        'id' => $account->id,
+                        'role' => $account->emp_role,
+                        'logged_in' => TRUE
+                    );
 
-                //     $this->session->set_userdata($sess_data);
-                //     redirect('');
-                // }
+                    $this->session->set_userdata($sess_data);
+                    redirect('Executive');
+                }
 
                 if($account->emp_role == 'employee') {
                     $sess_data = array(

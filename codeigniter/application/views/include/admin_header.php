@@ -13,7 +13,7 @@
 
 <nav>
     <div class="logo"><img src="<?= base_url('./assets/pictures/calibr8logo.jpg'); ?>" alt="Calibr8 Logo" height="30px"></div>
-    <a class="nav-link" href="#" id="activebtn">Dashboard</a>
+    <a class="nav-link" href="<?= site_url('Admin') ?>" id="activebtn">Dashboard</a>
     <div class="dropdown">
         <a href="#" class="regbtn">View</a>
         <div class="list">

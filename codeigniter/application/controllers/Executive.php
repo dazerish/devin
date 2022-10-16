@@ -1,6 +1,6 @@
 <?php
 
-class Employee extends CI_Controller
+class Executive extends CI_Controller 
 {
     public function __construct()
     {
@@ -8,7 +8,7 @@ class Employee extends CI_Controller
 
         $this->load->helper(['form', 'url', 'string', 'date']);
         $this->load->library(['form_validation', 'session', 'pagination',]);
-        $this->load->model('Employee_model');
+        $this->load->model('Executive_model');
     }
 
     public function index()
@@ -21,14 +21,14 @@ class Employee extends CI_Controller
             redirect('Admin');
         }
 
-        if ($this->session->userdata('role') == 'executive') {
-            redirect('Executive');
+        if ($this->session->userdata('role') == 'employee') {
+            redirect('Employee');
         }
 
         $data['title'] = 'Calibr8 - My Profile';
-        $data['employee'] = $this->Employee_model->get_emp_row($this->session->userdata('id'));
-        $this->load->view('include/employee_header', $data);
-        $this->load->view('employee_profile_view', $data);
+        $data['executive'] = $this->Executive_model->get_emp_row($this->session->userdata('id'));
+        $this->load->view('include/executive_header', $data);
+        $this->load->view('executive_profile_view', $data);
         $this->load->view('include/footer');
     }
 
@@ -63,7 +63,7 @@ class Employee extends CI_Controller
                     'password' => $newPass
                 );
 
-                $this->Employee_model->update_employee($id, $info);
+                $this->Executive_model->update_employee($id, $info);
 
                 $success = "Password is updated successfully";
                 $this->session->set_flashdata('success', $success);
@@ -76,7 +76,7 @@ class Employee extends CI_Controller
     {
         $id = $this->session->userdata('id');
         $oldPassword = md5($oldPass);
-        $currPass = $this->Employee_model->get_emp_row($id)->password;
+        $currPass = $this->Executive_model->get_emp_row($id)->password;
 
         if ($oldPassword != $currPass) {
             $this->form_validation->set_message('validate_password', '%s field does not match your current password.');
@@ -86,11 +86,11 @@ class Employee extends CI_Controller
         return TRUE;
     }
 
-    public function devList_view()
+    public function devList_view() //Borrowable Device List
     {
         $page_config = array(
-            'base_url' => site_url('Employee/devList_view'),
-            'total_rows' => $this->Employee_model->count_devModel(),
+            'base_url' => site_url('Executive/devList_view'),
+            'total_rows' => $this->Executive_model->count_devModel(),
             'num_links' => 3,
             'per_page' => 5,
 
@@ -121,21 +121,21 @@ class Employee extends CI_Controller
         $this->pagination->initialize($page_config);
 
         $data['title'] = 'Calibr8 - Device Masterlist';
-        $data['total'] = $this->Employee_model->get_dCount();
-        $data['stocks'] = $this->Employee_model->get_devModel($page_config['per_page'], $page);
-        $this->load->view('include/employee_header', $data);
-        $this->load->view('employee_borrowDev_view');
+        $data['total'] = $this->Executive_model->get_dCount();
+        $data['stocks'] = $this->Executive_model->get_devModel($page_config['per_page'], $page);
+        $this->load->view('include/executive_header', $data);
+        $this->load->view('executive_borrowDev_view');
         $this->load->view('include/footer');
     }
 
-    public function searchDev()
+    public function searchDevList()
     { //Temporary Search Function
         $search = ($this->input->post("searchTerm")) ? $this->input->post("searchTerm") : "NIL";
         $search = ($this->uri->segment(3)) ? $this->uri->segment(3) : $search;
 
         $page_config = array(
             'base_url' => site_url('Admin/searchDev/$search'),
-            'total_rows' => $this->Employee_model->get_devices_count($search),
+            'total_rows' => $this->Executive_model->get_devices_count($search),
             'num_links' => 3,
             'per_page' => 5,
 
@@ -166,10 +166,10 @@ class Employee extends CI_Controller
         $this->pagination->initialize($page_config);
 
         $data['title'] = 'Calibr8 - Employee Masterlist';
-        $data['devices'] = $this->Employee_model->get_devices_table($page_config['per_page'], $page, $search);
-        $data['total'] = $this->Employee_model->get_dCount();
-        $this->load->view('include/employee_header', $data);
-        $this->load->view('employee_borrowDev_view');
+        $data['devices'] = $this->Executive_model->get_devices_table($page_config['per_page'], $page, $search);
+        $data['total'] = $this->Executive_model->get_dCount();
+        $this->load->view('include/executive_header', $data);
+        $this->load->view('executive_borrowDev_view');
         $this->load->view('include/footer');
     }
 
@@ -178,11 +178,11 @@ class Employee extends CI_Controller
 
         $data['title'] = 'Calibr8 - Borrow This Device';
         $dev_name = str_replace('%20', ' ', $dev_name);
-        $data['stocks'] = $this->Employee_model->reserveDev($dev_name);
+        $data['stocks'] = $this->Executive_model->reserveDev($dev_name);
         $id = $this->session->userdata('id');
-        $data['employee'] = $this->Employee_model->get_emp_row($id);
-        $this->load->view('include/employee_header', $data);
-        $this->load->view('employee_reservation_view', $data);
+        $data['executive'] = $this->Executive_model->get_emp_row($id);
+        $this->load->view('include/executive_header', $data);
+        $this->load->view('executive_reservation_view', $data);
         $this->load->view('include/footer');
     }
 
@@ -213,7 +213,7 @@ class Employee extends CI_Controller
                     'return_date' => date("Y-m-d H:i:s", strtotime($reservation_date. '+2 months'))
                 );
 
-                $this->Employee_model->set_reserveDate($info);
+                $this->Executive_model->set_reserveDate($info);
                 $success = "Reserve Date is set successfully. Please wait for approval.";
                 $this->session->set_flashdata('success', $success);
                 $this->reserveDev($device_name);
@@ -223,7 +223,7 @@ class Employee extends CI_Controller
         $cancel = $this->input->post('cancel-button');
 
         if (isset($cancel)) {
-            redirect('Employee/devList_view');
+            redirect('Executive/devList_view');
         }
     }
 
@@ -239,4 +239,103 @@ class Employee extends CI_Controller
 
         return TRUE;
     }
+
+    //Device Masterlist
+    public function dev_masterlist_view()
+    {
+        $page_config = array(
+            'base_url' => site_url('Executive/dev_masterlist_view'),
+            'total_rows' => $this->Executive_model->get_dCount(),
+            'num_links' => 3,
+            'per_page' => 5,
+
+            'full_tag_open' => '<div class="d-flex justify-content-center"><ul class="pagination">',
+            'full_tag_close' => '</ul></div>',
+
+            'first_link' => FALSE,
+            'last_link' => FALSE,
+
+            'next_link' => '&rsaquo;',
+            'next_tag_open' => '<li class="page-item">',
+            'next_tag_close' => '</li>',
+
+            'prev_link' => '&lsaquo;',
+            'prev_tag_open' => '<li class="page-item">',
+            'prev_tag_close' => '</li>',
+
+            'cur_tag_open' => '<li class="page-item active"><span class="page-link">',
+            'cur_tag_close' => '</span></li>',
+
+            'num_tag_open' => '<li class="page-item">',
+            'num_tag_close' => '</li>',
+
+            'attributes' => ['class' => 'page-link']
+        );
+
+        $page = ($this->uri->segment(3)) ? $this->uri->segment(3) : 0;
+        $this->pagination->initialize($page_config);
+
+        $data['title'] = 'Calibr8 - Device Masterlist';
+        $data['devices'] = $this->Executive_model->get_devices_table($page_config['per_page'], $page);
+        $data['total'] = $this->Executive_model->get_dCount();
+        $this->load->view('include/executive_header', $data);
+        $this->load->view('executive_dev_masterlist');
+        $this->load->view('include/footer');
+    }
+
+    public function searchDev()
+    { //Temporary Search Function
+        $search = ($this->input->post("searchTerm")) ? $this->input->post("searchTerm") : "NIL";
+        $search = ($this->uri->segment(3)) ? $this->uri->segment(3) : $search;
+
+        $page_config = array(
+            'base_url' => site_url('Executive/searchDev/$search'),
+            'total_rows' => $this->Executive_model->get_devices_count($search),
+            'num_links' => 3,
+            'per_page' => 5,
+
+            'full_tag_open' => '<div class="d-flex justify-content-center"><ul class="pagination">',
+            'full_tag_close' => '</ul></div>',
+
+            'first_link' => FALSE,
+            'last_link' => FALSE,
+
+            'next_link' => '&rsaquo;',
+            'next_tag_open' => '<li class="page-item">',
+            'next_tag_close' => '</li>',
+
+            'prev_link' => '&lsaquo;',
+            'prev_tag_open' => '<li class="page-item">',
+            'prev_tag_close' => '</li>',
+
+            'cur_tag_open' => '<li class="page-item active"><span class="page-link">',
+            'cur_tag_close' => '</span></li>',
+
+            'num_tag_open' => '<li class="page-item">',
+            'num_tag_close' => '</li>',
+
+            'attributes' => ['class' => 'page-link']
+        );
+
+        $page = ($this->uri->segment(4)) ? $this->uri->segment(4) : 0;
+        $this->pagination->initialize($page_config);
+
+        $data['title'] = 'Calibr8 - View Device Masterlist';
+        $data['devices'] = $this->Executive_model->get_devices_table($page_config['per_page'], $page, $search);
+        $data['total'] = $this->Executive_model->get_dCount();
+        $this->load->view('include/executive_header', $data);
+        $this->load->view('executive_dev_masterlist');
+        $this->load->view('include/footer');
+    }
+
+    public function device_view($id)
+    { //Under device masterlist
+        $data['title'] = "Calibr8 - View Device Details";
+        $data['device'] = $this->Executive_model->get_dev_row($id);
+
+        $this->load->view('include/executive_header', $data);
+        $this->load->view('executive_device_view', $data);
+        $this->load->view('include/footer');
+    }
 }
+?>

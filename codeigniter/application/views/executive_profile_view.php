@@ -5,8 +5,8 @@
     <div class="profile-container">
         <div class="profile-card">
             <div class="profile-deets">
-                <img src="<?= base_url('./assets/users_image/' . $employee->emp_image); ?>" alt="profile picture" class="prof-pic">  
-                <h4 class="profile-name"><?= $employee->emp_name; ?></h4>
+                <img src="<?= base_url('./assets/users_image/' . $executive->emp_image); ?>" alt="profile picture" class="prof-pic">  
+                <h4 class="profile-name"><?= $executive->emp_name; ?></h4>
                 <div class="profile-details">
                     <div class="detail-table-div">
                         <table class="detail-table">
@@ -20,9 +20,9 @@
             
                             <tbody>
                                 <tr class="align-middle">
-                                    <td><?= $employee->emp_id; ?></td>
-                                    <td><?= ucfirst($employee->emp_role); ?></td>
-                                    <td><?= $employee->superior; ?></td>
+                                    <td><?= $executive->emp_id; ?></td>
+                                    <td><?= ucfirst($executive->emp_role); ?></td>
+                                    <td><?= $executive->superior; ?></td>
                                 </tr>
                             </tbody>
                         </table>
@@ -40,7 +40,7 @@
 
         <div class="resetpw-card">
             <div class="profile-deets">
-                <?= form_open('Employee/reset_password');?>
+                <?= form_open('Executive/reset_password');?>
                 <h4 class="resetpw-h4" style="text-align: center; font-weight: 700;">Reset Password</h4>
                     <?php if($this->session->has_userdata('success')): ?>
                             <div class="alert alert-success">

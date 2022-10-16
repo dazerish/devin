@@ -1,6 +1,6 @@
 <?php
 
-class Employee_model extends CI_Model
+class Executive_model extends CI_Model
 {
     public function __construct()
     {
@@ -30,6 +30,7 @@ class Employee_model extends CI_Model
         $query = $this->db->query($sql);
         return $query->result();
     }
+
     public function get_devices_count($st = NULL)
     {
         if ($st == "NIL") $st = "";
@@ -40,21 +41,22 @@ class Employee_model extends CI_Model
         return $query->num_rows();
     }
 
-
-
-
-    //Borrowable Device Masterlist - include search function
     public function get_dCount()
     {
         return $this->db->count_all('devices');
     }
 
+    public function get_dev_row($id)
+    {
+        return $this->db->get_where('devices', ['id' => $id])->row();
+    }
+
 
     public function get_devModel($limit, $start)
-    {
+    {   // include other column names after AS and add AND allowed_roles = 'Executive'
         $sql = "SELECT dev_name, COUNT(dev_name) AS stock, cur_status
         FROM devices
-        WHERE cur_status = 'available' AND allowed_roles = 'Employee'
+        WHERE cur_status = 'available' AND allowed_roles = 'Executive'
         GROUP BY dev_name
         HAVING COUNT(*)>0
         LIMIT $start , $limit";
@@ -64,10 +66,10 @@ class Employee_model extends CI_Model
 
     public function count_devModel()
     {
-        // include other column names after AS
+        // include other column names after AS and add AND allowed_roles = 'Executive'
         $sql = "SELECT dev_name, COUNT(dev_name) AS stock, cur_status
         FROM devices
-        WHERE cur_status = 'available' AND allowed_roles = 'Employee'
+        WHERE cur_status = 'available' AND allowed_roles = 'Executive'
         GROUP BY dev_name
         HAVING COUNT(*)>0";
         $query = $this->db->query($sql);
@@ -84,7 +86,6 @@ class Employee_model extends CI_Model
         $query = $this->db->query($sql);
         return $query->result();
 
-        // the result -> store in array -> count the elements in array -> use the count to pick a random number -> use the number as index to select a random element -> get the unique id of the result
     }
 
     public function set_reserveDate($info)
@@ -100,3 +101,4 @@ class Employee_model extends CI_Model
     //     return $this->db->count_all_results();
     // }
 }
+?>

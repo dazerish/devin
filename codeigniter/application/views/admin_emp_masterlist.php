@@ -38,7 +38,7 @@
                         <img
                             <?php if(isset($employee->emp_image)): ?>
                                 class="emp-pic"
-                                src="<?= base_url('./assets/employee_image/') . $employee->emp_image; ?>"
+                                src="<?= base_url('./assets/users_image/') . $employee->emp_image; ?>"
                                 alt="employee pic"
                             <?php endif?>
                         >
