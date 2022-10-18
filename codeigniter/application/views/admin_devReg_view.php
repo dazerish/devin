@@ -1,16 +1,27 @@
+<script type="text/javascript" src="<?=base_url('./assets/script.js');?>"></script>
+
 <section class="main_container">
         
     <div class="register_container">
-        
+
+
         <div class="login_box">
+            <p class="login_header">Device Registration</p>
+            <div class="progressbar">
+                <div class="progress" id="progress"></div>
+                
+                <div class="progress-step progress-step-active" data-title="Device Details"></div>
+                <div class="progress-step" data-title="Device RFID"></div>
+            </div>
             <!-- FORM HERE -->
             <?= form_open_multipart('Admin/device_registration'); ?>    
-                <p class="login_header">Device Registration</p>
+                
                     <?php if($this->session->has_userdata('success')): ?>
                             <div class="alert alert-success">
                                 <?= $this->session->userdata('success'); ?>
                             </div>
                     <?php endif; ?> 
+            <div class="form-step form-step-active">     
                 <div class="row">
                     <div class="col">
                         <label for="uniquenum" class="register_label">Device Unique Number</label><br>
@@ -50,12 +61,24 @@
                             <span class="text-danger" id="file-chosen"><?= form_error('device_image') ?></span>
                     </div>
 
+                    <div class="reg-div">
+                    <a href="#" class="btn btn-next" id="btn-next">Next</a>
+                    </div>
+
                 </div>
 
+                        
+
+                
+               
+
+            </div>  
+            
+            <div class="form-step">
                 <div class="reg-div">
                     <input type="submit" class="all_btn" id="reg-dev" name ="reg-dev" value="REGISTER DEVICE">
                 </div>
-                
+            </div>
             <?= form_close(); ?>
         </div>
         
