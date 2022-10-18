@@ -19,34 +19,14 @@ class Employee_model extends CI_Model
         $this->db->update('users', $info, ['id' => $id]);
     }
 
-    //Device Masterlist
-    public function get_devices_table($limit, $start, $st = NULL)
-    {
-        if ($st == "NIL") $st = "";
-        $sql = "select * from devices where dev_name like '%$st%' 
-                or dev_model like '%$st%'
-                or manufacturer like '%$st%'  
-                limit " . $start . ", " . $limit;
-        $query = $this->db->query($sql);
-        return $query->result();
-    }
-    public function get_devices_count($st = NULL)
-    {
-        if ($st == "NIL") $st = "";
-        $sql = "select * from devices where dev_name like '%$st%' 
-                or dev_model like '%$st%'
-                or manufacturer like '%$st%'";
-        $query = $this->db->query($sql);
-        return $query->num_rows();
-    }
-
-
 
 
     //Borrowable Device Masterlist - include search function
-    public function get_dCount()
+    public function borrowableDev_count()
     {
-        return $this->db->count_all('devices');
+        $this->db->where(['cur_status' => 'Available', 'allowed_roles' => 'Employee']);
+        $this->db->from('devices');
+        return $this->db->count_all_results();
     }
 
 
@@ -87,11 +67,45 @@ class Employee_model extends CI_Model
         // the result -> store in array -> count the elements in array -> use the count to pick a random number -> use the number as index to select a random element -> get the unique id of the result
     }
 
-    public function set_reserveDate($info)
+    public function set_reserveDate($info, $status_info, $unique_num)
     {
         $this->db->insert('transaction', $info);
+        $this->db->update('devices', $status_info, ['unique_num' => $unique_num]);
     }
 
+
+
+    //Device Masterlist
+    public function get_devices_table($limit, $start, $st = NULL)
+    {
+        if ($st == "NIL") $st = "";
+        $sql = "select * from devices where dev_name like '%$st%' 
+                or dev_model like '%$st%'
+                or manufacturer like '%$st%'  
+                limit " . $start . ", " . $limit;
+        $query = $this->db->query($sql);
+        return $query->result();
+    }
+
+    public function get_devices_count($st = NULL)
+    {
+        if ($st == "NIL") $st = "";
+        $sql = "select * from devices where dev_name like '%$st%' 
+                or dev_model like '%$st%'
+                or manufacturer like '%$st%'";
+        $query = $this->db->query($sql);
+        return $query->num_rows();
+    }
+
+    public function get_dev_row($id)
+    {
+        return $this->db->get_where('devices', ['id' => $id])->row();
+    }
+
+    public function get_dCount()
+    {
+        return $this->db->count_all('devices');
+    }
 
     // public function count_devModel() {
     //     $this->db->select('*');
@@ -100,3 +114,5 @@ class Employee_model extends CI_Model
     //     return $this->db->count_all_results();
     // }
 }
+
+?>

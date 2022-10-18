@@ -31,7 +31,7 @@ class Admin extends CI_Controller
         // $data['dashboard'] = json_encode($dashboards);
         // $data['dashboard_results'] = $dashboards;
         $this->load->view('include/admin_header', $data);
-        $this->load->view('admin_dashboard_view', $data); //Temporary view to be loaded
+        $this->load->view('admin/admin_dashboard_view', $data); //Temporary view to be loaded
         $this->load->view('include/footer');
     }
 
@@ -74,7 +74,7 @@ class Admin extends CI_Controller
         $data['employees'] = $this->Admin_model->get_users_table($page_config['per_page'], $page, NULL);
         $data['total'] = $this->Admin_model->get_uCount();
         $this->load->view('include/admin_header', $data);
-        $this->load->view('admin_emp_masterlist');
+        $this->load->view('admin/admin_emp_masterlist');
         $this->load->view('include/footer');
     }
 
@@ -119,7 +119,7 @@ class Admin extends CI_Controller
         $data['employees'] = $this->Admin_model->get_users_table($page_config['per_page'], $page, $search);
         $data['total'] = $this->Admin_model->get_uCount();
         $this->load->view('include/admin_header', $data);
-        $this->load->view('admin_emp_masterlist');
+        $this->load->view('admin/admin_emp_masterlist');
         $this->load->view('include/footer');
     }
 
@@ -129,7 +129,7 @@ class Admin extends CI_Controller
         $data['employee'] = $this->Admin_model->get_emp_row($id);
 
         $this->load->view('include/admin_header', $data);
-        $this->load->view('admin_employee_view', $data);
+        $this->load->view('admin/admin_employee_view', $data);
         $this->load->view('include/footer');
     }
 
@@ -145,7 +145,7 @@ class Admin extends CI_Controller
         $data['employee'] = $this->Admin_model->get_emp_row($id);
 
         $this->load->view('include/admin_header', $data);
-        $this->load->view('admin_editEmp_view', $data);
+        $this->load->view('admin/admin_editEmp_view', $data);
         $this->load->view('include/footer');
     }
 
@@ -254,7 +254,7 @@ class Admin extends CI_Controller
         $data['devices'] = $this->Admin_model->get_devices_table($page_config['per_page'], $page);
         $data['total'] = $this->Admin_model->get_dCount();
         $this->load->view('include/admin_header', $data);
-        $this->load->view('admin_dev_masterlist');
+        $this->load->view('admin/admin_dev_masterlist');
         $this->load->view('include/footer');
     }
 
@@ -299,7 +299,7 @@ class Admin extends CI_Controller
         $data['devices'] = $this->Admin_model->get_devices_table($page_config['per_page'], $page, $search);
         $data['total'] = $this->Admin_model->get_dCount();
         $this->load->view('include/admin_header', $data);
-        $this->load->view('admin_dev_masterlist');
+        $this->load->view('admin/admin_dev_masterlist');
         $this->load->view('include/footer');
     }
 
@@ -309,7 +309,7 @@ class Admin extends CI_Controller
         $data['device'] = $this->Admin_model->get_dev_row($id);
 
         $this->load->view('include/admin_header', $data);
-        $this->load->view('admin_device_view', $data);
+        $this->load->view('admin/admin_device_view', $data);
         $this->load->view('include/footer');
     }
 
@@ -325,7 +325,7 @@ class Admin extends CI_Controller
         $data['device'] = $this->Admin_model->get_dev_row($id);
 
         $this->load->view('include/admin_header', $data);
-        $this->load->view('admin_editDev_view', $data);
+        $this->load->view('admin/admin_editDev_view', $data);
         $this->load->view('include/footer');
     }
 
@@ -409,7 +409,7 @@ class Admin extends CI_Controller
     {
         $data['title'] = 'Calibr8 - Employee Registration';
         $this->load->view('include/admin_header', $data);
-        $this->load->view('admin_empReg_view');
+        $this->load->view('admin/admin_empReg_view');
         $this->load->view('include/footer');
     }
 
@@ -487,7 +487,7 @@ class Admin extends CI_Controller
 
         $data['title'] = 'Calibr8 - Device Registration';
         $this->load->view('include/admin_header', $data);
-        $this->load->view('admin_devReg_view');
+        $this->load->view('admin/admin_devReg_view');
         $this->load->view('include/footer');
     }
 

@@ -15,13 +15,11 @@
 
 <nav>
     <div class="logo"><img src="<?= base_url('./assets/pictures/calibr8logo.jpg'); ?>" alt="Calibr8 Logo" height="30px"></div>
-    <a class="nav-link" href="<?= site_url('Executive') ?>">View</a>
+    <a class="nav-link" href="<?= site_url('Executive/emp_masterlist_view') ?>">View</a>
     <a class="nav-link" href="<?= site_url('Executive/devList_view') ?>">Reservation</a>
     <a class="nav-link" href="<?= site_url('Executive/dev_masterlist_view') ?>">Device Masterlist</a>
 
-    <a class="nav-link" href="<?= site_url('Login/logout') ?>">Logout</a> <!-- Temporary only -->
-
-    <a href="#" class="ts"><i class="far fa-user" id="nav-user-icon"></i>Executive</a>
+    <a href="<?= site_url('Executive') ?>" class="ts"><i class="far fa-user" id="nav-user-icon"></i>Executive</a>
 
 
 </nav>

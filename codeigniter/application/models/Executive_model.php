@@ -9,11 +9,32 @@ class Executive_model extends CI_Model
         $this->load->database();
     }
 
+    //View Employee Masterlist
+    public function get_users_table($limit, $start, $st = NULL)
+    {
+        if ($st == "NIL") $st = "";
+        $sql = "select * from users where emp_name like '%$st%' limit " . $start . ", " . $limit;
+        $query = $this->db->query($sql);
+        return $query->result();
+    }
+    public function get_users_count($st = NULL)
+    {
+        if ($st == "NIL") $st = "";
+        $sql = "select * from users where emp_name like '%$st%'";
+        $query = $this->db->query($sql);
+        return $query->num_rows();
+    }
+    public function get_uCount()
+    {
+        return $this->db->count_all('users');
+    }
+
     public function get_emp_row($id)
     {
         return $this->db->get_where('users', ['id' => $id])->row();
     }
 
+    //Reset Password
     public function update_employee($id, $info)
     {
         $this->db->update('users', $info, ['id' => $id]);
@@ -51,12 +72,20 @@ class Executive_model extends CI_Model
         return $this->db->get_where('devices', ['id' => $id])->row();
     }
 
+    //Borrowable Device List - include search function
+    public function borrowableDev_count()
+    {
+        $this->db->where(['cur_status' => 'Available', 'allowed_roles' => 'Executive']);
+        $this->db->from('devices');
+        return $this->db->count_all_results();
+    }
+
 
     public function get_devModel($limit, $start)
-    {   // include other column names after AS and add AND allowed_roles = 'Executive'
+    {   
         $sql = "SELECT dev_name, COUNT(dev_name) AS stock, cur_status
         FROM devices
-        WHERE cur_status = 'available' AND allowed_roles = 'Executive'
+        WHERE cur_status = 'Available' AND allowed_roles = 'Executive'
         GROUP BY dev_name
         HAVING COUNT(*)>0
         LIMIT $start , $limit";
@@ -66,10 +95,9 @@ class Executive_model extends CI_Model
 
     public function count_devModel()
     {
-        // include other column names after AS and add AND allowed_roles = 'Executive'
         $sql = "SELECT dev_name, COUNT(dev_name) AS stock, cur_status
         FROM devices
-        WHERE cur_status = 'available' AND allowed_roles = 'Executive'
+        WHERE cur_status = 'Available' AND allowed_roles = 'Executive'
         GROUP BY dev_name
         HAVING COUNT(*)>0";
         $query = $this->db->query($sql);
@@ -80,7 +108,7 @@ class Executive_model extends CI_Model
     {
 
         $sql = "SELECT * FROM devices 
-        WHERE dev_name = '$dev_name' AND cur_status = 'available'
+        WHERE dev_name = '$dev_name' AND cur_status = 'Available'
         ORDER BY RAND()
         LIMIT 1";
         $query = $this->db->query($sql);
@@ -88,17 +116,11 @@ class Executive_model extends CI_Model
 
     }
 
-    public function set_reserveDate($info)
+    public function set_reserveDate($info, $status_info, $unique_num)
     {
         $this->db->insert('transaction', $info);
+        $this->db->update('devices', $status_info, ['unique_num' => $unique_num]);
     }
 
-
-    // public function count_devModel() {
-    //     $this->db->select('*');
-    //     $this->db->from('devices');
-    //     $this->db->like('dev_model', 'Server');
-    //     return $this->db->count_all_results();
-    // }
 }
 ?>
