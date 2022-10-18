@@ -487,7 +487,7 @@ class Admin extends CI_Controller
 
         $data['title'] = 'Calibr8 - Device Registration';
         $this->load->view('include/admin_header', $data);
-        $this->load->view('admin/admin_devReg_view');
+        $this->load->view('admin_devReg_view');
         $this->load->view('include/footer');
     }
 
