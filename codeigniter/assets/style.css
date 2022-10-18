@@ -379,10 +379,36 @@ td i {
     margin-right: 10px;
   }
 
+  /*dashboard*/
+
+  .dashboard-details {
+    display: flex;
+    justify-content: space-evenly;
+  }
+
+
   .detail-container {
     background-color: #ffffff;
     border-radius: 15px;
     padding: 2rem;
+    margin-top: 10px;
+  }
+
+  .d-detail-container {
+    background-color: #ffffff;
+    border-radius: 15px;
+    width: 300px;
+    padding: 2rem;
+    margin-top: 20px;
+  }
+
+  .d-detail-container h2 {
+    color: #C63F18;
+    font-weight: 700;
+  }
+
+  .d-detail-container p {
+    color: #c64e18;
   }
 
   .detail-header {
@@ -1032,4 +1058,6 @@ td i {
     opacity: 1;
   }
 }
+
+/*MEDIA QUERIES*/
 

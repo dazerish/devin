@@ -31,7 +31,7 @@ class Admin extends CI_Controller
         // $data['dashboard'] = json_encode($dashboards);
         // $data['dashboard_results'] = $dashboards;
         $this->load->view('include/admin_header', $data);
-        $this->load->view('admin/admin_dashboard_view', $data); //Temporary view to be loaded
+        $this->load->view('admin_dashboard_view', $data); //Temporary view to be loaded
         $this->load->view('include/footer');
     }
 
@@ -254,7 +254,7 @@ class Admin extends CI_Controller
         $data['devices'] = $this->Admin_model->get_devices_table($page_config['per_page'], $page);
         $data['total'] = $this->Admin_model->get_dCount();
         $this->load->view('include/admin_header', $data);
-        $this->load->view('admin/admin_dev_masterlist');
+        $this->load->view('admin_dev_masterlist');
         $this->load->view('include/footer');
     }
 
@@ -309,7 +309,7 @@ class Admin extends CI_Controller
         $data['device'] = $this->Admin_model->get_dev_row($id);
 
         $this->load->view('include/admin_header', $data);
-        $this->load->view('admin/admin_device_view', $data);
+        $this->load->view('admin_device_view', $data);
         $this->load->view('include/footer');
     }
 
