@@ -26,7 +26,7 @@
     <a class="nav-link" href="#">Generate Reports</a>
     </div>
     <div class="dropdown">
-        <a href="#" class="regbtn">Registration</a>
+        <a href="<?= site_url('Admin/devReg_view') ?>" class="regbtn">Registration</a>
         <div class="list">
             <a href="<?= site_url('Admin/devReg_view') ?>" class="links">Device Registration</a>
             <a href="<?= site_url('Admin/empReg_view') ?>" class="links">Employee Registration</a>

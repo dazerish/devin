@@ -1,4 +1,4 @@
-<script type="text/javascript" src="<?=base_url('./assets/script.js');?>"></script>
+
 
 <section class="main_container">
         
@@ -62,7 +62,7 @@
                     </div>
 
                     <div class="reg-div">
-                    <a href="#" class="btn btn-next" id="btn-next">Next</a>
+                        <a href="#" class="btn btn-next" id="btn-next">Next</a>
                     </div>
 
                 </div>
@@ -75,6 +75,18 @@
             </div>  
             
             <div class="form-step">
+            <label for="manuf" class="register_label">Manufacturer</label><br>
+                        <input type="text" id="manuf" name="manuf"><br>
+                        <span class="text-danger"><?= form_error('manuf') ?></span>
+                    
+                        <label for="specs" class="register_label">Specifications</label><br>
+                        <textarea rows="1" cols="50" wrap="physical" id="specs" name="specs"></textarea><br>
+                        <span class="text-danger"><?= form_error('specs') ?></span>
+                
+            <div class="btns-group">
+            <a href="#" class="btn btn-prev">Previous</a>
+            <a href="#" class="btn btn-next">Next</a>
+            </div>
                 <div class="reg-div">
                     <input type="submit" class="all_btn" id="reg-dev" name ="reg-dev" value="REGISTER DEVICE">
                 </div>
@@ -86,3 +98,56 @@
 
     
 </section>
+
+
+<script>
+
+const prevBtns = document.querySelectorAll(".btn-prev");
+const nextBtns = document.querySelectorAll(".btn-next");
+const progress = document.getElementById("progress");
+const formSteps = document.querySelectorAll(".form-step");
+const progressSteps = document.querySelectorAll(".progress-step");
+
+let formStepsNum = 0;
+
+nextBtns.forEach((btn) => {
+  btn.addEventListener("click", () => {
+    formStepsNum++;
+    updateFormSteps();
+    updateProgressbar();
+  });
+});
+
+prevBtns.forEach((btn) => {
+  btn.addEventListener("click", () => {
+    formStepsNum--;
+    updateFormSteps();
+    updateProgressbar();
+  });
+});
+
+function updateFormSteps() {
+  formSteps.forEach((formStep) => {
+    formStep.classList.contains("form-step-active") &&
+      formStep.classList.remove("form-step-active");
+  });
+
+  formSteps[formStepsNum].classList.add("form-step-active");
+}
+
+function updateProgressbar() {
+  progressSteps.forEach((progressStep, idx) => {
+    if (idx < formStepsNum + 1) {
+      progressStep.classList.add("progress-step-active");
+    } else {
+      progressStep.classList.remove("progress-step-active");
+    }
+  });
+
+  const progressActive = document.querySelectorAll(".progress-step-active");
+
+  progress.style.width =
+    ((progressActive.length - 1) / (progressSteps.length - 1)) * 100 + "%";
+}
+
+</script>
