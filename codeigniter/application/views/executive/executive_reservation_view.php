@@ -5,7 +5,13 @@
 
         <?php foreach ($stocks as $stock) : ?>
             <div class="device-view">
-                <img src="assets/pictures/lenovo.png" height="250px" alt="device-pic">
+                <img
+                    <?php if(isset($stock->dev_image)): ?> 
+                        src="<?= base_url('./assets/device_image/') . $stock->dev_image; ?>" 
+                        height="250px" 
+                        alt="device-pic"
+                    <?php endif ?>
+                >    
                 <h3><?= $stock->dev_name; ?></h3>
                 <h3><?= $stock->unique_num; ?></h3>
                 <h6>Specifications</h6>
@@ -13,7 +19,6 @@
 
                     <ul>
                         <li><?= $stock->specs; ?></li>
-                        <li><?= date('Y-m-d H:i:s'); ?></li>
                         <li>RAM: 16GB 3200Mhz</li>
                         <li>Graphics: Integrated Intel HD Graphics 4000</li>
                         <li>Hard Drive: 1TB</li>

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 18, 2022 at 09:44 AM
+-- Generation Time: Oct 23, 2022 at 04:19 PM
 -- Server version: 10.4.22-MariaDB
 -- PHP Version: 8.1.2
 
@@ -71,7 +71,7 @@ INSERT INTO `devices` (`id`, `unique_num`, `dev_name`, `dev_model`, `allowed_rol
 (23, '8EY5350W9O', 'Rodeo', 'Car', 'Administrator', 'Isuzu', 'Phalacrocorax carbo', 'http://dummyimage.com/104x100.png/5fa2dd/ffffff', '044de83212b1feba4d48e537a15ce1dbfd443017', 'Broken', 'Borrowed'),
 (24, '5FV5855R1J', 'Truck', 'Sensor', 'Administrator', 'Mitsubishi', 'Nectarinia chalybea', 'http://dummyimage.com/248x100.png/5fa2dd/ffffff', '081f83730c1979cd013fa6ae39983549577048be', 'Reserved', 'Borrowed'),
 (25, '8OE3234W8A', '350Z', 'Laptop', 'Administrator', 'Nissan', 'Uraeginthus granatina', 'http://dummyimage.com/212x100.png/cc0000/ffffff', 'aa413718d5c87c062bb28f976432684fd35d8c43', 'Reserved', 'Reserved'),
-(26, '5CP4986Q2Z', 'F350', 'Microcontroller', 'Administrator', 'Ford', 'Papio ursinus', 'http://dummyimage.com/224x100.png/ff4444/ffffff', '92398bbce47f261cb788df94693d30bad6279298', 'Available', 'Broken'),
+(26, '5CP4986Q2Z', 'F350', 'Microcontroller', 'Administrator', 'Ford', 'Papio ursinus', 'http://dummyimage.com/224x100.png/ff4444/ffffff', '92398bbce47f261cb788df94693d30bad6279298', 'Available', 'Reserved'),
 (27, '3TB8498Z5H', 'Prius', 'Car', 'Executive', 'Toyota', 'Corvus brachyrhynchos', 'http://dummyimage.com/185x100.png/dddddd/000000', '1f599f2b1e66ca2d30cfa20339a4afe9cd656673', 'Broken', 'Borrowed'),
 (28, '4YV3374K8S', 'F450', 'Microcontroller', 'Administrator', 'Ford', 'Bassariscus astutus', 'http://dummyimage.com/100x100.png/ff4444/ffffff', '34ef590b827740bcd8c1e7b431d150d2c2e8a2af', 'Reserved', 'Broken'),
 (29, '8UR1059A2I', 'Neon', 'Car', 'Executive', 'Plymouth', 'Mustela nigripes', 'http://dummyimage.com/222x100.png/dddddd/000000', '3b25e238abac9f5f3ab97199d57a0798f36440c4', 'Broken', 'Available'),
@@ -99,7 +99,7 @@ INSERT INTO `devices` (`id`, `unique_num`, `dev_name`, `dev_model`, `allowed_rol
 (51, '1EI9716O5Z', '98', 'Laptop', 'Executive', 'Oldsmobile', 'Bassariscus astutus', 'http://dummyimage.com/123x100.png/dddddd/000000', '4081e8f2804ea95b19835088dd21aad2385e5736', 'Reserved', 'Available'),
 (52, '6PN0108A3J', 'Odyssey', 'Server', 'Executive', 'Honda', 'Erinaceus frontalis', 'http://dummyimage.com/123x100.png/dddddd/000000', 'f147953b1144639d035bacbec67772fc841af54a', 'Broken', 'Borrowed'),
 (53, '9QL1181C2H', 'Miata MX-5', 'Sensor', 'Executive', 'Mazda', 'Ratufa indica', 'http://dummyimage.com/167x100.png/dddddd/000000', 'dab9efa6872511fcc566fb8af4f7f1ed69482315', 'Borrowed', 'Borrowed'),
-(54, '3DX9357I0Z', '3500', 'Server', 'Administrator', 'Chevrolet', 'Bubalornis niger', 'http://dummyimage.com/191x100.png/cc0000/ffffff', 'dd9541303cb954023384f9f2c400f24769a44bec', 'Available', 'Available'),
+(54, '3DX9357I0Z', '3500', 'Server', 'Administrator', 'Chevrolet', 'Bubalornis niger', 'http://dummyimage.com/191x100.png/cc0000/ffffff', 'dd9541303cb954023384f9f2c400f24769a44bec', 'Reserved', 'Available'),
 (55, '6HT3863W8G', 'Vibe', 'Car', 'Administrator', 'Pontiac', 'Gymnorhina tibicen', 'http://dummyimage.com/123x100.png/ff4444/ffffff', '3c491e971d40008a27b654f6c3710c73bbe36399', 'Maintenance', 'Available'),
 (56, '2FS1417D8T', 'Grand Marquis', 'Car', 'Executive', 'Mercury', 'Eumetopias jubatus', 'http://dummyimage.com/239x100.png/dddddd/000000', '7851dd54c39b4e0d4435a9abf2e4e4c7bca77617', 'Available', 'Borrowed'),
 (57, '8KL3457S0A', 'Classic', 'Sensor', 'Administrator', 'Chevrolet', 'Ceratotherium simum', 'http://dummyimage.com/223x100.png/cc0000/ffffff', '828996b3fcc27d37deeb74112ea40986a6bb78e6', 'Maintenance', 'Borrowed'),
@@ -134,7 +134,7 @@ INSERT INTO `devices` (`id`, `unique_num`, `dev_name`, `dev_model`, `allowed_rol
 (86, '3WS6244E3Y', 'New Beetle', 'Microcontroller', 'Employee', 'Volkswagen', 'Loris tardigratus', 'http://dummyimage.com/247x100.png/cc0000/ffffff', 'ece083beacd52ef1435274574597f7e4f7449a58', 'Available', 'Maintenance'),
 (87, '1BS9936S5O', 'CTS', 'Microcontroller', 'Executive', 'Cadillac', 'Mustela nigripes', 'http://dummyimage.com/147x100.png/5fa2dd/ffffff', '3534f69b6d721ef43634bc650e9927fb710369fd', 'Reserved', 'Maintenance'),
 (88, '4JP8574U1R', 'Esprit', 'Microcontroller', 'Administrator', 'Lotus', 'Ara ararauna', 'http://dummyimage.com/214x100.png/5fa2dd/ffffff', '8730505a39639f932b026932803648314381919a', 'Available', 'Reserved'),
-(89, '1WE7803U8D', 'Caprice', 'Laptop', 'Administrator', 'Chevrolet', 'Damaliscus dorcas', 'http://dummyimage.com/189x100.png/dddddd/000000', 'a53079674fd08e6bf51d32799a075c31dfc9ec73', 'Available', 'Borrowed'),
+(89, '1WE7803U8D', 'Caprice', 'Laptop', 'Administrator', 'Chevrolet', 'Damaliscus dorcas', 'http://dummyimage.com/189x100.png/dddddd/000000', 'a53079674fd08e6bf51d32799a075c31dfc9ec73', 'Reserved', 'Available'),
 (90, '1TX2087R1L', '9000', 'Sensor', 'Employee', 'Saab', 'Laniarius ferrugineus', 'http://dummyimage.com/247x100.png/cc0000/ffffff', '8c82895f3a785311e3f419bf0e240310bb81f842', 'Maintenance', 'Borrowed'),
 (91, '3NY3017J6T', 'RX', 'Microcontroller', 'Employee', 'Lexus', 'Sarcorhamphus papa', 'http://dummyimage.com/141x100.png/5fa2dd/ffffff', 'c42e3e146548fae3ce8a12cc63b95ab5cd48b9b5', 'Reserved', 'Broken'),
 (92, '2PG1676E5N', 'Laser', 'Car', 'Executive', 'Plymouth', 'Boa constrictor mexicana', 'http://dummyimage.com/100x100.png/dddddd/000000', '6e6a8de1cbde1a4096abf3efd351a2258a64eb45', 'Borrowed', 'Broken'),
@@ -224,7 +224,7 @@ INSERT INTO `devices` (`id`, `unique_num`, `dev_name`, `dev_model`, `allowed_rol
 (176, '7KD4167X5B', 'Cooper', 'Server', 'Employee', 'MINI', 'Macropus giganteus', 'http://dummyimage.com/215x100.png/5fa2dd/ffffff', 'bfec7896303403a0af6087c6bb6dd0d8a4929eda', 'Broken', 'Maintenance'),
 (177, '1BD5820V6U', 'Town & Country', 'Laptop', 'Administrator', 'Chrysler', 'Acrobates pygmaeus', 'http://dummyimage.com/199x100.png/ff4444/ffffff', '1425031f3df99a22f790c7d5fb9d81b0e2353b73', 'Maintenance', 'Borrowed'),
 (178, '2KV0132E4I', 'Escalade EXT', 'Sensor', 'Employee', 'Cadillac', 'Trachyphonus vaillantii', 'http://dummyimage.com/206x100.png/cc0000/ffffff', '3923f5918db59f38241eea525f5a7138d903ed70', 'Borrowed', 'Available'),
-(179, '1NQ5277N5O', '4Runner', 'Laptop', 'Employee', 'Toyota', 'Panthera tigris', 'http://dummyimage.com/109x100.png/5fa2dd/ffffff', 'e17ca142101f8ef2dfaab4b534ec0b31ee57d39b', 'Reserved', 'Available'),
+(179, '1NQ5277N5O', '4Runner', 'Laptop', 'Employee', 'Toyota', 'Panthera tigris', 'http://dummyimage.com/109x100.png/5fa2dd/ffffff', 'e17ca142101f8ef2dfaab4b534ec0b31ee57d39b', 'Borrowed', 'Reserved'),
 (180, '8HV2796E3W', 'Corvette', 'Microcontroller', 'Administrator', 'Chevrolet', 'Speothos vanaticus', 'http://dummyimage.com/182x100.png/5fa2dd/ffffff', '2eec3c1aa946b33add35dedd4bfb10ac0b6cd58e', 'Borrowed', 'Reserved'),
 (181, '3QH0275L3V', 'Envoy', 'Microcontroller', 'Administrator', 'GMC', 'Dicrostonyx groenlandicus', 'http://dummyimage.com/219x100.png/5fa2dd/ffffff', '523308afb89b8f3625b80c0cb771f699ede422a8', 'Reserved', 'Borrowed'),
 (182, '1PS2635W5T', '3 Series', 'Server', 'Employee', 'BMW', 'Myrmecophaga tridactyla', 'http://dummyimage.com/147x100.png/cc0000/ffffff', '18b10700585fc82cb40937d42a99bb56b3214130', 'Maintenance', 'Reserved'),
@@ -244,7 +244,7 @@ INSERT INTO `devices` (`id`, `unique_num`, `dev_name`, `dev_model`, `allowed_rol
 (196, '1SL6338Y3G', 'C-Class', 'Microcontroller', 'Employee', 'Mercedes-Benz', 'Dendrocitta vagabunda', 'http://dummyimage.com/149x100.png/ff4444/ffffff', '52be815a15edc4997b7a9bf9b17d245e20c92d48', 'Broken', 'Available'),
 (197, '8NB4559B1C', 'Spectra', 'Sensor', 'Employee', 'Kia', 'Colobus guerza', 'http://dummyimage.com/154x100.png/cc0000/ffffff', '58fd421bb1df11aa499b410f12f21deea1a66b9b', 'Broken', 'Available'),
 (198, '7KZ2329Q8Q', 'V70', 'Laptop', 'Administrator', 'Volvo', 'Eudyptula minor', 'http://dummyimage.com/142x100.png/cc0000/ffffff', '99077425540648a6127321590e56b6d70320efed', 'Borrowed', 'Available'),
-(199, '3RX1818T1I', 'Elise', 'Microcontroller', 'Administrator', 'Lotus', 'Eolophus roseicapillus', 'http://dummyimage.com/242x100.png/dddddd/000000', 'ea7334acff7b41fdcc6505e8cc3740fe584de78d', 'Available', 'Borrowed'),
+(199, '3RX1818T1I', 'Elise', 'Microcontroller', 'Administrator', 'Lotus', 'Eolophus roseicapillus', 'http://dummyimage.com/242x100.png/dddddd/000000', 'ea7334acff7b41fdcc6505e8cc3740fe584de78d', 'Borrowed', 'Reserved'),
 (200, '8JC3980A7J', 'B-Series', 'Sensor', 'Administrator', 'Mazda', 'Microcebus murinus', 'http://dummyimage.com/164x100.png/cc0000/ffffff', '3db955e99e3248988fa9411d19689343940b538b', 'Borrowed', 'Available');
 
 -- --------------------------------------------------------
@@ -258,6 +258,7 @@ CREATE TABLE `transaction` (
   `transaction_status` varchar(50) NOT NULL,
   `borrower` varchar(255) NOT NULL,
   `borrowedDev_id` varchar(255) DEFAULT NULL,
+  `borrowedDev_name` varchar(255) NOT NULL,
   `request_time` datetime NOT NULL,
   `decision_time` datetime NOT NULL,
   `return_date` datetime NOT NULL
@@ -267,16 +268,20 @@ CREATE TABLE `transaction` (
 -- Dumping data for table `transaction`
 --
 
-INSERT INTO `transaction` (`transaction_id`, `transaction_status`, `borrower`, `borrowedDev_id`, `request_time`, `decision_time`, `return_date`) VALUES
-(1, 'Pending', 'Elaine Enricoso', '1NQ5277N5O', '2022-10-18 15:31:15', '2022-10-20 16:00:00', '2022-12-20 16:00:00'),
-(2, 'Pending', 'Elaine Enricoso', '7GM1009U4U', '2022-10-18 15:31:24', '2022-10-22 17:30:00', '2022-12-22 17:30:00'),
-(3, 'Pending', 'Elaine Enricoso', '4DF4363F0T', '2022-10-18 15:31:38', '2022-10-25 17:40:00', '2022-12-25 17:40:00'),
-(4, 'Pending', 'Rovic Gabriel Tabucol', '4CE0460D69', '2022-10-18 15:32:20', '2022-10-20 19:32:00', '2022-12-20 19:32:00'),
-(5, 'Pending', 'Rovic Gabriel Tabucol', '1ET4069X9A', '2022-10-18 15:32:28', '2022-10-22 19:32:00', '2022-12-22 19:32:00'),
-(6, 'Pending', 'John Michael Reyes', '9XM3558J1R', '2022-10-18 15:32:53', '2022-10-20 17:32:00', '2022-12-20 17:32:00'),
-(7, 'Pending', 'John Michael Reyes', '7EM2146H0P', '2022-10-18 15:32:58', '2022-10-21 18:32:00', '2022-12-21 18:32:00'),
-(8, 'Pending', 'John Michael Reyes', '3MT2981I3T', '2022-10-18 15:33:06', '2022-10-24 18:33:00', '2022-12-24 18:33:00'),
-(9, 'Pending', 'John Michael Reyes', '4FW2478N9N', '2022-10-18 15:33:14', '2022-10-26 19:33:00', '2022-12-26 19:33:00');
+INSERT INTO `transaction` (`transaction_id`, `transaction_status`, `borrower`, `borrowedDev_id`, `borrowedDev_name`, `request_time`, `decision_time`, `return_date`) VALUES
+(1, 'Approved', 'Elaine Enricoso', '1NQ5277N5O', '4runner', '2022-10-18 15:31:15', '2022-10-20 16:00:00', '2022-12-20 16:00:00'),
+(2, 'Pending', 'Elaine Enricoso', '7GM1009U4U', 'Blazer', '2022-10-18 15:31:24', '2022-10-22 17:30:00', '2022-12-22 17:30:00'),
+(3, 'Pending', 'Elaine Enricoso', '4DF4363F0T', 'E-Class', '2022-10-18 15:31:38', '2022-10-25 17:40:00', '2022-12-25 17:40:00'),
+(4, 'Pending', 'Rovic Gabriel Tabucol', '4CE0460D69', 'Edge Gateway', '2022-10-18 15:32:20', '2022-10-20 19:32:00', '2022-12-20 19:32:00'),
+(5, 'Pending', 'Rovic Gabriel Tabucol', '1ET4069X9A', 'Grand Am', '2022-10-18 15:32:28', '2022-10-22 19:32:00', '2022-12-22 19:32:00'),
+(6, 'Pending', 'John Michael Reyes', '9XM3558J1R', '911', '2022-10-18 15:32:53', '2022-10-20 17:32:00', '2022-12-20 17:32:00'),
+(7, 'Pending', 'John Michael Reyes', '7EM2146H0P', 'Elantra', '2022-10-18 15:32:58', '2022-10-21 18:32:00', '2022-12-21 18:32:00'),
+(8, 'Pending', 'John Michael Reyes', '3MT2981I3T', 'G-Series G10', '2022-10-18 15:33:06', '2022-10-24 18:33:00', '2022-12-24 18:33:00'),
+(9, 'Pending', 'John Michael Reyes', '4FW2478N9N', 'G-Series G20', '2022-10-18 15:33:14', '2022-10-26 19:33:00', '2022-12-26 19:33:00'),
+(10, 'Pending', 'Andrea Blancaflor', '3DX9357I0Z', '3500', '2022-10-23 18:37:55', '2022-10-25 19:45:00', '2022-12-25 19:45:00'),
+(11, 'Pending', 'Andrea Blancaflor', '1WE7803U8D', 'Caprice', '2022-10-23 18:38:19', '2022-10-26 20:40:00', '2022-12-26 20:40:00'),
+(12, 'Approved', 'Andrea Blancaflor', '3RX1818T1I', 'Elise', '2022-10-23 18:38:32', '2022-10-26 21:45:00', '2022-12-26 21:45:00'),
+(13, 'Rejected', 'Andrea Blancaflor', '5CP4986Q2Z', 'F350', '2022-10-23 18:38:44', '2022-10-27 09:45:00', '2022-12-27 09:45:00');
 
 -- --------------------------------------------------------
 
@@ -371,7 +376,7 @@ ALTER TABLE `devices`
 -- AUTO_INCREMENT for table `transaction`
 --
 ALTER TABLE `transaction`
-  MODIFY `transaction_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `transaction_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `users`

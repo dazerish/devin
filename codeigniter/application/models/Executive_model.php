@@ -72,7 +72,7 @@ class Executive_model extends CI_Model
         return $this->db->get_where('devices', ['id' => $id])->row();
     }
 
-    //Borrowable Device List - include search function
+    //Borrowable Device List
     public function borrowableDev_count()
     {
         $this->db->where(['cur_status' => 'Available', 'allowed_roles' => 'Executive']);
@@ -81,23 +81,27 @@ class Executive_model extends CI_Model
     }
 
 
-    public function get_devModel($limit, $start)
+    public function get_devModel($limit, $start, $st = NULL)
     {   
-        $sql = "SELECT dev_name, COUNT(dev_name) AS stock, cur_status
+        if ($st == "NIL") $st = "";
+        $sql = "SELECT dev_name, COUNT(dev_name) AS stock, cur_status, dev_image
         FROM devices
-        WHERE cur_status = 'Available' AND allowed_roles = 'Executive'
+        WHERE (cur_status = 'Available' AND allowed_roles = 'Executive')
+        AND (dev_name LIKE '%$st%' OR dev_model LIKE '%$st%')
         GROUP BY dev_name
         HAVING COUNT(*)>0
-        LIMIT $start , $limit";
+        LIMIT $start, $limit";
         $query = $this->db->query($sql);
         return $query->result();
     }
 
-    public function count_devModel()
+    public function count_devModel($st = NULL)
     {
-        $sql = "SELECT dev_name, COUNT(dev_name) AS stock, cur_status
+        if ($st == "NIL") $st = "";
+        $sql = "SELECT dev_name, COUNT(dev_name) AS stock, cur_status, dev_image
         FROM devices
-        WHERE cur_status = 'Available' AND allowed_roles = 'Executive'
+        WHERE (cur_status = 'Available' AND allowed_roles = 'Executive')
+        AND (dev_name LIKE '%$st%' OR dev_model LIKE '%$st%')
         GROUP BY dev_name
         HAVING COUNT(*)>0";
         $query = $this->db->query($sql);

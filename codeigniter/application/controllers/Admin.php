@@ -27,11 +27,8 @@ class Admin extends CI_Controller
 
         $data['title'] = 'Calibr8 - Admin Dashboard';
         $data['dashboard_data'] = $this->Admin_model->admin_dashboard();
-        // echo(json_encode($data['dashboard_data']));
-        // $data['dashboard'] = json_encode($dashboards);
-        // $data['dashboard_results'] = $dashboards;
         $this->load->view('include/admin_header', $data);
-        $this->load->view('admin_dashboard_view', $data); //Temporary view to be loaded
+        $this->load->view('admin/admin_dashboard_view', $data);
         $this->load->view('include/footer');
     }
 
@@ -211,10 +208,6 @@ class Admin extends CI_Controller
     }
 
 
-
-
-
-
     //Device Masterlist
     public function dev_masterlist_view()
     {
@@ -251,10 +244,10 @@ class Admin extends CI_Controller
         $this->pagination->initialize($page_config);
 
         $data['title'] = 'Calibr8 - Device Masterlist';
-        $data['devices'] = $this->Admin_model->get_devices_table($page_config['per_page'], $page);
+        $data['devices'] = $this->Admin_model->get_devices_table($page_config['per_page'], $page, NULL);
         $data['total'] = $this->Admin_model->get_dCount();
         $this->load->view('include/admin_header', $data);
-        $this->load->view('admin_dev_masterlist');
+        $this->load->view('admin/admin_dev_masterlist');
         $this->load->view('include/footer');
     }
 
@@ -309,7 +302,7 @@ class Admin extends CI_Controller
         $data['device'] = $this->Admin_model->get_dev_row($id);
 
         $this->load->view('include/admin_header', $data);
-        $this->load->view('admin_device_view', $data);
+        $this->load->view('admin/admin_device_view', $data);
         $this->load->view('include/footer');
     }
 
@@ -401,6 +394,257 @@ class Admin extends CI_Controller
     }
 
 
+    //Device Approval List
+    public function devApproval_view() 
+    {
+        $page_config = array(
+            'base_url' => site_url('Admin/devApproval_view'),
+            'total_rows' => $this->Admin_model->get_transaction_count(),
+            'num_links' => 3,
+            'per_page' => 5,
+
+            'full_tag_open' => '<div class="d-flex justify-content-center"><ul class="pagination">',
+            'full_tag_close' => '</ul></div>',
+
+            'first_link' => FALSE,
+            'last_link' => FALSE,
+
+            'next_link' => '&rsaquo;',
+            'next_tag_open' => '<li class="page-item">',
+            'next_tag_close' => '</li>',
+
+            'prev_link' => '&lsaquo;',
+            'prev_tag_open' => '<li class="page-item">',
+            'prev_tag_close' => '</li>',
+
+            'cur_tag_open' => '<li class="page-item active"><span class="page-link">',
+            'cur_tag_close' => '</span></li>',
+
+            'num_tag_open' => '<li class="page-item">',
+            'num_tag_close' => '</li>',
+
+            'attributes' => ['class' => 'page-link']
+        );
+
+        $page = ($this->uri->segment(3)) ? $this->uri->segment(3) : 0;
+        $this->pagination->initialize($page_config);
+
+        $data['title'] = 'Calibr8 - Device Approval List';
+        $data['transactions'] = $this->Admin_model->get_transaction_table($page_config['per_page'], $page);
+        $data['total'] = $this->Admin_model->pending_count();
+        $this->load->view('include/admin_header', $data);
+        $this->load->view('admin/admin_devApproval_view');
+        $this->load->view('include/footer');
+    }
+
+    public function reject_device() 
+    {
+        $transaction_status = array(
+            'transaction_status' => 'Rejected'
+        );
+
+        $status_info = array(
+            'cur_status' => 'Available',
+            'prev_status' => 'Reserved'
+        );
+
+        $transaction_id = $this->uri->segment(3);
+        $borrowedDev_id = $this->uri->segment(4);
+
+        $this->Admin_model->reject_device($transaction_status, $status_info, $transaction_id, $borrowedDev_id);
+        $rejected = "The device was rejected.";
+        $this->session->set_flashdata('rejected', $rejected);
+        redirect('Admin/devApproval_view');
+    }
+
+    public function approve_device()
+    {
+        $transaction_status = array(
+            'transaction_status' => 'Approved'
+        );
+
+        $status_info = array(
+            'cur_status' => 'Borrowed',
+            'prev_status' => 'Reserved'
+        );
+
+        $transaction_id = $this->uri->segment(3);
+        $borrowedDev_id = $this->uri->segment(4);
+
+        $this->Admin_model->reject_device($transaction_status, $status_info, $transaction_id, $borrowedDev_id);
+        $approved = "The device was approved.";
+        $this->session->set_flashdata('approved', $approved);
+        redirect('Admin/devApproval_view');
+    }
+
+
+    //Reservation - Borrowable Device List
+    public function devList_view() 
+    {
+        $page_config = array(
+            'base_url' => site_url('Admin/devList_view'),
+            'total_rows' => $this->Admin_model->borrowableDev_count(),
+            'num_links' => 3,
+            'per_page' => 5,
+
+            'full_tag_open' => '<div class="d-flex justify-content-center"><ul class="pagination">',
+            'full_tag_close' => '</ul></div>',
+
+            'first_link' => FALSE,
+            'last_link' => FALSE,
+
+            'next_link' => '&rsaquo;',
+            'next_tag_open' => '<li class="page-item">',
+            'next_tag_close' => '</li>',
+
+            'prev_link' => '&lsaquo;',
+            'prev_tag_open' => '<li class="page-item">',
+            'prev_tag_close' => '</li>',
+
+            'cur_tag_open' => '<li class="page-item active"><span class="page-link">',
+            'cur_tag_close' => '</span></li>',
+
+            'num_tag_open' => '<li class="page-item">',
+            'num_tag_close' => '</li>',
+
+            'attributes' => ['class' => 'page-link']
+        );
+
+        $page = ($this->uri->segment(3)) ? $this->uri->segment(3) : 0;
+        $this->pagination->initialize($page_config);
+
+        $data['title'] = 'Cablir8 - Borrowable Device Masterlist';
+        $data['total'] = $this->Admin_model->borrowableDev_count();
+        $data['stocks'] = $this->Admin_model->get_devModel($page_config['per_page'], $page, NULL);
+        $this->load->view('include/admin_header', $data);
+        $this->load->view('admin/admin_borrowDev_view');
+        $this->load->view('include/footer');
+    }
+
+    public function search_BorrowableDev()
+    { //Temporary Search Function
+        $search = ($this->input->post("searchTerm")) ? $this->input->post("searchTerm") : "NIL";
+        $search = ($this->uri->segment(3)) ? $this->uri->segment(3) : $search;
+
+        $page_config = array(
+            'base_url' => site_url('Admin/search_BorrowableDev/$search'),
+            'total_rows' => $this->Admin_model->count_devModel($search),
+            'num_links' => 3,
+            'per_page' => 5,
+
+            'full_tag_open' => '<div class="d-flex justify-content-center"><ul class="pagination">',
+            'full_tag_close' => '</ul></div>',
+
+            'first_link' => FALSE,
+            'last_link' => FALSE,
+
+            'next_link' => '&rsaquo;',
+            'next_tag_open' => '<li class="page-item">',
+            'next_tag_close' => '</li>',
+
+            'prev_link' => '&lsaquo;',
+            'prev_tag_open' => '<li class="page-item">',
+            'prev_tag_close' => '</li>',
+
+            'cur_tag_open' => '<li class="page-item active"><span class="page-link">',
+            'cur_tag_close' => '</span></li>',
+
+            'num_tag_open' => '<li class="page-item">',
+            'num_tag_close' => '</li>',
+
+            'attributes' => ['class' => 'page-link']
+        );
+
+        $page = ($this->uri->segment(4)) ? $this->uri->segment(4) : 0;
+        $this->pagination->initialize($page_config);
+
+        $data['title'] = 'Calibr8 - Borrowable Device Masterlist';
+        $data['stocks'] = $this->Admin_model->get_devModel($page_config['per_page'], $page, $search);
+        $data['total'] = $this->Admin_model->borrowableDev_count();
+        $this->load->view('include/admin_header', $data);
+        $this->load->view('admin/admin_borrowDev_view');
+        $this->load->view('include/footer');
+    }
+
+    public function reserveDev($dev_name)
+    {
+
+        $data['title'] = 'Calibr8 - Borrow This Device';
+        $dev_name = str_replace('%20', ' ', $dev_name);
+        $data['stocks'] = $this->Admin_model->reserveDev($dev_name);
+        $id = $this->session->userdata('id');
+        $data['admin'] = $this->Admin_model->get_emp_row($id);
+        $this->load->view('include/admin_header', $data);
+        $this->load->view('admin/admin_reservation_view', $data);
+        $this->load->view('include/footer');
+    }
+
+    public function set_reserveDate()
+    {
+
+        $this->form_validation->set_rules('reservation_date', 'Reservation Date', 'required|callback_validate_reserveDate', array(
+            'required' => 'Please set a %s'
+        ));
+
+        if ($this->form_validation->run() == FALSE) {
+            $dev_name = $this->input->post('dev-name');
+            $device_name = str_replace('%20', ' ', $dev_name);
+            $this->reserveDev($device_name);
+        } else {
+            $borrow = $this->input->post('borrow-device');
+
+            if (isset($borrow)) {
+                $dev_name = $this->input->post('dev-name');
+                $device_name = str_replace('%20', ' ', $dev_name);
+                $unique_num = $this->input->post('unique-num');
+                $reservation_date = $this->input->post('reservation_date');
+
+                //Reserved Date Info
+                $info = array(
+                    'transaction_status' => 'Pending',
+                    'borrower' => $this->input->post('borrower'),
+                    'borrowedDev_id' => $this->input->post('unique-num'),
+                    'borrowedDev_name' => $dev_name,
+                    'request_time' => date("Y-m-d H:i:s", strtotime('now')),
+                    'decision_time' => date("Y-m-d H:i:s", strtotime($reservation_date)),
+                    'return_date' => date("Y-m-d H:i:s", strtotime($reservation_date. '+2 months'))
+                );
+
+                //Device Status Info
+                $status_info = array(
+                    'cur_status' => 'Reserved',
+                    'prev_status' => 'Available'
+
+                );
+
+                $this->Admin_model->set_reserveDate($info, $status_info, $unique_num);
+                $success = "Reserve Date is set successfully. Please wait for approval.";
+                $this->session->set_flashdata('success', $success);
+                redirect('Admin/devList_view');
+            }
+        }
+
+        $cancel = $this->input->post('cancel-button');
+
+        if (isset($cancel)) {
+            redirect('Admin/devList_view');
+        }
+    }
+
+    public function validate_reserveDate($reservation_date) {
+
+        $startDate = date("Y-m-d H:i:s", strtotime($reservation_date));
+        $currDate = date("Y-m-d H:i:s");
+
+        if($startDate < $currDate) {
+            $this->form_validation->set_message('validate_reserveDate', 'Please enter a valid date.');
+            return FALSE;
+        }
+
+        return TRUE;
+    }
+    
+
 
 
 
@@ -487,7 +731,7 @@ class Admin extends CI_Controller
 
         $data['title'] = 'Calibr8 - Device Registration';
         $this->load->view('include/admin_header', $data);
-        $this->load->view('admin_devReg_view');
+        $this->load->view('admin/admin_devReg_view');
         $this->load->view('include/footer');
     }
 
@@ -560,4 +804,70 @@ class Admin extends CI_Controller
             }
         }
     }
+
+    //VIew Profile 
+    public function profile_view() 
+    {
+        $data['title'] = 'Calibr8 - My Profile';
+        $data['admin'] = $this->Admin_model->get_emp_row($this->session->userdata('id'));
+        $this->load->view('include/admin_header', $data);
+        $this->load->view('admin/admin_profile_view', $data);
+        $this->load->view('include/footer');
+    }
+
+    public function reset_password()
+    {
+        $reset = $this->input->post('reset-btn');
+
+        $this->form_validation->set_rules('oldPass', 'Current Password', 'required|min_length[8]|callback_validate_password', array(
+            'required' => 'Please provide your %s.',
+            'min_length' => '%s should have a minimum of 8 characters.'
+        ));
+
+        $this->form_validation->set_rules('newPass', 'New Password', 'required|min_length[8]', array(
+            'required' => 'Please provide your %s.',
+            'min_length' => '%s should have a minimum of 8 characters.'
+        ));
+
+        $this->form_validation->set_rules('confNewPass', 'Confirm New Password', 'required|min_length[8]|matches[newPass]', array(
+            'required' => 'Please confirm your New Password.',
+            'min_length' => '%s should have a minimum of 8 characters.',
+            'matches' => '%s does not match your New Password.'
+        ));
+
+        if (isset($reset)) {
+            $newPass = md5($this->input->post('newPass'));
+
+            if ($this->form_validation->run() == FALSE) {
+                $this->profile_view();
+            } else {
+                $id = $this->session->userdata('id');
+                $info = array(
+                    'password' => $newPass
+                );
+
+                $this->Admin_model->update_employee($id, $info);
+
+                $success = "Password is updated successfully";
+                $this->session->set_flashdata('success', $success);
+                redirect('Admin/profile_view');
+            }
+        }
+    }
+
+    public function validate_password($oldPass)
+    {
+        $id = $this->session->userdata('id');
+        $oldPassword = md5($oldPass);
+        $currPass = $this->Admin_model->get_emp_row($id)->password;
+
+        if ($oldPassword != $currPass) {
+            $this->form_validation->set_message('validate_password', '%s field does not match your current password.');
+            return FALSE;
+        }
+
+        return TRUE;
+    }
 }
+
+?>

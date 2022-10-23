@@ -11,7 +11,7 @@
                         height="250px" 
                         alt="device-pic"
                     <?php endif ?>
-                > 
+                >    
                 <h3><?= $stock->dev_name; ?></h3>
                 <h3><?= $stock->unique_num; ?></h3>
                 <h6>Specifications</h6>
@@ -31,27 +31,21 @@
         <?php endforeach; ?>
         <div class="picker-flex">
             <div class="picker-div">
-                <?= form_open_multipart('Employee/set_reserveDate') ?>
-                <?php if ($this->session->has_userdata('success')) : ?>
-                    <div class="alert alert-success">
-                        <?= $this->session->userdata('success'); ?>
+                <?= form_open_multipart('Admin/set_reserveDate') ?>
+                    <?php foreach ($stocks as $stock) : ?>
+                        <input type="hidden" name="dev-name" value="<?= $stock->dev_name; ?>">
+                        <input type="hidden" name="unique-num" value="<?= $stock->unique_num; ?>">
+                    <?php endforeach; ?>
+                    <input type="hidden" name="borrower" value="<?= $admin->emp_name; ?>">
+
+                    <label for="reservation-date">Pick a reservation date:</label><br>
+                    <input type="datetime-local" id="reservation_date" class="date-picker" name="reservation_date">
+                    <span class="text-danger"><?= form_error('reservation_date'); ?></span>  
+
+                    <div class="btn-grp">
+                        <button type="submit" class="cancel-btn" name="cancel-button">CANCEL</button>
+                        <button type="submit" class="reserve-btn" name="borrow-device">BORROW DEVICE</button>
                     </div>
-                <?php endif; ?>
-
-                <?php foreach ($stocks as $stock) : ?>
-                    <input type="hidden" name="dev-name" value="<?= $stock->dev_name; ?>">
-                    <input type="hidden" name="unique-num" value="<?= $stock->unique_num; ?>">
-                <?php endforeach; ?>
-                <input type="hidden" name="borrower" value="<?= $employee->emp_name; ?>">
-
-                <label for="reservation-date">Pick a reservation date:</label><br>
-                <input type="datetime-local" id="reservation_date" class="date-picker" name="reservation_date">
-                <span class="text-danger"><?= form_error('reservation_date'); ?></span>  
-
-                <div class="btn-grp">
-                    <button type="submit" class="cancel-btn" name="cancel-button">CANCEL</button>
-                    <button type="submit" class="reserve-btn" name="borrow-device">BORROW DEVICE</button>
-                </div>
                 <?= form_close(); ?>
             </div>
 

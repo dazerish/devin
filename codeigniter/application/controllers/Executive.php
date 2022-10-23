@@ -188,12 +188,12 @@ class Executive extends CI_Controller
 
 
 
-
-    public function devList_view() //Borrowable Device List
+    //Borrowable Device List
+    public function devList_view() 
     {
         $page_config = array(
             'base_url' => site_url('Executive/devList_view'),
-            'total_rows' => $this->Executive_model->count_devModel(),
+            'total_rows' => $this->Executive_model->borrowableDev_count(),
             'num_links' => 3,
             'per_page' => 5,
 
@@ -223,9 +223,9 @@ class Executive extends CI_Controller
         $page = ($this->uri->segment(3)) ? $this->uri->segment(3) : 0;
         $this->pagination->initialize($page_config);
 
-        $data['title'] = 'Calibr8 - Device Masterlist';
+        $data['title'] = 'Calibr8 - Borrowable Device Masterlist';
         $data['total'] = $this->Executive_model->borrowableDev_count();
-        $data['stocks'] = $this->Executive_model->get_devModel($page_config['per_page'], $page);
+        $data['stocks'] = $this->Executive_model->get_devModel($page_config['per_page'], $page, NULL);
         $this->load->view('include/executive_header', $data);
         $this->load->view('executive/executive_borrowDev_view');
         $this->load->view('include/footer');
@@ -268,7 +268,7 @@ class Executive extends CI_Controller
         $page = ($this->uri->segment(4)) ? $this->uri->segment(4) : 0;
         $this->pagination->initialize($page_config);
 
-        $data['title'] = 'Calibr8 - Employee Masterlist';
+        $data['title'] = 'Calibr8 - Borrowable Device Masterlist';
         $data['stocks'] = $this->Executive_model->get_devModel($page_config['per_page'], $page, $search);
         $data['total'] = $this->Executive_model->borrowableDev_count();
         $this->load->view('include/executive_header', $data);
@@ -314,6 +314,7 @@ class Executive extends CI_Controller
                     'transaction_status' => 'Pending',
                     'borrower' => $this->input->post('borrower'),
                     'borrowedDev_id' => $this->input->post('unique-num'),
+                    'borrowedDev_name' => $dev_name,
                     'request_time' => date("Y-m-d H:i:s", strtotime('now')),
                     'decision_time' => date("Y-m-d H:i:s", strtotime($reservation_date)),
                     'return_date' => date("Y-m-d H:i:s", strtotime($reservation_date. '+2 months'))
@@ -389,7 +390,7 @@ class Executive extends CI_Controller
         $this->pagination->initialize($page_config);
 
         $data['title'] = 'Calibr8 - Device Masterlist';
-        $data['devices'] = $this->Executive_model->get_devices_table($page_config['per_page'], $page);
+        $data['devices'] = $this->Executive_model->get_devices_table($page_config['per_page'], $page, NULL);
         $data['total'] = $this->Executive_model->get_dCount();
         $this->load->view('include/executive_header', $data);
         $this->load->view('executive/executive_dev_masterlist');

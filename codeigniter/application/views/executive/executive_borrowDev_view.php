@@ -12,7 +12,7 @@
 
     <div class="searchContainer">
         <div class="search-box">
-            <?= form_open_multipart('Executive/searchDevList');?>
+            <?= form_open_multipart('Executive/search_BorrowableDev');?>
             <div class="search">
                 <input type="text" id="searchTerm" class="searchTerm" name="searchTerm" placeholder="Search for a device...">
                 <button type="submit" class="searchButton" name="search">
@@ -62,7 +62,13 @@
             <?php foreach ($stocks as $stock) : ?>
                 <div class="item-row">
                     <div class="item-pic">
-                        <img src="assets/pictures/lenovo.png" alt="device-pic">
+                        <img
+                            <?php if(isset($stock->dev_image)): ?>
+                                class="device-pic" 
+                                src="<?= base_url('./assets/device_image/') . $stock->dev_image; ?>" 
+                                alt="device-pic"
+                            <?php endif ?>
+                        >
                         <div class="item-desc">
                             <h6><?= $stock->dev_name; ?></h6>
                             <h6>Status: <?= $stock->cur_status; ?></h6>
@@ -80,5 +86,5 @@
         </div>
     </section>
 
-    <?= $this->pagination->create_links() ?>
+    <?= $this->pagination->create_links(); ?>
 </div>

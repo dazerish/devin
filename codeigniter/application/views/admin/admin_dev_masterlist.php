@@ -71,7 +71,7 @@
                                 class="device-pic"
                                 src="<?= base_url('./assets/device_image/') . $device->dev_image; ?>"
                                 alt="device-pic"
-                            <?php endif?>
+                            <?php endif ?>
                         >
                     </td>
                     <td class="emp-name-bold"><?= $device->dev_name;?></td>

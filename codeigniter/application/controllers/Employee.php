@@ -86,6 +86,7 @@ class Employee extends CI_Controller
         return TRUE;
     }
 
+    //Borrowable Device List
     public function devList_view()
     {
         $page_config = array(
@@ -120,9 +121,9 @@ class Employee extends CI_Controller
         $page = ($this->uri->segment(3)) ? $this->uri->segment(3) : 0;
         $this->pagination->initialize($page_config);
 
-        $data['title'] = 'Calibr8 - Device Masterlist';
+        $data['title'] = 'Calibr8 - Borrowable Device Masterlist';
         $data['total'] = $this->Employee_model->borrowableDev_count();
-        $data['stocks'] = $this->Employee_model->get_devModel($page_config['per_page'], $page);
+        $data['stocks'] = $this->Employee_model->get_devModel($page_config['per_page'], $page, NULL);
         $this->load->view('include/employee_header', $data);
         $this->load->view('employee/employee_borrowDev_view');
         $this->load->view('include/footer');
@@ -134,8 +135,8 @@ class Employee extends CI_Controller
         $search = ($this->uri->segment(3)) ? $this->uri->segment(3) : $search;
 
         $page_config = array(
-            'base_url' => site_url('Admin/searchDev/$search'),
-            'total_rows' => $this->Employee_model->get_devices_count($search),
+            'base_url' => site_url('Employee/searchDev/$search'),
+            'total_rows' => $this->Employee_model->count_devModel($search),
             'num_links' => 3,
             'per_page' => 5,
 
@@ -165,8 +166,8 @@ class Employee extends CI_Controller
         $page = ($this->uri->segment(4)) ? $this->uri->segment(4) : 0;
         $this->pagination->initialize($page_config);
 
-        $data['title'] = 'Calibr8 - Employee Masterlist';
-        $data['devices'] = $this->Employee_model->get_devices_table($page_config['per_page'], $page, $search);
+        $data['title'] = 'Calibr8 - Borrowable Device List';
+        $data['stocks'] = $this->Employee_model->get_devModel($page_config['per_page'], $page, $search);
         $data['total'] = $this->Employee_model->borrowableDev_count();
         $this->load->view('include/employee_header', $data);
         $this->load->view('employee/employee_borrowDev_view');
@@ -211,6 +212,7 @@ class Employee extends CI_Controller
                     'transaction_status' => 'Pending',
                     'borrower' => $this->input->post('borrower'),
                     'borrowedDev_id' => $this->input->post('unique-num'),
+                    'borrowedDev_name' => $dev_name,
                     'request_time' => date("Y-m-d H:i:s", strtotime('now')),
                     'decision_time' => date("Y-m-d H:i:s", strtotime($reservation_date)),
                     'return_date' => date("Y-m-d H:i:s", strtotime($reservation_date. '+2 months'))
