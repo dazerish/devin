@@ -34,6 +34,7 @@
                 $JwtSecretKey = "DEVIN-Calibr8";
                 $data = array(
                     'id' => $account->id,
+                    'employee_id' => $account->emp_id,
                     'name' => $account->emp_name,
                     'email' => $account->emp_email,
                     'superior' => $account->superior,
@@ -44,7 +45,7 @@
                 );
 
                 $token = $jwt->encode($data, $JwtSecretKey, 'HS256');
-                echo json_encode(['token' => $token]);
+                echo json_encode(['token' => $token, 'message' => 'Success!']);
             } else {
                 echo json_encode(['error' => 'Invalid username/password']);
             }
