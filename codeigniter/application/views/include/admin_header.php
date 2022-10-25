@@ -11,33 +11,68 @@
     <title><?= $title ?></title>
 </head>
 
-<nav>
-    <div class="logo"><img src="<?= base_url('./assets/pictures/calibr8logo.jpg'); ?>" alt="Calibr8 Logo" height="30px"></div>
-    <a class="nav-link" href="<?= site_url('Admin') ?>" id="activebtn">Dashboard</a>
-    <div class="dropdown">
-        <a href="<?= site_url('Admin/devApproval_view') ?>" class="regbtn">View</a>
-        <div class="list">
-            <a href="<?= site_url('Admin/dev_masterlist_view') ?>" class="links">Device Masterlist</a>
-            <a href="<?= site_url('Admin/emp_masterlist_view') ?>" class="links">Employee Masterlist</a>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#"><a class="navbar-brand" href="#"><div class="logo"><img src="<?= base_url('./assets/pictures/calibr8logo.png'); ?>" alt="Calibr8 Logo" height="30px"></div></a></a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="<?= site_url('Admin') ?>">Dashboard</a>
+                </li>
+                <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    Registration
+                </a>
+                <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                    <li><a class="dropdown-item" href="<?= site_url('Admin/devReg_view') ?>">Device Registration</a></li>
+                    <li><a class="dropdown-item" href="<?= site_url('Admin/empReg_view') ?>">Employee Registration</a></li>
+                </ul>
+                </li>
+                <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    View
+                </a>
+                <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                    <li><a class="dropdown-item" href="<?= site_url('Admin/dev_masterlist_view') ?>">Device Masterlist</a></li>
+                    <li><a class="dropdown-item" href="<?= site_url('Admin/emp_masterlist_view') ?>">Employee Masterlist</a></li>
+                    <li><a class="dropdown-item" href="<?= site_url('Admin/devApproval_view') ?>">Device Approval List</a></li>
+                </ul>
+                </li>
+                <li class="nav-item">
+                <a class="nav-link" href="<?= site_url('Admin/devList_view') ?>">Reservation</a>
+                </li>
+                <li class="nav-item">
+                <a class="nav-link" href="#">Generate Reports</a>
+                </li>
+
+                <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                My Profile
+                </a>
+                <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink" id="prof-nav">
+                    <li><a class="dropdown-item" href="<?= site_url('Admin/profile_view') ?>">View My Profile</a></li>
+                    <li><a class="dropdown-item" href="">Logout</a></li>
+                </ul>
+            </ul>
+            </div>
+
+            <!-- <ul class="navbar-nav">
+                <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Hi, Name
+                </a>
+                <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink" id="prof-nav">
+                    <li><a class="dropdown-item" href="<?= site_url('Admin/profile_view') ?>">View My Profile</a></li>
+                    <li><a class="dropdown-item" href="">Logout</a></li>
+                </ul>
+            </ul> -->
+        
         </div>
-    </div>
-    <a class="nav-link" href="#">Edit</a>
-    <a class="nav-link" href="<?= site_url('Admin/devList_view') ?>">Reservation</a>
-    <a class="nav-link" href="#">Generate Reports</a>
-    </div>
-    <div class="dropdown">
-        <a href="#" class="regbtn">Registration</a>
-        <div class="list">
-            <a href="<?= site_url('Admin/devReg_view') ?>" class="links">Device Registration</a>
-            <a href="<?= site_url('Admin/empReg_view') ?>" class="links">Employee Registration</a>
-        </div>
-    </div>
-
-    <a href="<?= site_url('Admin/profile_view') ?>" class="ts"><i class="far fa-user" id="nav-user-icon"></i>Admin</a>
-
-
-</nav>
-
+    </nav>
+    
 <script src="//cdn.amcharts.com/lib/4/core.js"></script>
 <script src="//cdn.amcharts.com/lib/4/charts.js"></script>
 
