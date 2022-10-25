@@ -385,6 +385,10 @@ td i {
     margin-bottom: 10px;
   }
 
+  .remove-btn:hover {
+    color: white;
+  }
+
   #remove-icon {
     margin-right: 10px;
   }

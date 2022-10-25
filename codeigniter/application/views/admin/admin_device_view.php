@@ -3,7 +3,7 @@
 
         <div class="detail-container">
             <div class="remove-btn-div">
-                <a class="remove-btn" href="<?= site_url('Admin/remove_device/') . $device->id; ?>"><i class="fas fa-trash-alt" id="remove-icon"></i>Remove Device</a>
+                <a href="#removeBtnModal" class="remove-btn" data-bs-toggle="modal" data-bs-target="#removeBtnModal" ><i class="fas fa-trash-alt" id="remove-icon"></i>Remove Device</a>
             </div>
             
             <div class="detail-header">
@@ -94,4 +94,23 @@
             </div>
             
         </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="removeBtnModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Are you sure you want to remove this device?</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        You are going to remove "". Continue?
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+        <a href="<?= site_url('Admin/remove_device/') . $device->id; ?>" class="btn btn-danger">Remove Device</a>
+      </div>
+    </div>
+  </div>
 </div>
