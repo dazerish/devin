@@ -24,15 +24,6 @@
                 </li>
                 <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                    Registration
-                </a>
-                <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                    <li><a class="dropdown-item" href="<?= site_url('Admin/devReg_view') ?>">Device Registration</a></li>
-                    <li><a class="dropdown-item" href="<?= site_url('Admin/empReg_view') ?>">Employee Registration</a></li>
-                </ul>
-                </li>
-                <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                     View
                 </a>
                 <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
@@ -41,11 +32,26 @@
                     <li><a class="dropdown-item" href="<?= site_url('Admin/devApproval_view') ?>">Device Approval List</a></li>
                 </ul>
                 </li>
-                <li class="nav-item">
-                <a class="nav-link" href="<?= site_url('Admin/devList_view') ?>">Reservation</a>
+                <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    Logs
+                </a>
+                <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                    <li><a class="dropdown-item" href="<?= site_url('Admin/transaction_logs') ?>">Transaction Logs</a></li>
+                    <li><a class="dropdown-item" href="<?= site_url('Admin/system_logs') ?>">System Logs</a></li>
+                </ul>
                 </li>
                 <li class="nav-item">
-                <a class="nav-link" href="#">Generate Reports</a>
+                <a class="nav-link" href="<?= site_url('Admin/generate_reports') ?>">Generate Reports</a>
+                </li>
+                <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    Registration
+                </a>
+                <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                    <li><a class="dropdown-item" href="<?= site_url('Admin/devReg_view') ?>">Device Registration</a></li>
+                    <li><a class="dropdown-item" href="<?= site_url('Admin/empReg_view') ?>">Employee Registration</a></li>
+                </ul>
                 </li>
 
                 <li class="nav-item dropdown">
@@ -54,7 +60,7 @@
                 </a>
                 <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink" id="prof-nav">
                     <li><a class="dropdown-item" href="<?= site_url('Admin/profile_view') ?>">View My Profile</a></li>
-                    <li><a class="dropdown-item" href="<?= site_url('Login/logout')?>">Logout</a></li>
+                    <li><a class="dropdown-item" href="<?= site_url('Login/logout') ?>">Logout</a></li>
                 </ul>
             </ul>
             </div>

@@ -14,9 +14,9 @@
       <?= form_open_multipart('Admin/device_registration'); ?>
 
       <?php if ($this->session->has_userdata('success')) : ?>
-        <div class="alert alert-success">
-          <?= $this->session->userdata('success'); ?>
-        </div>
+              <div class="alert alert-success">
+                  <?= $this->session->userdata('success'); ?>
+              </div>
       <?php endif; ?>
       <div class="form-step form-step-active">
         <div class="row">
@@ -67,13 +67,13 @@
       </div>
 
       <div class="form-step">
-        <label for="manuf" class="register_label">RFID Number</label><br>
-        <input type="text" id="manuf" name="manuf"><br>
-        <span class="text-danger"><?= form_error('manuf') ?></span>
+        <label for="rfid-num" class="register_label">RFID Number</label><br>
+        <input type="text" id="rfid-num" name="rfid-num"><br>
+        <span class="text-danger"><?= form_error('rfid-num') ?></span>
 
-        <label for="specs" class="register_label">Tap your RFID</label><br>
-        <textarea rows="1" cols="50" wrap="physical" id="specs" name="specs"></textarea><br>
-        <span class="text-danger"><?= form_error('specs') ?></span>
+        <label for="tap-rfid" class="register_label">Tap your RFID</label><br>
+        <textarea rows="1" cols="50" wrap="physical" id="tap-rfid" name="tap-rfid"></textarea><br>
+        <span class="text-danger"><?= form_error('tap-rfid') ?></span>
 
         <div class="btns-group">
           <a href="#" class="btn btn-prev" id="btn-prev">PREVIOUS</a>
@@ -138,4 +138,5 @@
     progress.style.width =
       ((progressActive.length - 1) / (progressSteps.length - 1)) * 100 + "%";
   }
+
 </script>
