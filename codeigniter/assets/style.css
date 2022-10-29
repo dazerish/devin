@@ -25,6 +25,16 @@ nav a:hover {
   color: #C63F18 !important;
 }
 
+.navbar-collapse.collapsing {
+  background-color: #F6F6F6;
+  border-radius: 10px;
+}
+
+.navbar-collapse.collapse.show {
+  background-color: #F6F6F6;
+  border-radius: 10px;
+}
+
 /* 
 #navbarNavDropdown{
   background-color: #777777;
@@ -400,20 +410,25 @@ td i {
     justify-content: space-evenly;
   }
 
+  .detail-flex {
+    display: flex;
+    justify-content: space-evenly;
+  }
 
   .detail-container {
     background-color: #ffffff;
     border-radius: 15px;
-    padding: 2rem;
-    margin-top: 10px;
+    padding: 2em;
   }
 
   .d-detail-container {
     background-color: #ffffff;
     border-radius: 15px;
     width: 300px;
+    height: 150px;
     padding: 2rem;
     margin-top: 20px;
+    text-align: center;
   }
 
   .d-detail-container h2 {
@@ -1084,6 +1099,15 @@ td i {
 
 @media only screen and (max-width: 600px) {
     .login_box {
-      width: 300px;
+      width: 350px;
+    }
+
+    input[type=text], input[type=password], input[type=submit]{
+      width: 250px;
+    }
+
+    .login_header {
+      font-size: 24px;
+      text-align: center;
     }
 }
