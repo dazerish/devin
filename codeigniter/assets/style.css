@@ -1082,3 +1082,8 @@ td i {
 
 /*MEDIA QUERIES*/
 
+@media only screen and (max-width: 600px) {
+    .login_box {
+      width: 300px;
+    }
+}
