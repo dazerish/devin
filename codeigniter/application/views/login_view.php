@@ -28,7 +28,7 @@
                    
                         <?= form_close(); ?>
                         <div class="account_notice">
-                            <p>Forgot your password? <a href="#"><u>Reset Password</u></a></p>
+                            <p>Forgot your password? <a href="<?= site_url('Login/forgot_password_view');?>"><u>Reset Password</u></a></p>
                             <p>Don't have an account yet? <b>Contact the Admin Office.</b></p>
                         </div>
                 </div>        
