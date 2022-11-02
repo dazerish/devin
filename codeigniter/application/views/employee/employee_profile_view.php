@@ -1,9 +1,7 @@
-
+<div class="user-container">
 <h1 class="page-title"><b>My Profile</b></h1>
-
-<div class="p-main-container">
     <div class="profile-container">
-        <div class="profile-card">
+        <div class="login_box">
             <div class="profile-deets">
                 <img src="<?= base_url('./assets/users_image/' . $employee->emp_image); ?>" alt="profile picture" class="prof-pic">  
                 <h4 class="profile-name"><?= $employee->emp_name; ?></h4>
@@ -38,7 +36,7 @@
             </div>
         </div>
 
-        <div class="resetpw-card">
+        <div class="login_box">
             <div class="profile-deets">
                 <?= form_open('Employee/reset_password');?>
                 <h4 class="resetpw-h4" style="text-align: center; font-weight: 700;">Reset Password</h4>
@@ -69,3 +67,4 @@
         </div>
     </div>
 </div>
+                    </div>
