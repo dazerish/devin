@@ -1219,4 +1219,12 @@ td i {
       display: flex;
     }
 
+    .report-picker {
+      flex-direction: column;
+    }
+
+    .report-picker .calendar input{
+      width: 350px;
+    }
+
 }
