@@ -886,6 +886,8 @@ td i {
 .borrow_module {
   text-align: center;
   display: flex;
+  justify-content: center;
+  margin-top: 5em;
 }
 
 .device-view {
@@ -1098,6 +1100,18 @@ td i {
   }
 } */
 
+/*font awesome icons*/
+
+#cross-icon {
+  background-color: #C63F18;
+}
+
+#check-icon {
+  background-color: #40A344;
+  margin-top: 10px;
+}
+
+
 
 /* fixed responsive table */
 
@@ -1176,6 +1190,11 @@ td i {
     flex-direction: column;
   }
 
+  .borrow_module, .picker-flex{
+    flex-direction: column;
+    align-items: center;
+  }
+
 }
 
 
@@ -1241,6 +1260,20 @@ td i {
       margin-top: 15px;
     }
 
+    .device-info {
+      width: 350px;
+    }
 
+    .picker-div input {
+      width: 350px;
+    }
+
+    .btn-grp button {
+      margin-top: 10px;
+    }
+
+    .cancel-btn, .reserve-btn {
+      font-size: 12px;
+    }
 
 }

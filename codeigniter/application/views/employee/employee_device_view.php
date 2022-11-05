@@ -1,4 +1,7 @@
 <div class="view-emp-container">
+    <form>
+    <input type="button" class="back-btn" value="< BACK" onclick="history.back()">
+    </form>
     <h1 class="page-title"><b>View Device Details</b></h1>
 
         <div class="detail-container">
