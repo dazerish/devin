@@ -42,7 +42,7 @@
                 <option value="Removed">Removed</option>
                 </select>
 
-                <a href="<?= site_url('Employee/dev_masterlist_view')?>"><u>Clear All</u></a>
+                <a href="<?= site_url('Employee/dev_masterlist_view')?>" class="clear-filter"><u>Clear All</u></a>
         </div>
 
         <?= form_close();?>
@@ -52,7 +52,7 @@
         <table class="table-responsive">
             <thead>
                 <tr class="user-details">
-                    <th scope="col"></th>
+                    <th scope="col">Device Image</th>
                     <th scope="col">Device Name</th>
                     <th scope="col">Device Model</th>
                     <th scope="col">Manufacturer</th>

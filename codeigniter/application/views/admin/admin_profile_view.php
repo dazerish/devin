@@ -1,7 +1,7 @@
 <div class="user-container">
-<h1 class="page-title"><b>My Profile</b></h1>
     <div class="profile-container">
         <div class="login_box">
+        <h1 class="page-title"><b>My Profile</b></h1>
             <div class="profile-deets">
                 <img src="<?= base_url('./assets/users_image/' . $admin->emp_image); ?>" alt="profile picture" class="prof-pic">  
                 <h4 class="profile-name"><?= $admin->emp_name; ?></h4>
