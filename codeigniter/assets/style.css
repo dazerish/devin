@@ -1064,7 +1064,7 @@ td i {
   text-align: center;
   font-weight: 800;
   color: #ffffff;
-  margin-top: 20px;
+  /* margin-top: 20px; */
 }
 
 .btn-reg {
