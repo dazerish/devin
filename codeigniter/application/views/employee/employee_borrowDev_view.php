@@ -49,7 +49,7 @@
                 <option value="Removed">Removed</option>
             </select>
 
-            <a href="<?= site_url('Employee/devList_view'); ?>" class="clear-filter"><u>Clear All</u></a>
+            <a href="<?= site_url('Employee'); ?>" class="clear-filter"><u>Clear All</u></a>
         </div>
 
         <?= form_close(); ?>
@@ -106,3 +106,4 @@
     </div>
 
     <?= $this->pagination->create_links() ?>
+</div>

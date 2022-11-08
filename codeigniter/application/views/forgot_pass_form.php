@@ -2,7 +2,9 @@
     
     <div class="login_box">
         <div class="login_container">
-            <a class="back-btn" href="<?= site_url('Login');?>">< BACK</a>
+            <div class="back-btn">
+                <a class="back-btn" href="<?= site_url('Login');?>">< BACK</a>
+            </div>
 
             <h3 class="login_header" style="text-align: center;">Forgot Password</h3>    
     
