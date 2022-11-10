@@ -18,7 +18,24 @@
                   <?= $this->session->userdata('success'); ?>
               </div>
       <?php endif; ?>
+
       <div class="form-step form-step-active">
+        <label for="rfid-num" class="register_label">RFID Number</label><br>
+        <input type="text" id="rfid-num" name="rfid-num"><br>
+        <span class="text-danger"><?= form_error('rfid-num') ?></span>
+
+        <label for="tap-rfid" class="register_label">Tap your RFID</label><br>
+        <span class="text-danger"><?= form_error('tap-rfid') ?></span>
+
+        <div class="reg-div">
+            <a href="#" class="btn btn-next" id="btn-next">NEXT</a>
+          </div>
+
+        
+
+      </div>
+
+      <div class="form-step">
         <div class="row">
           <div class="col">
             <label for="uniquenum" class="register_label">Device Unique Number</label><br>
@@ -58,29 +75,18 @@
             <span class="text-danger" id="file-chosen"><?= form_error('device_image') ?></span>
           </div>
 
-          <div class="reg-div">
-            <a href="#" class="btn btn-next" id="btn-next">NEXT</a>
-          </div>
 
-        </div>
-
-      </div>
-
-      <div class="form-step">
-        <label for="rfid-num" class="register_label">RFID Number</label><br>
-        <input type="text" id="rfid-num" name="rfid-num"><br>
-        <span class="text-danger"><?= form_error('rfid-num') ?></span>
-
-        <label for="tap-rfid" class="register_label">Tap your RFID</label><br>
-        <textarea rows="1" cols="50" wrap="physical" id="tap-rfid" name="tap-rfid"></textarea><br>
-        <span class="text-danger"><?= form_error('tap-rfid') ?></span>
-
-        <div class="btns-group">
+          <div class="btns-group">
           <a href="#" class="btn btn-prev" id="btn-prev">PREVIOUS</a>
           <input type="submit" class="btn-reg" id="btn-reg" name="reg-dev" value="REGISTER DEVICE">
         </div>
+          
+
+        </div>
 
       </div>
+
+      
       <?= form_close(); ?>
     </div>
 
