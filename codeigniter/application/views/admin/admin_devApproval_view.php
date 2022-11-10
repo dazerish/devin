@@ -42,7 +42,7 @@
                 <?php foreach ($transactions as $transaction) : ?>
                     <tr class="align-middle">
                         <td data-label="Transaction">
-                            <img src="<?= base_url('./assets/device_image/placeholder1.png'); ?>" alt="device pic" class="device-pic">
+                            <img src="<?= base_url('./assets/device_image/dev-placeholder.png'); ?>" alt="device pic" class="device-pic">
                         </td>
                         <td class="emp-name-bold" data-label="Device ID"><?= $transaction->borrowedDev_id; ?></td>
                         <td data-label="Device Name"><?= $transaction->borrowedDev_name; ?></td>

@@ -84,14 +84,13 @@
                     </tr>
                 <?php endforeach; ?>
             </tbody>
-        </div>
+        </table>
     </div>
     
-  
+    <div class="pagination-div">
+        <?= $this->pagination->create_links() ?>
+    </div>
     
 </div>
 
-<div class="pagination-div">
-    <?= $this->pagination->create_links() ?>
-</div>
 
