@@ -51,8 +51,8 @@
                         <td data-label="Return Date"><?= $transaction->return_date; ?></td>
                         <td data-label="Actions">
                             <div class="action-icons">
-                                <a href="<?= site_url('Admin/reject_device/') .$transaction->transaction_id. '/'. $transaction->borrowedDev_id; ?>"><i class="far fa-times-circle" id="cross-icon"></i></a>
-                                <a href="<?= site_url('Admin/approve_device/'). $transaction->transaction_id. '/'. $transaction->borrowedDev_id; ?>"><i class="far fa-check-circle" id="check-icon"></i></a>
+                                <a href="#declineBtnModal" class="approve-btn" data-bs-toggle="modal" data-bs-target="#declineBtnModal"><i class="far fa-times-circle" id="cross-icon"></i></a>
+                                <a href="#approveBtnModal" class="approve-btn" data-bs-toggle="modal" data-bs-target="#approveBtnModal"><i class="far fa-check-circle" id="check-icon"></i></a>
                             </div>
                         </td>   
                     </tr>
@@ -66,7 +66,7 @@
 
 
 <!-- Modal -->
-<div class="modal fade" id="removeBtnModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="approveBtnModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
@@ -78,7 +78,25 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-        <a href="<?= site_url('Admin/remove_device/') . $device->id; ?>" class="btn btn-danger">Remove Device</a>
+        <a href="<?= site_url('Admin/approve_device/') .$transaction->transaction_id. '/'. $transaction->borrowedDev_id; ?>" class="btn btn-success">Approve</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="declineBtnModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Are you sure you want to decline?</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        You are going to decline . Continue?
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+        <a href="<?= site_url('Admin/reject_device/') .$transaction->transaction_id. '/'. $transaction->borrowedDev_id; ?>" class="btn btn-danger">Decline</a>
       </div>
     </div>
   </div>

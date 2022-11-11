@@ -27,6 +27,8 @@
                 <label for="tap-rfid" class="register_label">Tap your RFID</label><br>
                 <span class="text-danger"><?= form_error('tap-rfid') ?></span>
 
+                <img src="<?= base_url('./assets/pictures/rfid.png'); ?>" height="150px"  alt="rfid" class="rfid-img">
+
                 <div class="reg-div">
                   <a href="#" class="btn btn-next" id="btn-next">NEXT</a>
                 </div>

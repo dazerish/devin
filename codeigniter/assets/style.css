@@ -25,21 +25,10 @@ nav a:hover {
   color: #C63F18 !important;
 }
 
-.navbar-collapse.collapsing {
-  background-color: #F6F6F6;
-  border-radius: 10px;
+.navbar {
+  min-height: 80px;
+  height: auto !important;
 }
-
-.navbar-collapse.collapse.show {
-  background-color: #F6F6F6;
-  border-radius: 10px;
-}
-
-/* 
-#navbarNavDropdown{
-  background-color: #777777;
-} */
-
 
 #nav-user-icon {
     margin-right: 6px;
@@ -115,21 +104,18 @@ a:hover {
     text-align: right;
 }
 
+.reg-div, .btns-group {
+  margin-top: 35px;
+}
 
+.btns-group input {
+  margin-left: 20px;
+}
 
 .col {
     display: row;
 }
 
-
-
-
-/* .main_container {
-    background-image: url('pictures/.png');
-    background-size: cover;
-    background-position:center center;
-    height: 100%;
-} */
 
 .login_header {
     color: #C63F18;
@@ -201,10 +187,6 @@ textarea {
 }
 
 #activebtn {color: #C63F18;}
-/* 
-.dropdown {
-    position: relative;
-} */
 
 .list {
     position: absolute;
@@ -1277,3 +1259,11 @@ td i {
     }
 
 }
+
+
+/*pagination*/
+
+.pagination-div {
+  margin-top: 45px;
+}
+
