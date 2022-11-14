@@ -74,7 +74,7 @@ const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstra
                                     class="device-pic"
                                     src="<?= base_url('./assets/device_image/') . $device->dev_image; ?>"
                                     alt="device-pic"
-                                    onerror="this.onerror=null; this.src='<?= base_url('./assets/pictures/dev-ph.png'); ?>'"
+                                    onerror="this.onerror=null; this.src='<?= base_url('./assets/pictures/icons/dev-ph'); ?>'"
                                 <?php endif ?>
                             >
                         </td>
