@@ -6,7 +6,7 @@
 
     <h1 class="page-title"><b>View Employee Details</b></h1>
 
-        <div class="detail-container">
+        <div class="emp-detail-container">
             <div class="remove-btn-div">
             <a href="#removeBtnModal" class="remove-btn" data-bs-toggle="modal" data-bs-target="#removeBtnModal" ><i class="fas fa-trash-alt" id="remove-icon"></i>Remove Employee</a>
             </div>
