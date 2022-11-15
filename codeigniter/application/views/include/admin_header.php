@@ -55,6 +55,9 @@
         <li class="nav-item">
         <a class="nav-link" href="<?= site_url('Admin/generate_reports') ?>">Generate Reports</a>
         </li>
+        <li class="nav-item">
+        <a class="nav-link" href="<?= site_url('Admin/rfid_view') ?>">RFID</a>
+        </li>
     </ul>
 
     <ul class="navbar-nav ms-auto">

@@ -104,6 +104,8 @@
             </tbody>
         </table>
     </div>
+    <div class="pagination-div">         
+        <?= $this->pagination->create_links() ?>
+    </div>
 
-    <?= $this->pagination->create_links() ?>
 </div>
