@@ -75,7 +75,7 @@ a:hover {
 
 /*login module*/
 
-.login_box {
+.login_box, .view-box {
     padding: 50px;
     background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0));
     backdrop-filter: blur(10px);
@@ -83,21 +83,29 @@ a:hover {
     border-radius: 20px;
     border:1px solid rgba(255, 255, 255, 0.18);
     box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
-    margin-bottom: 10px;
+    margin-bottom: 50px;
     margin-top: 50px;
     text-align: center;
 }
+
 
 .login_container .login_label {
   text-align: left;
 }
 
-.register_container {
+.register_container  {
     display: flex;
     align-items: center;
     justify-content: center;
-    /* margin-top: 30px; */
+    margin-top: 30px;
     margin-bottom: 30px;
+}
+
+.view-emp-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  
 }
 
 .reg-div, .btns-grp {
@@ -358,14 +366,12 @@ td i {
 
   /*view employee & device css*/
 
-  .view-emp-container {
-    padding: 5rem;
-  }
 
 
 
   .remove-btn-div {
     text-align: right;
+    margin-bottom: 50px;
   }
 
   .remove-btn {
@@ -387,13 +393,17 @@ td i {
 
   /*dashboard*/
 
+  .dashboard-container {
+    padding: 5em;
+  }
+
   .dashboard-details {
     display: flex;
     justify-content: space-evenly;
   }
 
   .detail-flex {
-    background-color: 	#E0E0E0;
+    background-color: 	#f3f2ed;
     border-radius: 15px;
   }
 
@@ -409,8 +419,11 @@ td i {
     margin-top: 20px;
   }
 
-
-
+  .pie-container h4 {
+    color: #c63f18;
+    margin-bottom: 30px;
+    font-weight: 700;
+  }
 
   #device_types_pie_div {
     margin: auto;
@@ -455,26 +468,26 @@ td i {
   .detail-table td {
     background-color: #F3E0DA;
   }
-
-  .transacted {
+  
+  .detail-table-div {
     margin-top: 20px;
-    margin-bottom: 20px;
-    padding: 1rem;
   }
 
-  .transacted td {
+  .emp-table th {
     background-color: #F3E0DA;
   }
 
-  .spec-role-flex {
-    display: flex;
-    justify-content: center;
-    gap: 15px;
+  .emp-table tr, .emp-table td, .emp-table th  {
+    color: black;
+    padding: 20px;
+    border-bottom: 1px solid #c64e18;
   }
+
 
   /*edit details*/
 
   .back-btn {
+    margin-top: 30px;
     margin-bottom: 30px;
     border: none;
     color: #c63f18;
@@ -854,6 +867,44 @@ td i {
 
 /* fixed responsive table */
 
+
+.detail-table-div {
+  margin-bottom: 20px;
+}
+
+.dev-detail-container {
+  width: 800px;  
+  margin: auto;
+  padding: 50px;
+  border-radius: 20px;
+  background-color: #fff;
+}
+
+.dev-detail-table, .emp-table {
+  margin: auto;
+  border-collapse: collapse;
+  overflow: hidden;
+  border-radius: 1em;
+  background-color: #fff;
+}
+
+
+.dev-detail-table tr, .dev-detail-table td, .dev-detail-table th {
+  padding: 20px;
+  border-bottom: 1px solid #c63f18;
+}
+
+.dev-detail-table tr th {
+  font-weight: 600;
+  letter-spacing: 0.35px;
+  opacity: 1;
+  padding: 20px;
+  vertical-align: top;
+  color: black;
+}
+
+
+
 .table-container {
   padding: 0 10%;
   margin: 40px auto 0;
@@ -934,6 +985,10 @@ td i {
     align-items: center;
   }
 
+  .dev-detail-container {
+    width: 500px;
+  }
+
 }
 
 
@@ -959,6 +1014,8 @@ td i {
   .d-detail-container p {
     font-size: 16px;
   }
+
+  
 }
 
 
@@ -967,6 +1024,13 @@ td i {
 @media only screen and (max-width: 768px) {
     .login_box {
       width: 350px;
+      margin: auto;
+    }
+
+    .detail-table-div table {
+      width: 200px;
+      font-size: 12px;
+      margin: auto;
     }
 
     input[type=text], input[type=password], input[type=submit], #roles, textarea{
@@ -1037,8 +1101,30 @@ td i {
       font-size: 12px;
     }
 
+    .pie-container h4 {
+      font-size: 18px;
+      text-align: center;
+    }
+
+    #btn-reg {
+      margin: 20px auto;
+      width: 180px;
+    }
+
 }
 
+
+@media only screen and (max-width: 641px) {
+
+  .remove-btn-div {
+    text-align: center;
+    font-size: 12px;
+  }
+
+  .dev-detail-table {
+    font-size: 12px;
+  }
+}
 
 /*pagination*/
 

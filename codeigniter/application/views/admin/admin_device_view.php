@@ -1,11 +1,12 @@
-<div class="view-emp-container">
+<div class="user-container">
+
     <div class="back-btn">
         <a href="<?= site_url('Admin/dev_masterlist_view');?>">< BACK</a>
     </div>
 
     <h1 class="page-title"><b>View Device Details</b></h1>
-
-        <div class="dev-detail-container">
+    <div class="view-emp-container">
+        <div class="view-box">
             <div class="remove-btn-div">
                 <a href="#removeBtnModal" class="remove-btn" data-bs-toggle="modal" data-bs-target="#removeBtnModal" ><i class="fas fa-trash-alt" id="remove-icon"></i>Remove Device</a>
             </div>
@@ -16,6 +17,7 @@
                         class="device-pic"
                         src="<?= base_url('./assets/device_image/') . $device->dev_image; ?>"
                         alt="device pic"
+                        height="200px"
                     <?php endif?>
                 >
                 <h4><?= $device->dev_name; ?></h4>
@@ -25,7 +27,7 @@
             
 
             <div class="detail-table-div">
-                <table class="detail-table">
+                <table class="dev-detail-table">
                     <tr>
                         <th>Device Unique ID</th>
                         <td><?= $device->unique_num; ?></td>
@@ -54,16 +56,20 @@
                         <td><?= $device->prev_status; ?></td>
                     </tr>
                     
-                </div>
+            </div>
                     
                     
                     
-                    
+               
                     
         
             
         </div>
+        
+        
 </div>
+
+
 
 <!-- Modal -->
 <div class="modal fade" id="removeBtnModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -83,3 +89,4 @@
     </div>
   </div>
 </div>
+</section>
