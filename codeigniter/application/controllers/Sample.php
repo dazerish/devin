@@ -5,7 +5,7 @@
     
             $this->load->helper(['form', 'url', 'string']);
             $this->load->library(['form_validation', 'session', 'pagination',]);
-            $this->load->model(['Sample_model', 'Employee_model']);
+            $this->load->model(['Sample_model','Admin_model','Employee_model']);
         }
 
         public function index() {
@@ -238,12 +238,63 @@
                             'borrowedDev_name' => $dev_name,
                             'request_time' => date("Y-m-d H:i:s", strtotime('now')),
                             'decision_time' => date("Y-m-d H:i:s", strtotime($reservation_date)),
-                            'return_date' => date("Y-m-d H:i:s", strtotime($reservation_date. '+2 months'))
+                            'return_date' => date("Y-m-d H:i:s", strtotime($reservation_date. '+1 month'))
                         );
     
                         //Device Status Info
                         $status_info = array(
                             'cur_status' => 'Reserved',
+                            'prev_status' => 'Available'
+                        );
+    
+                        $this->Employee_model->set_reserveDate($info, $status_info, $unique_num);
+    
+                        echo json_encode(['message' => TRUE ]);
+    
+                    }
+                }    
+
+            } catch(\Exception $error) {
+                echo json_encode(['message' => $error->getMessage()]);
+            }
+        
+    
+        }
+        public function exec_reserveDate() {
+            header('Content-Type: application/json');
+            $token = $this->decode_token();
+            
+            
+            try {
+                $this->form_validation->set_rules('reservation_date', 'Reservation Date', 'required|callback_validate_reserveDate', array(
+                    'required' => 'Please set a %s'
+                ));
+                
+                if (isset($token)) {
+
+                    if ($this->form_validation->run() == FALSE) {
+                        throw new \Exception('Please enter a valid date');
+    
+                    } else {
+                        $dev_name = $this->input->post('dev-name');
+                        $device_name = str_replace('%20', ' ', $dev_name);
+                        $unique_num = $this->input->post('unique-num');
+                        $reservation_date = $this->input->post('reservation_date');
+                        
+                        //Reserved Date Info
+                        $info = array(
+                            'transaction_status' => 'Approved',
+                            'borrower' => $this->input->post('borrower'),
+                            'borrowedDev_id' => $this->input->post('unique-num'),
+                            'borrowedDev_name' => $dev_name,
+                            'request_time' => date("Y-m-d H:i:s", strtotime('now')),
+                            'decision_time' => date("Y-m-d H:i:s", strtotime($reservation_date)),
+                            'return_date' => date("Y-m-d H:i:s", strtotime($reservation_date. '+1 month'))
+                        );
+    
+                        //Device Status Info
+                        $status_info = array(
+                            'cur_status' => 'Borrowed',
                             'prev_status' => 'Available'
                         );
     
@@ -294,5 +345,160 @@
 
         }
 
+        //Profile API
+        public function transacted_dev() {
+            header('Content-Type: application/json');
+            $token = $this->decode_token();
+
+            if(isset($token)) {
+                $emp_name = $this->input->post('emp_name');
+                $response = $this->Sample_model->transacted_dev($emp_name);
+
+                echo json_encode($response);
+
+            }
+        }
+
+        //Transaction Logs 
+        public function transaction_logs() {
+            header('Content-Type: application/json');
+            $token = $this->decode_token();
+
+            if(isset($token)) {
+                $response = $this->Sample_model->transaction_logs();
+                echo json_encode($response);
+            }
+        }
+
+
+        //Report API 
+        public function report_transaction() {
+            header('Content-Type: application/json');
+            $token = $this->decode_token();
+
+            if(isset($token)) {
+                $unique_num = $this->input->post('unique_num');
+                $dev_status = $this->input->post('device_status');
+                // $borrower = $this->input->post('borrower');
+
+                $transaction_status = $this->Sample_model->check_transaction_status();
+
+                if($transaction_status == $dev_status) { //Check if pending/approved
+                    if($dev_status == 'Lost') {
+                        $trans_info = array(
+                            'transaction_status' => 'Lost',
+                            'request_time' => date("Y-m-d H:i:s", strtotime('now'))
+                        );
+                        $status_info = array(
+                            'cur_status' => 'Lost',
+                            'prev_status' => 'Issued'
+                        );
+
+                        $this->Sample_model->report($trans_info, $status_info, $unique_num);
+                        echo json_encode(['message' => TRUE]);
+                    }
+
+                    if($dev_status == 'Broken') {
+                        $trans_info = array(
+                            'transaction_status' => 'Broken',
+                            'request_time' => date("Y-m-d H:i:s", strtotime('now'))
+                        );
+                        $status_info = array(
+                            'cur_status' => 'Broken',
+                            'prev_status' => 'Issued'
+                        );
+
+                        $this->Sample_model->report($trans_info, $status_info, $unique_num);
+                        echo json_encode(['message' => TRUE]);
+                    }
+
+                    if($dev_status == 'Maintenance') {
+                        $trans_info = array(
+                            'transaction_status' => 'Maintenance',
+                            'request_time' => date("Y-m-d H:i:s", strtotime('now'))
+                        );
+                        $status_info = array(
+                            'cur_status' => 'Maintenance',
+                            'prev_status' => 'Issued'
+                        );
+
+                        $this->Sample_model->report($trans_info, $status_info, $unique_num);
+                        echo json_encode(['message' => TRUE]);
+                    }
+                } else {
+                    echo json_encode(['message' => 'Device is not yet Issued']);
+                }
+            }
+        }
+        
+        //Device Approval API
+        public function device_approval_list() {
+            header('Content-Type: application/json');
+            $token = $this->decode_token();
+
+            if(isset($token)) {
+                $response = $this->Sample_model->get_transaction_table();
+                echo json_encode($response);
+            }
+        }
+
+        public function device_approval() {
+            header('Content-Type: application/json');
+            $token = $this->decode_token();
+
+            if(isset($token)) {
+                $unique_num = $this->input->post('unique_num');
+                $button = $this->input->post('button');
+                
+
+                if($button == 'Reject') {
+                    $transaction_status = array(
+                        'transaction_status' => 'Rejected',
+                        'request_time' => date("Y-m-d H:i:s", strtotime('now'))
+                    );
+            
+                    $status_info = array(
+                        'cur_status' => 'Available',
+                        'prev_status' => 'Reserved'
+                    );
+
+                    $this->Sample_model->reject_device($transaction_status, $status_info, $unique_num);
+                    echo json_encode(['message' => TRUE]);
+                }
+
+                if($button == 'Approve') {
+                    $transaction_status = array(
+                        'transaction_status' => 'Approved',
+                        'request_time' => date("Y-m-d H:i:s", strtotime('now'))
+                    );
+            
+                    $status_info = array(
+                        'cur_status' => 'Borrowed',
+                        'prev_status' => 'Reserved'
+                    );
+
+                    $this->Sample_model->approve_device($transaction_status, $status_info, $unique_num);
+                    echo json_encode(['message' => TRUE]);
+                }
+            }
+        }
+
+
+        //Device Details
+        public function device_details() {
+            header('Content-Type: application/json');
+            $token = $this->decode_token();
+
+            if(isset($token)) {
+                $unique_num = $this->input->post('unique_num');
+                $responses = $this->Sample_model->get_dev_details($unique_num);
+
+                // echo json_encode($response);
+                foreach($responses as $response) {
+                    echo json_encode($response);
+                }
+
+            }
+        }
     }
 ?>
