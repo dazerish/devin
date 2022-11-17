@@ -19,6 +19,7 @@ nav {
 
 nav a {
   color: black !important;
+  transition: 0.3s;
 }
 
 nav a:hover {
@@ -105,7 +106,6 @@ a:hover {
   display: flex;
   align-items: center;
   justify-content: center;
-  
 }
 
 .reg-div, .btns-grp {
@@ -250,8 +250,16 @@ textarea {
     margin-right: 30px;
     margin-top: 0;
     width: 250px;
+    background-color: white;
+    color: #c63f18;
+    border: 2px solid #C63F18;
+    transition: 0.3s;
 }
 
+#reserve_btn:hover {
+  background-color: #C63F18;
+  color: white;
+}
 
 /*Employee masterlist*/
 .user-container {
@@ -648,7 +656,7 @@ td i {
 
 .device-info {
   text-align: left;
-  color: #777777;
+  color: black;
   background-color: #F3E0DA;
   border-radius: 15px;
   width: 550px;
@@ -945,6 +953,14 @@ td i {
     font-size: 28px;
   }
 
+  .user-container {
+    padding: 2em;
+  }
+
+  .table-container {
+    min-width: 250px;
+  }
+  
   .table-responsive thead {
     display: none;
   }
@@ -1025,6 +1041,10 @@ td i {
     .login_box {
       width: 350px;
       margin: auto;
+    }
+
+    .action-btn-div {
+      font-size: 12px;
     }
 
     .detail-table-div table {
@@ -1116,10 +1136,6 @@ td i {
 
 @media only screen and (max-width: 641px) {
 
-  .remove-btn-div {
-    text-align: center;
-    font-size: 12px;
-  }
 
   .dev-detail-table {
     font-size: 12px;
@@ -1132,3 +1148,62 @@ td i {
   margin-top: 45px;
 }
 
+
+.action-btn-div {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  flex-direction: column;
+  background-color: #F3E0DA;
+  padding: 10px;
+  border-radius: 15px;
+  margin-top: 20px;
+}
+
+.action-btn{
+  padding: 10px;
+  border: 1px solid #c63f18;
+  border-radius: 15px;
+  margin: 5px 5px 5px 5px;
+  transition: 0.3s;
+}
+
+.action-btn:hover {
+  background-color: #c63f18;
+  color: white;
+}
+
+/*toggle btn style*/
+
+
+.toggle-btn-div {
+  width: 250px;
+  position: relative;
+  border-radius: 20px;
+  background: #F3E0DA;
+ 
+}
+
+.toggle-btn {
+  padding: 10px 16px;
+  cursor: pointer;
+  background: transparent;
+  border: 0;
+  outline: none;
+  position: relative;
+  text-align: center;
+  color: white;
+  font-weight: 500;
+}
+
+#tog-btn {
+  left: 0;
+  top: 0;
+  position: absolute;
+  width: 125px;
+  height: 100%;
+  background-color: #C63F18;
+  border-radius: 20px;
+  transition: .4s;
+}

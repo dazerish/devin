@@ -369,10 +369,10 @@ td i {
 
 
 
-  .remove-btn-div {
+  /* .remove-btn-div {
     text-align: right;
     margin-bottom: 50px;
-  }
+  } */
 
   .remove-btn {
     padding: 10px;
@@ -1116,10 +1116,10 @@ td i {
 
 @media only screen and (max-width: 641px) {
 
-  .remove-btn-div {
+  /* .remove-btn-div {
     text-align: center;
     font-size: 12px;
-  }
+  } */
 
   .dev-detail-table {
     font-size: 12px;
@@ -1132,3 +1132,35 @@ td i {
   margin-top: 45px;
 }
 
+
+
+.toggle-btn-div {
+  width: 250px;
+  position: relative;
+  border-radius: 20px;
+  background: #F3E0DA;
+ 
+}
+
+.toggle-btn {
+  padding: 10px 16px;
+  cursor: pointer;
+  background: transparent;
+  border: 0;
+  outline: none;
+  position: relative;
+  text-align: center;
+  color: white;
+  font-weight: 500;
+}
+
+#tog-btn {
+  left: 0;
+  top: 0;
+  position: absolute;
+  width: 125px;
+  height: 100%;
+  background-color: #C63F18;
+  border-radius: 20px;
+  transition: .4s;
+}

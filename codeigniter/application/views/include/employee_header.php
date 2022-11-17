@@ -33,8 +33,8 @@
             <li class="nav-item dropdown">
             <a href="" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Profile</a>
             <ul class="dropdown-menu dropdown-menu-end">
-                <li><a class="dropdown-item" href="<?= site_url('Employee/profile_view') ?>">View my profile</a></li>
-                <li><a class="dropdown-item" href="<?= site_url('Login/logout') ?>">Logout</a></li>
+                <li><a class="dropdown-item" href="<?= site_url('Employee/profile_view') ?>"><i class="fas fa-user"></i> View my profile</a></li>
+                <li><a class="dropdown-item" href="<?= site_url('Login/logout') ?>"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
             </ul>
             
             </ul>

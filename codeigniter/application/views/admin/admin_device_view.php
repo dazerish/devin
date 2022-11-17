@@ -7,9 +7,6 @@
     <h1 class="page-title"><b>View Device Details</b></h1>
     <div class="view-emp-container">
         <div class="view-box">
-            <div class="remove-btn-div">
-                <a href="#removeBtnModal" class="remove-btn" data-bs-toggle="modal" data-bs-target="#removeBtnModal" ><i class="fas fa-trash-alt" id="remove-icon"></i>Remove Device</a>
-            </div>
             
             <div class="detail-header">
                 <img 
@@ -55,22 +52,40 @@
                         <th>Previous Device Status</th>
                         <td><?= $device->prev_status; ?></td>
                     </tr>
-                    
+                </table>
             </div>
                     
+            <div class="action-btn-div">
+
+            <h4 class="action-grp-title">Actions</h4>
                     
+                        <div class="action-grp">
+                            <button class="action-btn"><i class="fas fa-question"></i> Lost</button>
+                            <button class="action-btn"><i class="fas fa-bolt"></i> Broken</button>
+                            <button class="action-btn"><i class="fas fa-tools"></i> Maintenance</button>
+                        </div>
+                   
+
+                        <div class="action-grp">
+                            <button class="action-btn"><i class="fas fa-thumbs-up"></i> Repaired</button>
+                            <button class="action-btn"> <i class="fas fa-recycle"></i> Recovered</button>
+                            <button href="#removeBtnModal" class="action-btn" data-bs-toggle="modal" data-bs-target="#removeBtnModal" ><i class="fas fa-trash-alt" id="remove-icon"></i>Remove Device</a>
+                        </div>
                     
-               
+              
+                
+            </div>
                     
+            
         
             
         </div>
-        
+       
+             
         
 </div>
 
-
-
+         
 <!-- Modal -->
 <div class="modal fade" id="removeBtnModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
@@ -89,4 +104,9 @@
     </div>
   </div>
 </div>
+
+       
+               
+
+
 </section>

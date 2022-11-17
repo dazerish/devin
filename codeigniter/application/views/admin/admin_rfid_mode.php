@@ -33,11 +33,21 @@
                         2022-06-10
                         </td>
                         <td data-label="Device Mode">
-                            <a href="#">Enrollment</a>
-                            <a href="#">Attendance</a>
+                            <div class="toggle-btn-div">
+                                <div id="tog-btn"></div>
+                                <button type="button" class="toggle-btn"
+                                onclick="leftClick()">Enrollment</button>
+                                <button type="button" class="toggle-btn"
+                                onclick="rightClick()">Attendance</button>
+                            </div>
                         </td>
                     </tr>
             </tbody>
         </table>
     </div>
                 </div>
+	
+                <script src="assets/script.js"></script>
+    
+            </body>
+</html>

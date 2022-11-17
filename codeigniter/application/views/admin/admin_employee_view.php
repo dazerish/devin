@@ -8,9 +8,7 @@
     <div class="view-emp-container">
 
         <div class="view-box">
-            <div class="remove-btn-div">
-                <a href="#removeBtnModal" class="remove-btn" data-bs-toggle="modal" data-bs-target="#removeBtnModal" ><i class="fas fa-trash-alt" id="remove-icon"></i>Remove Employee</a>
-            </div>
+           
             
             <div class="detail-header">
                 <img 
@@ -61,6 +59,11 @@
                         
                     </tbody>
                 </table>
+            </div>
+
+            <div class="action-btn-div">
+            <h4 class="action-grp-title">Actions</h4>
+                <button href="#removeBtnModal" class="action-btn" data-bs-toggle="modal" data-bs-target="#removeBtnModal" ><i class="fas fa-trash-alt" id="remove-icon"></i>Remove Employee</a>
             </div>
 
             
