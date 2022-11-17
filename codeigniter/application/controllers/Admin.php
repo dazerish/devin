@@ -1,8 +1,8 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
-// require 'vendor/autoload.php';
-// use PhpOffice\PhpSpreadsheet\Spreadsheet;
-// use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
+require 'vendor/autoload.php';
+use PhpOffice\PhpSpreadsheet\Spreadsheet;
+use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
 
 class Admin extends CI_Controller
 {
@@ -477,7 +477,7 @@ class Admin extends CI_Controller
         $transaction_id = $this->uri->segment(3);
         $borrowedDev_id = $this->uri->segment(4);
 
-        $this->Admin_model->reject_device($transaction_status, $status_info, $transaction_id, $borrowedDev_id);
+        $this->Admin_model->approve_device($transaction_status, $status_info, $transaction_id, $borrowedDev_id);
         $approved = "The device was approved.";
         $this->session->set_flashdata('approved', $approved);
         redirect('Admin/devApproval_view');
@@ -659,13 +659,37 @@ class Admin extends CI_Controller
     public function rfid_mode_view() {
 
         $data['title'] = 'Calibr8 - RFID Mode';
-        $data['device'] = $this->Admin_model->get_arduino_device();
-        $data['employee'] = $this->Admin_model->get_arduino_employee();
+        $data['arduino'] = $this->Admin_model->get_arduino_data();
+        // $data['employee'] = $this->Admin_model->get_arduino_employee();
         $this->load->view('include/admin_header', $data);
         $this->load->view('admin/admin_rfid_mode');
         $this->load->view('include/footer');
     }
+    public function arduino_registration() {
+        $info = array(
+            'device_mode' => 0
+        );
 
+        $arduino_id = $this->uri->segment(3);
+
+        $this->Admin_model->registration_mode($info, $arduino_id);
+        $registration = "Arduino ".$arduino_id." was set to Registration";
+        $this->session->set_flashdata('registration', $registration);
+        redirect('Admin/rfid_mode_view');
+
+    }
+    public function arduino_attendance() {
+        $info = array(
+            'device_mode' => 1
+        );
+
+        $arduino_id = $this->uri->segment(3);
+
+        $this->Admin_model->attendance_mode($info, $arduino_id);
+        $attendance = "Arduino ".$arduino_id." was set to Attendance";
+        $this->session->set_flashdata('attendance', $attendance);
+        redirect('Admin/rfid_mode_view');
+    }
 
 
 

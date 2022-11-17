@@ -208,7 +208,7 @@ class Admin_model extends CI_Model
         $this->db->update('devices', $status_info, ['unique_num' => $borrowedDev_id]);
     }
 
-    public function approvde_device($transaction_status, $status_info, $transaction_id, $borrowedDev_id)
+    public function approve_device($transaction_status, $status_info, $transaction_id, $borrowedDev_id)
     {
         $this->db->update('transaction', $transaction_status, ['transaction_id' => $transaction_id]);
         $this->db->update('devices', $status_info, ['unique_num' => $borrowedDev_id]);
@@ -251,13 +251,15 @@ class Admin_model extends CI_Model
     }
 
     //RFID Mode
-    public function get_arduino_device() {
-        $query = $this->db->get_where('arduino', ['type' => 'Device']);
-        return $query->row();
+    public function get_arduino_data() {
+        $query = $this->db->get('arduino',);
+        return $query->result();
     }
-    public function get_arduino_employee() {
-        $query = $this->db->get_where('arduino', ['type' => 'Employee']);
-        return $query->row();
+    public function registration_mode($info, $arduino_id) {
+        $this->db->update('arduino', $info, ['id' => $arduino_id]);
+    }
+    public function attendance_mode($info, $arduino_id) {
+        $this->db->update('arduino', $info, ['id' => $arduino_id]);
     }
 
 
