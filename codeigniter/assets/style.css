@@ -1201,7 +1201,7 @@ td i {
   font-weight: 500;
 }
 
-#tog-btn {
+#tog-btn-dev, #tog-btn-emp {
   left: 0;
   top: 0;
   position: absolute;

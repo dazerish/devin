@@ -1,4 +1,4 @@
-<div class="dashboard-container">
+<div class="view-emp-container">
     <h1 class="page-title"><b>Dashboard</b></h1>
 
     <script>
@@ -56,13 +56,12 @@
         
         <div class="detail-container">
             <div class="d-detail-container">
-                
                 <!-- str_replace removes the double quotes from the echoed data -->
-                <h2>Device In</h2>
+                <h2>In Storage</h2>
                 <p><?=str_replace('"', '', $device_in_data)?></p>
             </div>
             <div class="d-detail-container">
-                <h2>Device Out</h2>
+                <h2>Released</h2>
                 <p><?=str_replace('"', '', $device_out_data)?></p>
             </div>
             <div class="d-detail-container">
@@ -80,7 +79,6 @@
         </div>
 
         <div class="pie-container">
-        <h4>Percentage of distribution per device category</h4>
             <div id="device_types_pie_div"></div>
             
         </div>

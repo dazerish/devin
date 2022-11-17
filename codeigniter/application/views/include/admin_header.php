@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
     <link rel="stylesheet" href="<?= base_url('./assets/style.css'); ?>">
@@ -49,14 +50,15 @@
         </a>
         <ul class="dropdown-menu">
             <li><a class="dropdown-item" href="<?= site_url('Admin/transaction_logs') ?>">Transaction Logs</a></li>
-            <li><a class="dropdown-item" href="<?= site_url('Admin/system_logs') ?>">System Logs</a></li>
+            <li><a class="dropdown-item" href="<?= site_url('Admin/device_logs') ?>">Device Logs</a></li>
+            <li><a class="dropdown-item" href="<?= site_url('Admin/employee_logs') ?>">Employee Logs</a></li>
         </ul>
         </li>
         <li class="nav-item">
         <a class="nav-link" href="<?= site_url('Admin/generate_reports') ?>">Generate Reports</a>
         </li>
         <li class="nav-item">
-        <a class="nav-link" href="<?= site_url('Admin/rfid_view') ?>">RFID</a>
+        <a class="nav-link" href="<?= site_url('Admin/rfid_mode_view') ?>">Arduino</a>
         </li>
     </ul>
 

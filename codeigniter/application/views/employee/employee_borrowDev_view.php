@@ -107,5 +107,5 @@
     <div class="pagination-div">         
         <?= $this->pagination->create_links() ?>
     </div>
-
+    
 </div>

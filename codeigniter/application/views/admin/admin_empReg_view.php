@@ -20,9 +20,9 @@
 
 
             <div class="form-step form-step-active">
-                <label for="rfid-num" class="register_label">RFID Number</label><br>
-                <input type="text" id="rfid-num" name="rfid-num"><br>
-                <span class="text-danger"><?= form_error('rfid-num') ?></span>
+                <label for="rfidNum" class="register_label">RFID Number</label><br>
+                <div id="empReg_rfid"></div>
+                <span class="text-danger"><?= form_error('rfidNum') ?></span>
 
                 <label for="tap-rfid" class="register_label">Tap your RFID</label><br>
                 <span class="text-danger"><?= form_error('tap-rfid') ?></span>
@@ -78,7 +78,7 @@
 
                     <div class="btns-group">
                     <a href="#" class="btn btn-prev" id="btn-prev">PREVIOUS</a>
-                    <input type="submit" class="btn-reg" id="btn-reg" name="reg-dev" value="REGISTER EMPLOYEE">
+                    <input type="submit" class="btn-reg" id="btn-reg" name="reg-emp" value="REGISTER EMPLOYEE">
                     </div>
 
 
@@ -145,4 +145,16 @@
     progress.style.width =
       ((progressActive.length - 1) / (progressSteps.length - 1)) * 100 + "%";
   }
+</script>
+<script>
+    //Ajax Function
+    $(document).ready(function(){
+        refreshRfid();
+    });
+
+    function refreshRfid(){
+        $("#empReg_rfid").load("<?php echo base_url('Admin/empReg_rfid')?>", function(){
+            setTimeout(refreshRfid, 2000);
+        });
+    }
 </script>

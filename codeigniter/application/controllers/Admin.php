@@ -128,6 +128,8 @@ class Admin extends CI_Controller
     { //Under Employee Masterlist
         $data['title'] = "Calibr8 - View Employee Details";
         $data['employee'] = $this->Admin_model->get_emp_row($id);
+        $emp_name = $data['employee']->emp_name;
+        $data['transacted_dev'] = $this->Admin_model->transacted_dev($emp_name);
 
         $this->load->view('include/admin_header', $data);
         $this->load->view('admin/admin_employee_view', $data);
@@ -249,7 +251,7 @@ class Admin extends CI_Controller
 
         $data['title'] = 'Calibr8 - Device Masterlist';
         $data['devices'] = $this->Admin_model->get_devices_table($page_config['per_page'], $page, NULL);
-        $data['total'] = $this->Admin_model->get_dCount();
+        $data['total'] = $this->Admin_model->total_dev();
         $this->load->view('include/admin_header', $data);
         $this->load->view('admin/admin_dev_masterlist');
         $this->load->view('include/footer');
@@ -525,13 +527,50 @@ class Admin extends CI_Controller
     }
 
 
-    //System Logs
-    public function system_logs() {
-
-        $data['title'] = 'Calibr8 - System Logs';
+    //Device Logs - Try to implement pagination
+    public function device_logs() {
+        $data['title'] = 'Calibr8 - Device Logs';
         $this->load->view('include/admin_header', $data);
-        $this->load->view('admin/admin_sysLogs_view');
+        $this->load->view('admin/admin_devLogs_view');
         $this->load->view('include/footer');
+        
+    }
+    public function dev_logs_table() {
+        $dev_logs = $this->Admin_model->dev_logs_table();
+
+        foreach ($dev_logs as $logs) {
+            echo "<tr class='align-middle'>";
+                echo "<td data-label='Device ID'>".$logs->unique_num."</td>";
+                echo "<td data-label='Device Name'>".$logs->dev_name."</td>";
+                echo "<td data-label='RFID'>".$logs->rfid."</td>";
+                echo "<td data-label='Date Issued'>".$logs->date_issued."</td>";
+                echo "<td data-label='Date Returned'>".$logs->date_returned."</td>";
+            echo "</tr>";
+        }
+
+    }
+
+    //Employee Logs
+    public function employee_logs() {
+        $data['title'] = 'Calibr8 - Employee Logs';
+        $this->load->view('include/admin_header', $data);
+        $this->load->view('admin/admin_empLogs_view');
+        $this->load->view('include/footer');
+        
+    }
+    public function emp_logs_table() {
+        $emp_logs = $this->Admin_model->emp_logs_table();
+
+        foreach ($emp_logs as $logs) {
+            echo "<tr class='align-middle'>";
+                echo "<td data-label='Employee ID'>".$logs->emp_id."</td>";
+                echo "<td data-label='Employee Name'>".$logs->emp_name."</td>";
+                echo "<td data-label='RFID'>".$logs->rfid."</td>";
+                echo "<td data-label='Time In'>".$logs->time_in."</td>";
+                echo "<td data-label='Time Out'>".$logs->time_out."</td>";
+            echo "</tr>";
+        }
+
     }
 
 
@@ -616,6 +655,17 @@ class Admin extends CI_Controller
         
     }
 
+    //RFID Mode
+    public function rfid_mode_view() {
+
+        $data['title'] = 'Calibr8 - RFID Mode';
+        $data['device'] = $this->Admin_model->get_arduino_device();
+        $data['employee'] = $this->Admin_model->get_arduino_employee();
+        $this->load->view('include/admin_header', $data);
+        $this->load->view('admin/admin_rfid_mode');
+        $this->load->view('include/footer');
+    }
+
 
 
 
@@ -628,11 +678,22 @@ class Admin extends CI_Controller
         $this->load->view('admin/admin_empReg_view');
         $this->load->view('include/footer');
     }
+    public function empReg_rfid() {
+        $rfid_num = $this->Admin_model->get_empRfid(); 
+        if($rfid_num) {
+            foreach($rfid_num as $key) {
+                $rfid = $key->rfid;
+                echo "<input type='text' id='rfid_num' name='rfidNum' value='".$rfid."'><br>";
+            }
+        } else {
+            echo "<input type='text' id='rfid_num' name='rfidNum' value=''><br>";
+        }
+    }
 
     public function employee_registration()
     {
         $image_config = array(
-            'upload_path' => './assets/user_image',
+            'upload_path' => './assets/users_image',
             'allowed_types' => 'gif|jpg|png',
             'max_size' => 5000000000,
             'max_width' => 204800,
@@ -665,7 +726,7 @@ class Admin extends CI_Controller
             'min_length' => '%s should have a minimum of 8 characters'
         ));
 
-        // $this->form_validation->set_rules('rfid-num', 'RFID Number', 'required', array(
+        // $this->form_validation->set_rules('rfidNum', 'RFID Number', 'required', array(
         //     'required' => '%s is required.',
         // ));
 
@@ -684,8 +745,8 @@ class Admin extends CI_Controller
             $register = $this->input->post('reg-emp');
 
             if (isset($register)) {
-
                 $id = $this->session->userdata('id');
+                $rfid = $this->input->post('rfidNum'); //Check if still needed
                 $info = array(
                     'emp_id' => $this->input->post('empid'),
                     'emp_name' => $this->input->post('empname'),
@@ -694,10 +755,11 @@ class Admin extends CI_Controller
                     'emp_role' => $this->input->post('roles'),
                     'password' => md5($this->input->post('init-pass')),
                     'emp_image' => $image_name,
-                    'rfid' => 'None'
+                    'rfid' => $rfid,
+                    'registered' => 1
                 );
 
-                $this->Admin_model->employee_registration($info);
+                $this->Admin_model->employee_registration($info, $rfid);
 
                 $success = "Employee is registered successfully";
                 $this->session->set_flashdata('success', $success);
@@ -705,14 +767,34 @@ class Admin extends CI_Controller
             }
         }
     }
+    // public function validate_emp_rfid()
 
     public function devReg_view()
     {
 
         $data['title'] = 'Calibr8 - Device Registration';
+        // $rfid_num = $this->Admin_model->get_devRfid(); 
+        // if($rfid_num) {
+        //     foreach($rfid_num as $key) {
+        //       $data['rfid'] = $key->rfid;
+        //     }
+        // } else {
+        //     $data['rfid'] = "";
+        // }
         $this->load->view('include/admin_header', $data);
-        $this->load->view('admin/admin_devReg_view');
+        $this->load->view('admin/admin_devReg_view', $data);
         $this->load->view('include/footer');
+    }
+    public function devReg_rfid() {
+        $rfid_num = $this->Admin_model->get_devRfid(); 
+        if($rfid_num) {
+            foreach($rfid_num as $key) {
+                $rfid = $key->rfid;
+                echo "<input type='text' id='rfid_num' name='rfidNum' value='".$rfid."'><br>";
+            }
+        } else {
+            echo "<input type='text' id='rfid_num' name='rfidNum' value=''><br>";
+        }
     }
 
     public function device_registration()
@@ -751,8 +833,10 @@ class Admin extends CI_Controller
             'required' => '%s is required.',
         ));
 
-        // $this->form_validation->set_rules('rfid-num', 'RFID Number', 'required', array(
+        //Validation if rfid is in database or not
+        // $this->form_validation->set_rules('rfidNum', 'RFID Number', 'required|callback_validate_rfid', array(
         //     'required' => '%s is required.',
+        //     'is_unique' => 'This %s is already registered.'
         // ));
 
         // $this->form_validation->set_rules('tap-rfid', 'Tap your RFID', 'required', array(
@@ -770,6 +854,7 @@ class Admin extends CI_Controller
             $register = $this->input->post('reg-dev');
 
             if (isset($register)) {
+                $rfid = $this->input->post('rfidNum'); //Check if still needed
 
                 $info = array(
                     'unique_num' => $this->input->post('uniquenum'),
@@ -778,18 +863,28 @@ class Admin extends CI_Controller
                     'allowed_roles' => $this->input->post('roles'),
                     'manufacturer' => $this->input->post('manuf'),
                     'specs' => nl2br($this->input->post('specs')),
+                    'category' => $this->input->post('category'),
                     'dev_image' => $image_name,
-                    'rfid' => 'None',
+                    'rfid' => $rfid,
+                    'registered' => 1,
                     'cur_status' => 'Available',
                     'prev_status' => 'None'
                 );
 
-                $this->Admin_model->device_registration($info);
+                $this->Admin_model->device_registration($info, $rfid);
 
                 $success = "Device is registered successfully";
                 $this->session->set_flashdata('success', $success);
                 redirect('Admin/device_registration');
             }
+        }
+    }
+
+    public function validate_rfid($rfid_num) {
+        $rfid = $this->Admin_model->validate_devRfid();
+
+        if($rfid->rfid == $rfid_num && $rfid->registered == 1) {
+            $this->validation->set_message('validate_rfid', 'This RFID Number is already in the database');
         }
     }
 

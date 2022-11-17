@@ -78,7 +78,7 @@
 
                     <div class="item-btn">
                         <a href="<?= site_url('Admin/reserveDev/') . $stock->dev_name; ?>">
-                            <input type="submit" class="all_btn" id="reserve_btn" value="Reserve Device">
+                            <input type="submit" class="all_btn" id="reserve_btn" value="Borrow Device">
                         </a>
                     </div>
                 </div>

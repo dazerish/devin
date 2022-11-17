@@ -381,52 +381,109 @@
                 $dev_status = $this->input->post('device_status');
                 // $borrower = $this->input->post('borrower');
 
-                $transaction_status = $this->Sample_model->check_transaction_status();
 
-                if($transaction_status == $dev_status) { //Check if pending/approved
-                    if($dev_status == 'Lost') {
-                        $trans_info = array(
-                            'transaction_status' => 'Lost',
-                            'request_time' => date("Y-m-d H:i:s", strtotime('now'))
-                        );
-                        $status_info = array(
-                            'cur_status' => 'Lost',
-                            'prev_status' => 'Issued'
-                        );
+                if($dev_status == 'Lost') {
+                    $trans_info = array(
+                        'transaction_status' => 'Lost',
+                        'request_time' => date("Y-m-d H:i:s", strtotime('now')),
+                        'decision_time' => '00-00-00 00:00:00',
+                        'return_date' => '00-00-00 00:00:00'
+                    );
+                    $status_info = array(
+                        'cur_status' => 'Lost',
+                        'prev_status' => 'Deployed'
+                    );
 
-                        $this->Sample_model->report($trans_info, $status_info, $unique_num);
-                        echo json_encode(['message' => TRUE]);
-                    }
+                    $this->Sample_model->report($trans_info, $status_info, $unique_num);
+                    echo json_encode(['message' => TRUE]);
+                }
 
-                    if($dev_status == 'Broken') {
-                        $trans_info = array(
-                            'transaction_status' => 'Broken',
-                            'request_time' => date("Y-m-d H:i:s", strtotime('now'))
-                        );
-                        $status_info = array(
-                            'cur_status' => 'Broken',
-                            'prev_status' => 'Issued'
-                        );
+                if($dev_status == 'Broken') {
+                    $trans_info = array(
+                        'transaction_status' => 'Broken',
+                        'request_time' => date("Y-m-d H:i:s", strtotime('now')),
+                        'decision_time' => '00-00-00 00:00:00',
+                        'return_date' => '00-00-00 00:00:00'
+                    );
+                    $status_info = array(
+                        'cur_status' => 'Broken',
+                        'prev_status' => 'Deployed'
+                    );
 
-                        $this->Sample_model->report($trans_info, $status_info, $unique_num);
-                        echo json_encode(['message' => TRUE]);
-                    }
+                    $this->Sample_model->report($trans_info, $status_info, $unique_num);
+                    echo json_encode(['message' => TRUE]);
+                }
 
-                    if($dev_status == 'Maintenance') {
-                        $trans_info = array(
-                            'transaction_status' => 'Maintenance',
-                            'request_time' => date("Y-m-d H:i:s", strtotime('now'))
-                        );
-                        $status_info = array(
-                            'cur_status' => 'Maintenance',
-                            'prev_status' => 'Issued'
-                        );
+                if($dev_status == 'Maintenance') {
+                    $trans_info = array(
+                        'transaction_status' => 'Maintenance',
+                        'request_time' => date("Y-m-d H:i:s", strtotime('now')),
+                        'decision_time' => '00-00-00 00:00:00',
+                        'return_date' => '00-00-00 00:00:00'
+                    );
+                    $status_info = array(
+                        'cur_status' => 'Maintenance',
+                        'prev_status' => 'Broken'
+                    );
 
-                        $this->Sample_model->report($trans_info, $status_info, $unique_num);
-                        echo json_encode(['message' => TRUE]);
-                    }
-                } else {
-                    echo json_encode(['message' => 'Device is not yet Issued']);
+                    $this->Sample_model->report($trans_info, $status_info, $unique_num);
+                    echo json_encode(['message' => TRUE]);
+                }
+            }
+        }
+
+        //Report API --Admin
+        public function report_dev() {
+            header('Content-Type: application/json');
+            $token = $this->decode_token();
+
+            if(isset($token)) {
+                $unique_num = $this->input->post('unique_num');
+                $button = $this->input->post('button');
+
+                if($button == 'Maintenance') {
+                    $transaction_info = array(
+                        'transaction_status' => 'Maintenance',
+                        'request_time' => date("Y-m-d H:i:s", strtotime('now'))
+                    );
+
+                    $status_info = array(
+                        'cur_status' => 'Maintenance',
+                        'prev_status' => 'Broken'
+                    );
+
+                    $this->Sample_model->report_dev($transaction_info, $status_info, $unique_num);
+                    echo json_encode(['message' => TRUE]);
+                }
+
+                if($button == 'Repaired') {
+                    $transaction_info = array(
+                        'transaction_status' => 'Repaired',
+                        'request_time' => date("Y-m-d H:i:s", strtotime('now'))
+                    );
+
+                    $status_info = array(
+                        'cur_status' => 'Available',
+                        'prev_status' => 'Maintenance'
+                    );
+
+                    $this->Sample_model->report_dev($transaction_info, $status_info, $unique_num);
+                    echo json_encode(['message' => TRUE]);
+                }
+
+                if($button == 'Recovered') {
+                    $transaction_info = array(
+                        'transaction_status' => 'Recovered',
+                        'request_time' => date("Y-m-d H:i:s", strtotime('now'))
+                    );
+
+                    $status_info = array(
+                        'cur_status' => 'Available',
+                        'prev_status' => 'Lost'
+                    );
+
+                    $this->Sample_model->report_dev($transaction_info, $status_info, $unique_num);
+                    echo json_encode(['message' => TRUE]);
                 }
             }
         }

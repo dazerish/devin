@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 08, 2022 at 07:08 PM
+-- Generation Time: Nov 13, 2022 at 03:54 PM
 -- Server version: 10.4.22-MariaDB
 -- PHP Version: 8.1.2
 
@@ -20,6 +20,26 @@ SET time_zone = "+00:00";
 --
 -- Database: `devin`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `arduino`
+--
+
+CREATE TABLE `arduino` (
+  `id` int(11) NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `device_uid` varchar(255) NOT NULL,
+  `device_mode` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `arduino`
+--
+
+INSERT INTO `arduino` (`id`, `name`, `device_uid`, `device_mode`) VALUES
+(1, 'Arduino', 'af787def00038fc6', 0);
 
 -- --------------------------------------------------------
 
@@ -49,8 +69,8 @@ CREATE TABLE `devices` (
 --
 
 INSERT INTO `devices` (`id`, `unique_num`, `dev_name`, `dev_model`, `allowed_roles`, `manufacturer`, `specs`, `category`, `dev_image`, `rfid`, `cur_status`, `prev_status`, `latitude`, `longitude`) VALUES
-(1, '4CE0460D1X', 'Macbook Pro', 'Laptop', 'Administrator', 'Apple', 'Processor: Apple M2 Chip<br />\r\nRAM: 16GB Memory<br />\r\nGraphics: Intel Integrated Iris Plus Graphics <br />\r\n645<br />\r\nStorage: 512GB SSD<br />\r\nDisplay: 13.3\" inch; 2560x1600 Resolution<br />\r\nOS: macOS', 'Processing', 'Macbook-Pro-1.jpg', 'None', 'Available', 'None', '', ''),
-(2, '4CE0460D69', 'Edge Gateway', 'Router', 'Employee', 'Dell', 'Processor: ARM Cortex-A53<br />\r\nRAM: 2GB<br />\r\nStorage: 512GB SSD<br />\r\nOS: Linux Ubuntu<br />\r\nWeight: 820g', 'Networking', 'Edge-Gateway1.png', 'None', 'Reserved', 'Available', '', ''),
+(1, '4CE0460D1X', 'Macbook Pro', 'Laptop', 'Administrator', 'Apple', 'Processor: Apple M2 Chip<br />\r\nRAM: 16GB Memory<br />\r\nGraphics: Intel Integrated Iris Plus Graphics <br />\r\n645<br />\r\nStorage: 512GB SSD<br />\r\nDisplay: 13.3\" inch; 2560x1600 Resolution<br />\r\nOS: macOS', 'Processing', 'Macbook-Pro-1.jpg', 'None', 'Available', 'None', '14.5996408', '121.0349699'),
+(2, '4CE0460D69', 'Edge Gateway', 'Router', 'Employee', 'Dell', 'Processor: ARM Cortex-A53<br />\r\nRAM: 2GB<br />\r\nStorage: 512GB SSD<br />\r\nOS: Linux Ubuntu<br />\r\nWeight: 820g', 'Networking', 'Edge-Gateway1.png', 'None', 'Reserved', 'Available', '14.5996408', '121.0349699'),
 (3, '4CE0460D5G', 'Occulus Rift S', 'VR Headset', 'Executive', 'Oculus', 'Platform: SteamVR, Oculus Home<br />\r\nDisplay Type: Single LCD (Binocular)<br />\r\nResolution: 1280x1440 (per-eye)<br />\r\nRefresh Rate: 80hz<br />\r\nWeight: 500g', 'Specialized', 'Occulus-Rift-S1.jpg', 'None', 'Available', 'None', '', ''),
 (4, '4CE0460D1S', 'PowerEdge-T330', 'Server', 'Administrator', 'Dell', 'Processer: Intel Xeon<br />\r\nRAM: 64GB<br />\r\nDrive Bays: Supports 2.5\" HDD in 3.5\" hybrid drive<br />\r\ncarrier<br />\r\nOS: Windows Server', 'Specialized', 'PowerEdge-T330-1.jpg', 'None', 'Available', 'None', '', ''),
 (5, '4CE0460D0G', 'Lenovo ThinkPad X1', 'Laptop', 'Administrator', 'Lenovo', 'Processor: Intel Core I7<br />\r\nRAM: 16GB Memory<br />\r\nGraphics: Intel HD Graphics 520<br />\r\nStorage: 1 TB PCIe NVMe SSD<br />\r\nDisplay: 14\" FHD (1920 x 1080) IPS<br />\r\nOS: Windows 11', 'Processing', 'Lenovo-ThinkPad-X1-1.png', 'None', 'Available', 'None', '', ''),
@@ -253,6 +273,26 @@ INSERT INTO `devices` (`id`, `unique_num`, `dev_name`, `dev_model`, `allowed_rol
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `rfid_test`
+--
+
+CREATE TABLE `rfid_test` (
+  `id` int(11) NOT NULL,
+  `unique_num` varchar(255) NOT NULL,
+  `dev_name` varchar(255) NOT NULL,
+  `rfid` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `rfid_test`
+--
+
+INSERT INTO `rfid_test` (`id`, `unique_num`, `dev_name`, `rfid`) VALUES
+(1, 'None', 'None', '1411386345');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `transaction`
 --
 
@@ -342,9 +382,21 @@ INSERT INTO `user_information` (`id`, `first_name`, `last_name`, `email`, `passw
 --
 
 --
+-- Indexes for table `arduino`
+--
+ALTER TABLE `arduino`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `devices`
 --
 ALTER TABLE `devices`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `rfid_test`
+--
+ALTER TABLE `rfid_test`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -370,10 +422,22 @@ ALTER TABLE `user_information`
 --
 
 --
+-- AUTO_INCREMENT for table `arduino`
+--
+ALTER TABLE `arduino`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
 -- AUTO_INCREMENT for table `devices`
 --
 ALTER TABLE `devices`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=201;
+
+--
+-- AUTO_INCREMENT for table `rfid_test`
+--
+ALTER TABLE `rfid_test`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `transaction`

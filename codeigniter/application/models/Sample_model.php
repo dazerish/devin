@@ -58,7 +58,7 @@
         public function transacted_dev($emp_name) {
             // return $this->db->get_where('transaction', ['transaction_status' => 'Approved','borrower' => $emp_name])->result();
             $sql = "SELECT * FROM transaction 
-            WHERE borrower = '$emp_name' AND transaction_status IN ('Approved','Issued','Lost','Broken','Maintenance')
+            WHERE borrower = '$emp_name' AND transaction_status IN ('Approved','Deployed','Lost','Broken','Maintenance')
             ORDER BY transaction_id DESC LIMIT 5";
             $query = $this->db->query($sql);
             return $query->result_array();
@@ -71,12 +71,18 @@
         }
 
         //Report API
-        public function check_transaction_status() {
-            $query = $this->db->get_where('transaction', ['transaction_status' => 'Issued']);
-            return $query;
-        }
+        // public function check_transaction_status($unique_num) {
+        //     $query = $this->db->get_where('transaction', ['transaction_status' => 'Issued', 'borrowedDev_id' => $unique_num]);
+        //     return $query;
+        // }
         public function report($trans_info, $status_info, $unique_num) {
-            $this->db->update('transaction', $trans_info, ['borrwedDev_id' => $unique_num]);
+            $this->db->update('transaction', $trans_info, ['borrowedDev_id' => $unique_num]);
+            $this->db->update('devices', $status_info, ['unique_num' => $unique_num]);
+        }
+
+        //Report -- Admin
+        public function report_dev($transaction_info, $status_info, $unique_num) {
+            $this->db->update('transaction', $transaction_info, ['borrowedDev_id' => $unique_num]);
             $this->db->update('devices', $status_info, ['unique_num' => $unique_num]);
         }
 
@@ -101,7 +107,7 @@
         public function get_dev_details($unique_num) {
             $sql = "SELECT * FROM transaction
             WHERE borrowedDev_id = '$unique_num' 
-            AND transaction_status IN ('Approved','Issued','Lost','Broken','Maintenance')";
+            AND transaction_status IN ('Approved','Deployed','Lost','Broken','Maintenance')";
             $query = $this->db->query($sql);
             return $query->result();
         }

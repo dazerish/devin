@@ -51,20 +51,20 @@
     <div class="table-container">
         <table class="table-responsive">
             <thead>
-                <tr>
-                    <th>Device Image</th>
-                    <th>Device Name</th>
-                    <th>Device Model</th>
-                    <th>Manufacturer</th>
-                    <th>Status</th>
-                    <th>Actions</th>             
+                <tr class="user-details">
+                    <th scope="col">Device Image</th>
+                    <th scope="col">Device Name</th>
+                    <th scope="col">Device Model</th>
+                    <th scope="col">Manufacturer</th>
+                    <th scope="col">Status</th>
+                    <th scope="col">Actions</th>             
                 </tr>
             </thead>
 
             <!--placed a placeholder so it can easily be identified and replaced with php function-->
             <tbody>
                 <?php foreach($devices as $device): ?>
-                    <tr>
+                    <tr class="align-middle">
                         <td data-label="Device Image">
                             <img
                                 <?php if(isset($device->dev_image)): ?>
@@ -79,7 +79,7 @@
                         <td data-label="Manufacturer"><?=$device->manufacturer; ?></td>
                         <td data-label="Status"><?=$device->cur_status; ?></td>
             
-                        <td>
+                        <td data-label="Actions">
                             <a href="<?= site_url('Employee/device_view/') . $device->id; ?>"><i class="fa fa-solid fa-eye"></i></a>
                         </td>
                     </tr>
@@ -87,9 +87,7 @@
 
             </tbody>
         </table>
-
     </div>
-
-    <div class="pagination-div">         
-        <?= $this->pagination->create_links() ?>
-    </div>
+  
+    <?= $this->pagination->create_links() ?>
+</div>
