@@ -1,5 +1,5 @@
-<div class="view-emp-container">
-    <h1 class="page-title"><b>Dashboard</b></h1>
+<div class="user-container">
+<h1 class="page-title"><b>Dashboard</b></h1>
 
     <script>
                 // passing the dashboard data from php to javascript for manipulation and display
