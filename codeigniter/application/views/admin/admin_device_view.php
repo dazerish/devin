@@ -60,6 +60,9 @@
             <h4 class="action-grp-title">Actions</h4>
                     
                         <div class="action-grp">
+                            <button class="action-btn"><i class="fas fa-tools"></i> Deployed</button>
+                            <button class="action-btn"><i class="fas fa-tools"></i> Returned</button>
+                            <button class="action-btn"><i class="fas fa-tools"></i> Overdue</button>
                             <button class="action-btn"><i class="fas fa-question"></i> Lost</button>
                             <button class="action-btn"><i class="fas fa-bolt"></i> Broken</button>
                             <button class="action-btn"><i class="fas fa-tools"></i> Maintenance</button>
@@ -69,6 +72,11 @@
                         <div class="action-grp">
                             <button class="action-btn"><i class="fas fa-thumbs-up"></i> Repaired</button>
                             <button class="action-btn"> <i class="fas fa-recycle"></i> Recovered</button>
+                            <button class="action-btn"><i class="fas fa-tools"></i> Maintenance</button>
+                            <button class="action-btn"><i class="fas fa-tools"></i> Decommissioned</button>
+                        </div>
+
+                        <div class="action-grp">
                             <button href="#removeBtnModal" class="action-btn" data-bs-toggle="modal" data-bs-target="#removeBtnModal" ><i class="fas fa-trash-alt" id="remove-icon"></i>Remove Device</a>
                         </div>
                     
