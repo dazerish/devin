@@ -74,6 +74,8 @@ a:hover {
     background-image: url('');
 }
 
+
+
 /*login module*/
 
 .login_box, .view-box {
@@ -93,6 +95,7 @@ a:hover {
 .login_container .login_label {
   text-align: left;
 }
+
 
 .register_container  {
     display: flex;
@@ -411,7 +414,7 @@ td i {
   }
 
   .detail-flex {
-    background-color: 	#f3f2ed;
+    background-color: 	#F3E0DA;
     border-radius: 15px;
   }
 
@@ -1063,6 +1066,7 @@ td i {
       text-align: center;
     }
     
+
     .reg-div, .profile-deets, .page-title, .resetpw-card, .user-count {
       text-align: center;
     }
