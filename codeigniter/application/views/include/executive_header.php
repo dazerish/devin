@@ -23,8 +23,17 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
+        <a class="nav-link active" aria-current="page" href="<?= site_url('Executive/dashboard_view') ?>">Dashboard</a>
+        </li>
+
+        <li class="nav-item">
+        <a class="nav-link active" aria-current="page" href="<?= site_url('Executive/generate_reports') ?>">Generate Reports</a>
+        </li>
+
+        <li class="nav-item">
         <a class="nav-link active" aria-current="page" href="<?= site_url('Executive') ?>">Reservation</a>
         </li>
+
         <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
             View
@@ -52,3 +61,6 @@
     </div>
 </div>
 </nav>
+
+<script src="//cdn.amcharts.com/lib/4/core.js"></script>
+<script src="//cdn.amcharts.com/lib/4/charts.js"></script>

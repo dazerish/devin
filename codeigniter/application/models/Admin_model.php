@@ -103,7 +103,7 @@ class Admin_model extends CI_Model
     public function transacted_dev($emp_name) {
         // return $this->db->get_where('transaction', ['transaction_status' => 'Approved','borrower' => $emp_name])->result();
         $sql = "SELECT * FROM transaction
-        WHERE borrower = '$emp_name' AND transaction_status = 'Approved'
+        WHERE borrower = '$emp_name' AND transaction_status IN ('Approved','Deployed','Lost','Broken','Maintenance')
         ORDER BY transaction_id DESC
         LIMIT 5";
         $query = $this->db->query($sql);
@@ -169,6 +169,16 @@ class Admin_model extends CI_Model
     {
         $this->db->update('devices', $info, ['id' => $id]);
     }
+
+    public function update_status($device_info, $trans_info, $unique_num, $id) {
+        $this->db->update('devices', $device_info, ['id' => $id]);
+        $this->db->update('transaction', $trans_info, ['borrowedDev_id' => $unique_num]);
+    }
+
+    public function status_decommissioned($device_info, $unique_num) {
+        $this->db->update('devices', $device_info, ['unique_num' => $unique_num]);
+    }
+
 
     //Device Approval View
     public function get_transaction_table($limit, $start) 
@@ -245,7 +255,22 @@ class Admin_model extends CI_Model
     public function fetch_data($start_date, $end_date) {
 
         $sql = "SELECT * FROM transaction
-        WHERE request_time BETWEEN '$start_date' AND '$end_date'";
+        WHERE request_time BETWEEN '$start_date' AND '$end_date'
+        ORDER BY transaction_id DESC";
+        $query = $this->db->query($sql);
+        return $query->result_array();
+    }
+    public function fetch_dev_logs($start_date, $end_date) {
+        $sql = "SELECT * FROM device_logs
+        WHERE date_issued BETWEEN '$start_date' AND '$end_date'
+        ORDER BY id DESC";
+        $query = $this->db->query($sql);
+        return $query->result_array();
+    }
+    public function fetch_emp_logs($start_date, $end_date) {
+        $sql = "SELECT * FROM employee_logs
+        WHERE time_in BETWEEN '$start_date' AND '$end_date'
+        ORDER BY id DESC";
         $query = $this->db->query($sql);
         return $query->result_array();
     }

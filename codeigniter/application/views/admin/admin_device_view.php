@@ -54,31 +54,42 @@
                     </tr>
                 </table>
             </div>
+
+            <?php if ($this->session->has_userdata('updated')) : ?>
+                <div class="alert alert-success">
+                    <?= $this->session->userdata('updated'); ?>
+                </div>
+            <?php elseif ($this->session->has_userdata('decom')): ?>
+                    <div class="alert alert-danger">
+                        <?= $this->session->userdata('decom'); ?>
+                    </div>
+            <?php endif; ?>
                     
             <div class="action-btn-div">
-
             <h4 class="action-grp-title">Actions</h4>
-                    
+                    <?= form_open_multipart('Admin/device_status');?>
+                        <input type="hidden" id="dev-id" name="dev-id" value="<?= $device->id; ?>">
+                        <input type="hidden" id="unique_num" name="unique_num" value="<?= $device->unique_num; ?>">
                         <div class="action-grp">
-                            <button class="action-btn"><i class="fas fa-tools"></i> Deployed</button>
-                            <button class="action-btn"><i class="fas fa-tools"></i> Returned</button>
-                            <button class="action-btn"><i class="fas fa-tools"></i> Overdue</button>
-                            <button class="action-btn"><i class="fas fa-question"></i> Lost</button>
-                            <button class="action-btn"><i class="fas fa-bolt"></i> Broken</button>
-                            <button class="action-btn"><i class="fas fa-tools"></i> Maintenance</button>
+                            <button class="action-btn" name="Deployed"><i class="fas fa-share-square"></i> Deployed</button>
+                            <button class="action-btn" name="Returned"><i class="fas fa-undo-alt"></i></i> Returned</button>
+                            <button class="action-btn" name="Overdue"><i class="fas fa-clock"></i> Overdue</button>
+                            <button class="action-btn" name="Lost"><i class="fas fa-question"></i> Lost</button>
+                            <button class="action-btn" name="Broken"><i class="fas fa-bolt"></i> Broken</button>
                         </div>
                    
 
                         <div class="action-grp">
-                            <button class="action-btn"><i class="fas fa-thumbs-up"></i> Repaired</button>
-                            <button class="action-btn"> <i class="fas fa-recycle"></i> Recovered</button>
-                            <button class="action-btn"><i class="fas fa-tools"></i> Maintenance</button>
-                            <button class="action-btn"><i class="fas fa-tools"></i> Decommissioned</button>
+                            <button class="action-btn" name="Repaired"><i class="fas fa-thumbs-up"></i> Repaired</button>
+                            <button class="action-btn" name="Recovered"> <i class="fas fa-recycle"></i> Recovered</button>
+                            <button class="action-btn" name="Maintenance"><i class="fas fa-tools"></i> Maintenance</button>
+                            <button class="action-btn" name="Decommissioned"><i class="fas fa-ban"></i> Decommissioned</button>
                         </div>
+                    <?= form_close();?>
 
-                        <div class="action-grp">
-                            <button href="#removeBtnModal" class="action-btn" data-bs-toggle="modal" data-bs-target="#removeBtnModal" ><i class="fas fa-trash-alt" id="remove-icon"></i>Remove Device</a>
-                        </div>
+                    <div class="action-grp">
+                        <button href="#removeBtnModal" class="action-btn" data-bs-toggle="modal" data-bs-target="#removeBtnModal" ><i class="fas fa-trash-alt" id="remove-icon"></i>Remove Device</a>
+                    </div>
                     
               
                 

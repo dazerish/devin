@@ -45,18 +45,22 @@
                 <table class="emp-table">
                     <thead>
                         <tr>
-                            <th>List of Devices Transacted With</th>
+                            <th colspan="2">List of Devices Transacted With</th>
                         </tr>
                     </thead>
 
                     <tbody>
                         <tr>
-                            <td>Macbook Pro</td> <!-- Transaction to follow -->
+                            <td><b>Device ID</b></td>
+                            <td><b>Device Name</b></td>
                         </tr>
-                        <tr>
-                            <td>Meta Quest</td> <!-- Transaction to follow -->
-                        </tr>
-                        
+
+                        <?php foreach($transacted_dev as $device): ?>
+                            <tr>
+                                <td><?=$device->borrowedDev_id;?></td>
+                                <td><?=$device->borrowedDev_name;?></td>
+                            </tr>
+                        <?php endforeach;?>
                     </tbody>
                 </table>
             </div>

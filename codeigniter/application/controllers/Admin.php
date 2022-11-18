@@ -312,6 +312,196 @@ class Admin extends CI_Controller
         $this->load->view('include/footer');
     }
 
+    public function device_status() {
+        $deployed = $this->input->post('Deployed');
+        $returned = $this->input->post('Returned');
+        $overdue = $this->input->post('Overdue');
+        $lost = $this->input->post('Lost');
+        $broken = $this->input->post('Broken');
+        $repaired = $this->input->post('Repaired');
+        $recovered = $this->input->post('Recovered');
+        $maintenance = $this->input->post('Maintenance');
+        $decommissioned = $this->input->post('Decommissioned');
+        // $unique_num = $this->input->post('unique-num');
+
+        if(isset($deployed)) { //Deployed
+            $id = $this->input->post('dev-id');
+            $unique_num = $this->input->post('unique_num');
+            $device_info = array(
+                'cur_status' => 'Deployed',
+                'prev_status' => 'Borrowed'
+            );
+
+            $trans_info = array(
+                'transaction_status' => 'Deployed',
+                'request_time' => date("Y-m-d H:i:s", strtotime('now'))
+            );
+
+            $this->Admin_model->update_status($device_info, $trans_info, $unique_num, $id);
+            $updated = "Device status was updated";
+            $this->session->set_flashdata('updated', $updated);
+            $this->device_view($id);
+        }
+
+        if(isset($returned)) { //Returned
+            $id = $this->input->post('dev-id');
+            $unique_num = $this->input->post('unique_num');
+            $device_info = array(
+                'cur_status' => 'Returned',
+                'prev_status' => 'Deployed'
+            );
+
+            $trans_info = array(
+                'transaction_status' => 'Returned',
+                'request_time' => date("Y-m-d H:i:s", strtotime('now'))
+            );
+
+            $this->Admin_model->update_status($device_info, $trans_info, $unique_num, $id);
+            $updated = "Device status was updated";
+            $this->session->set_flashdata('updated', $updated);
+            $this->device_view($id);
+        }
+
+        if(isset($overdue)) { //Overdue
+            $id = $this->input->post('dev-id');
+            $unique_num = $this->input->post('unique_num');
+            $device_info = array(
+                'cur_status' => 'Overdue',
+                'prev_status' => 'Deployed'
+            );
+
+            $trans_info = array(
+                'transaction_status' => 'Overdue',
+                'request_time' => date("Y-m-d H:i:s", strtotime('now'))
+            );
+
+            $this->Admin_model->update_status($device_info, $trans_info, $unique_num, $id);
+            $updated = "Device status was updated";
+            $this->session->set_flashdata('updated', $updated);
+            $this->device_view($id);
+        }
+
+        if(isset($lost)) { //Lost
+            $id = $this->input->post('dev-id');
+            $unique_num = $this->input->post('unique_num');
+            $device_info = array(
+                'cur_status' => 'Lost',
+                'prev_status' => 'Deployed'
+            );
+
+            $trans_info = array(
+                'transaction_status' => 'Lost',
+                'request_time' => date("Y-m-d H:i:s", strtotime('now')),
+                'decision_time' => '00-00-00 00:00:00',
+                'return_date' => '00-00-00 00:00:00'
+            );
+
+            $this->Admin_model->update_status($device_info, $trans_info, $unique_num, $id);
+            $updated = "Device status was updated";
+            $this->session->set_flashdata('updated', $updated);
+            $this->device_view($id);
+        }
+
+        if(isset($broken)) { //Broken
+            $id = $this->input->post('dev-id');
+            $unique_num = $this->input->post('unique_num');
+            $device_info = array(
+                'cur_status' => 'Broken',
+                'prev_status' => 'Deployed'
+            );
+
+            $trans_info = array(
+                'transaction_status' => 'Broken',
+                'request_time' => date("Y-m-d H:i:s", strtotime('now')),
+                'decision_time' => '00-00-00 00:00:00',
+                'return_date' => '00-00-00 00:00:00'
+            );
+
+            $this->Admin_model->update_status($device_info, $trans_info, $unique_num, $id);
+            $updated = "Device status was updated";
+            $this->session->set_flashdata('updated', $updated);
+            $this->device_view($id);
+        }
+
+        if(isset($repaired)) { //Repaired
+            $id = $this->input->post('dev-id');
+            $unique_num = $this->input->post('unique_num');
+            $device_info = array(
+                'cur_status' => 'Available',
+                'prev_status' => 'Maintenance'
+            );
+
+            $trans_info = array(
+                'transaction_status' => 'Repaired',
+                'request_time' => date("Y-m-d H:i:s", strtotime('now')),
+                'decision_time' => '00-00-00 00:00:00',
+                'return_date' => '00-00-00 00:00:00'
+            );
+
+            $this->Admin_model->update_status($device_info, $trans_info, $unique_num, $id);
+            $updated = "Device status was updated";
+            $this->session->set_flashdata('updated', $updated);
+            $this->device_view($id);
+        }
+
+        if(isset($recovered)) { //Recovered
+            $id = $this->input->post('dev-id');
+            $unique_num = $this->input->post('unique_num');
+            $device_info = array(
+                'cur_status' => 'Available',
+                'prev_status' => 'Lost'
+            );
+
+            $trans_info = array(
+                'transaction_status' => 'Recovered',
+                'request_time' => date("Y-m-d H:i:s", strtotime('now')),
+                'decision_time' => '00-00-00 00:00:00',
+                'return_date' => '00-00-00 00:00:00'
+            );
+
+            $this->Admin_model->update_status($device_info, $trans_info, $unique_num, $id);
+            $updated = "Device status was updated";
+            $this->session->set_flashdata('updated', $updated);
+            $this->device_view($id);
+        }
+
+        if(isset($maintenance)) { //Maintenance
+            $id = $this->input->post('dev-id');
+            $unique_num = $this->input->post('unique_num');
+            $device_info = array(
+                'cur_status' => 'Maintenance',
+                'prev_status' => 'Broken'
+            );
+
+            $trans_info = array(
+                'transaction_status' => 'Maintenance',
+                'request_time' => date("Y-m-d H:i:s", strtotime('now')),
+                'decision_time' => '00-00-00 00:00:00',
+                'return_date' => '00-00-00 00:00:00'
+            );
+
+            $this->Admin_model->update_status($device_info, $trans_info, $unique_num, $id);
+            $updated = "Device status was updated";
+            $this->session->set_flashdata('updated', $updated);
+            $this->device_view($id);
+        }
+
+        if(isset($decommissioned)) { //Decommisioned
+            $id = $this->input->post('dev-id');
+            $unique_num = $this->input->post('unique_num');
+            $device_info = array(
+                'cur_status' => 'Decommissioned',
+                'prev_status' => 'None'
+            );
+
+            $this->Admin_model->status_decommissioned($device_info, $unique_num);
+            $decom = "Device was decommissioned";
+            $this->session->set_flashdata('decom', $decom);
+            $this->device_view($id);
+        }
+
+    }
+
     public function remove_device($id)
     { //Temporary remove func?
         $this->Admin_model->remove_device($id);
@@ -606,37 +796,106 @@ class Admin extends CI_Controller
                 $end_date = date("Y-m-d H:i:s", strtotime($e_date));
                 // $system_data = $this->Admin_model->fetch_data($start_date, $end_date);
 
+                //Transaction Logs
                 $spreadsheet = new Spreadsheet();
-                $sheet = $spreadsheet->getActiveSheet();
+                $sheet1 = $spreadsheet->setActiveSheetIndex(0)->setTitle('Transaction Logs');
                 
                 foreach(range('A','H') as $coulumID) {
                     $spreadsheet->getActiveSheet()->getColumnDimension($coulumID)->setAutosize(true);
 
                 }
-                $sheet->getStyle('A:H')->getAlignment()->setHorizontal('center');
+                $sheet1->getStyle('A:H')->getAlignment()->setHorizontal('center');
                 
-                $sheet->setCellValue('A1','Report for the date of '.$s_date.' to '.$e_date);
-                $sheet->setCellValue('A2','Transaction ID');
-                $sheet->setCellValue('B2','Transaction Status');
-                $sheet->setCellValue('C2','Borrower');
-                $sheet->setCellValue('D2','Device ID');
-                $sheet->setCellValue('E2','Device Name');
-                $sheet->setCellValue('F2','Request Time');
-                $sheet->setCellValue('G2','Decision Time');
-                $sheet->setCellValue('H2','Return Date');
+                $sheet1->setCellValue('A1','Report for the date of '.$s_date.' to '.$e_date);
+                $sheet1->setCellValue('A2','Transaction ID');
+                $sheet1->setCellValue('B2','Transaction Status');
+                $sheet1->setCellValue('C2','Borrower');
+                $sheet1->setCellValue('D2','Device ID');
+                $sheet1->setCellValue('E2','Device Name');
+                $sheet1->setCellValue('F2','Reserved Date');
+                $sheet1->setCellValue('G2','Return Date');
+                $sheet1->setCellValue('H2','Timestamp');
 
                 $system_data = $this->Admin_model->fetch_data($start_date, $end_date);
                 $x=3; //start from row 2
                 foreach($system_data as $row)
                 {
-                    $sheet->setCellValue('A'.$x, $row['transaction_id']);
-                    $sheet->setCellValue('B'.$x, $row['transaction_status']);
-                    $sheet->setCellValue('C'.$x, $row['borrower']);
-                    $sheet->setCellValue('D'.$x, $row['borrowedDev_id']);
-                    $sheet->setCellValue('E'.$x, $row['borrowedDev_name']);
-                    $sheet->setCellValue('F'.$x, $row['request_time']);
-                    $sheet->setCellValue('G'.$x, $row['decision_time']);
-                    $sheet->setCellValue('H'.$x, $row['return_date']);
+                    $sheet1->setCellValue('A'.$x, $row['transaction_id']);
+                    $sheet1->setCellValue('B'.$x, $row['transaction_status']);
+                    $sheet1->setCellValue('C'.$x, $row['borrower']);
+                    $sheet1->setCellValue('D'.$x, $row['borrowedDev_id']);
+                    $sheet1->setCellValue('E'.$x, $row['borrowedDev_name']);
+                    $sheet1->setCellValue('F'.$x, $row['decision_time']);
+                    $sheet1->setCellValue('G'.$x, $row['return_date']);
+                    $sheet1->setCellValue('H'.$x, $row['request_time']);
+                    $x++;
+                }
+
+                //---------------------------------------------------------------
+                //Device Logs
+                $spreadsheet->createSheet();
+                $sheet2 = $spreadsheet->setActiveSheetIndex(1)->setTitle('Device Logs');
+
+                foreach(range('A','G') as $coulumID) {
+                    $spreadsheet->getActiveSheet()->getColumnDimension($coulumID)->setAutosize(true);
+
+                }
+                $sheet2->getStyle('A:G')->getAlignment()->setHorizontal('center');
+                
+                $sheet2->setCellValue('A1','Report for the date of '.$s_date.' to '.$e_date);
+                $sheet2->setCellValue('A2','Device Logs ID');
+                $sheet2->setCellValue('B2','Device Unique ID');
+                $sheet2->setCellValue('C2','Device Name');
+                $sheet2->setCellValue('D2','RFID');
+                $sheet2->setCellValue('E2','Device UID');
+                $sheet2->setCellValue('F2','Date Deployed');
+                $sheet2->setCellValue('G2','Date Returned');
+
+                $system_data1 = $this->Admin_model->fetch_dev_logs($start_date, $end_date);
+                $x=3; //start from row 2
+                foreach($system_data1 as $row)
+                {
+                    $sheet2->setCellValue('A'.$x, $row['id']);
+                    $sheet2->setCellValue('B'.$x, $row['unique_num']);
+                    $sheet2->setCellValue('C'.$x, $row['dev_name']);
+                    $sheet2->setCellValue('D'.$x, $row['rfid']);
+                    $sheet2->setCellValue('E'.$x, $row['device_uid']);
+                    $sheet2->setCellValue('F'.$x, $row['date_issued']);
+                    $sheet2->setCellValue('G'.$x, $row['date_returned']);
+                    $x++;
+                }
+
+                //---------------------------------------------------------------
+                //Employee Logs
+                $spreadsheet->createSheet();
+                $sheet3 = $spreadsheet->setActiveSheetIndex(2)->setTitle('Employee Logs');
+
+                foreach(range('A','G') as $coulumID) {
+                    $spreadsheet->getActiveSheet()->getColumnDimension($coulumID)->setAutosize(true);
+
+                }
+                $sheet3->getStyle('A:G')->getAlignment()->setHorizontal('center');
+                
+                $sheet3->setCellValue('A1','Report for the date of '.$s_date.' to '.$e_date);
+                $sheet3->setCellValue('A2','Employee Logs ID');
+                $sheet3->setCellValue('B2','Employee ID');
+                $sheet3->setCellValue('C2','Employee Name');
+                $sheet3->setCellValue('D2','RFID');
+                $sheet3->setCellValue('E2','Employee UID');
+                $sheet3->setCellValue('F2','Time Deployed');
+                $sheet3->setCellValue('G2','Time Returned');
+
+                $system_data2 = $this->Admin_model->fetch_emp_logs($start_date, $end_date);
+                $x=3; //start from row 2
+                foreach($system_data2 as $row)
+                {
+                    $sheet3->setCellValue('A'.$x, $row['id']);
+                    $sheet3->setCellValue('B'.$x, $row['emp_id']);
+                    $sheet3->setCellValue('C'.$x, $row['emp_name']);
+                    $sheet3->setCellValue('D'.$x, $row['rfid']);
+                    $sheet3->setCellValue('E'.$x, $row['emp_uid']);
+                    $sheet3->setCellValue('F'.$x, $row['time_in']);
+                    $sheet3->setCellValue('G'.$x, $row['time_out']);
                     $x++;
                 }
 
