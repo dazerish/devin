@@ -9,8 +9,8 @@
                     <th scope="col">Employee ID</th>
                     <th scope="col">Employee Name</th>
                     <th scope="col">RFID</th>
-                    <th scope="col">Time In</th>
-                    <th scope="col">Time Out</th>         
+                    <th scope="col">Time Deployed</th>
+                    <th scope="col">Time Returned</th>         
                 </tr>
             </thead>
             <tbody id="logs">

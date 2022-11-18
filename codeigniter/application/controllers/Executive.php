@@ -151,7 +151,7 @@ class Executive extends CI_Controller
 
                 //Reserved Date Info
                 $info = array(
-                    'transaction_status' => 'Pending',
+                    'transaction_status' => 'Approved',
                     'borrower' => $this->input->post('borrower'),
                     'borrowedDev_id' => $this->input->post('unique-num'),
                     'borrowedDev_name' => $dev_name,
@@ -162,15 +162,15 @@ class Executive extends CI_Controller
 
                 //Device Status Info
                 $status_info = array(
-                    'cur_status' => 'Reserved',
+                    'cur_status' => 'Borrowed',
                     'prev_status' => 'Available'
 
                 );
 
                 $this->Executive_model->set_reserveDate($info, $status_info, $unique_num);
-                $success = "Reserve Date is set successfully. Please wait for approval.";
+                $success = "Reserve Date is set successfully";
                 $this->session->set_flashdata('success', $success);
-                redirect('Executive/devList_view');
+                redirect('Executive');
             }
         }
 

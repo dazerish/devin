@@ -636,7 +636,8 @@ class Admin extends CI_Controller
     public function reject_device() 
     {
         $transaction_status = array(
-            'transaction_status' => 'Rejected'
+            'transaction_status' => 'Rejected',
+            'request_time' => date("Y-m-d H:i:s", strtotime('now'))
         );
 
         $status_info = array(
@@ -656,7 +657,8 @@ class Admin extends CI_Controller
     public function approve_device()
     {
         $transaction_status = array(
-            'transaction_status' => 'Approved'
+            'transaction_status' => 'Approved',
+            'request_time' => date("Y-m-d H:i:s", strtotime('now'))
         );
 
         $status_info = array(

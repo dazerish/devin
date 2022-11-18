@@ -111,5 +111,14 @@
             $query = $this->db->query($sql);
             return $query->result();
         }
+
+        //Notification API 
+        public function get_notif_status() {
+            $query = $this->db->get_where('transaction', ['notif_status' => 0 ]);
+            return $query->result_array();
+        }
+        public function upd_notif_status($notif_status, $trans_id) {
+            $this->db->update('transaction', $notif_status, ['transaction_id' => $trans_id]);
+        }
     }
 ?>

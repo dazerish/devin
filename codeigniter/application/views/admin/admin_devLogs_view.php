@@ -9,7 +9,7 @@
                     <th scope="col">Device ID</th>
                     <th scope="col">Device Name</th>
                     <th scope="col">RFID</th>
-                    <th scope="col">Date Issued</th>
+                    <th scope="col">Date Deployed</th>
                     <th scope="col">Date Returned</th>         
                 </tr>
             </thead>

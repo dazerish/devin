@@ -125,7 +125,8 @@ class Admin_model extends CI_Model
     {
         if ($st == "NIL") $st = "";
         $sql = "SELECT * FROM devices 
-        WHERE (dev_name LIKE '%$st%' 
+        WHERE (dev_name LIKE '%$st%'
+        OR unique_num LIKE '%$st%' 
         OR dev_model LIKE '%$st%'
         OR manufacturer LIKE '%$st%')
         AND registered = 1  
@@ -137,7 +138,8 @@ class Admin_model extends CI_Model
     {
         if ($st == "NIL") $st = "";
         $sql = "SELECT * FROM devices 
-        WHERE (dev_name LIKE '%$st%' 
+        WHERE (dev_name LIKE '%$st%'
+        OR unique_num LIKE '%$st%'  
         OR dev_model LIKE '%$st%'
         OR manufacturer LIKE '%$st%')
         AND registered = 1";
