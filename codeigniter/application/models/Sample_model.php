@@ -48,10 +48,29 @@
             $query = $this->db->get_where('devices', ['category' => 'Processing'])->result_array();
             return $query;
         }
+        
+        //Display Devices - Employee
+        public function emp_display_dev() {
+            $query = $this->db->get_where('devices', ['allowed_roles' => 'Employee']);
+            return $query->result_array();
+        }
 
         //Locaiton API
         public function send_devLoc($info, $unique_num) {
             $this->db->update('devices', $info, ['unique_num' => $unique_num]);
+        }
+        //Device with Lat and Long
+        public function specialized_devLatLong() {
+            $sql = "SELECT * FROM devices WHERE category = 'Specialized'
+            AND (latitude != '' AND longitude != '')";
+            $query = $this->db->query($sql);
+            return $query->result_array();
+        }
+        public function networking_devLatLong() {
+            $sql = "SELECT * FROM devices WHERE category = 'Networking' 
+            AND (latitude != '' AND longitude != '')";
+            $query = $this->db->query($sql);
+            return $query->result_array();
         }
 
         //Profile API
@@ -68,6 +87,12 @@
         public function transaction_logs() {
             $query = $this->db->get('transaction')->result_array();
             return $query;
+        }
+        //Admin Transaction Logs
+        public function admin_trans_logs() {
+            $sql = "SELECT * FROM transaction WHERE transaction_status IN ('Lost','Broken','Maintenance')";
+            $query = $this->db->query($sql);
+            return $query->result_array();
         }
 
         //Report API
@@ -113,12 +138,38 @@
         }
 
         //Notification API 
-        public function get_notif_status() {
-            $query = $this->db->get_where('transaction', ['notif_status' => 0 ]);
+        public function get_admin_notif_status() {
+            $sql = "SELECT * FROM transaction WHERE notif_status = 0 AND transaction_status IN ('Pending','Broken','Lost','Maintenance')";
+            $query = $this->db->query($sql);
+            return $query->result_array();
+        }
+        public function get_exec_notif_status() {
+            $sql = "SELECT * FROM transaction WHERE notif_status = 0 AND transaction_status IN ('Deployed','Overdue')";
+            $query = $this->db->query($sql);
+            return $query->result_array();
+        }
+        public function get_employee_notif_status() {
+            $sql = "SELECT * FROM transaction WHERE notif_status = 0 AND transaction_status IN ('Pending','Approved','Rejected','Overdue')";
+            $query = $this->db->query($sql);
             return $query->result_array();
         }
         public function upd_notif_status($notif_status, $trans_id) {
             $this->db->update('transaction', $notif_status, ['transaction_id' => $trans_id]);
         }
+
+
+        //Employee Borrowable Device List
+        public function emp_borrowable_list() {
+            $query = $this->db->get_where('devices', ['cur_status' => 'Available', 'allowed_roles' => 'Employee']);
+            return $query->result_array();
+        }
+
+
+        //Executive Borrowable Device List
+        public function exec_borrowable_list() {
+            $query = $this->db->get_where('devices', ['cur_status' => 'Available', 'allowed_roles' => 'Executive']);
+            return $query->result_array();
+        }
+
     }
 ?>

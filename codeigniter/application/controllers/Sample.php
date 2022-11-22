@@ -207,6 +207,17 @@
             }
         }
 
+        //Display Devices - Employe
+        public function emp_display_dev() {
+            header('Content-Type: application/json');
+            $token = $this->decode_token();
+
+            if(isset($token)) {
+                $response = $this->Sample_model->emp_display_dev();
+                echo json_encode($response);
+            }
+        }
+
 
         //Borrow API
         public function set_reserveDate() {
@@ -215,6 +226,9 @@
             
             
             try {
+                $this->form_validation->set_rules('reason', 'Reason', 'required', array(
+                    'required' => 'Please set a %s'
+                ));
                 $this->form_validation->set_rules('reservation_date', 'Reservation Date', 'required|callback_validate_reserveDate', array(
                     'required' => 'Please set a %s'
                 ));
@@ -236,6 +250,7 @@
                             'borrower' => $this->input->post('borrower'),
                             'borrowedDev_id' => $this->input->post('unique-num'),
                             'borrowedDev_name' => $dev_name,
+                            'reason' => $this->input->post('reason'),
                             'request_time' => date("Y-m-d H:i:s", strtotime('now')),
                             'decision_time' => date("Y-m-d H:i:s", strtotime($reservation_date)),
                             'return_date' => date("Y-m-d H:i:s", strtotime($reservation_date. '+1 month'))
@@ -345,6 +360,27 @@
 
         }
 
+        //List with Lat and Long - Specialized
+        public function specialized_devLatLong() {
+            header('Content-Type: application/json');
+            $token = $this->decode_token();
+
+            if(isset($token)) {
+                $response = $this->Sample_model->specialized_devLatLong();
+                echo json_encode($response);
+            }
+        }
+        //List with Lat and Long - Networking
+        public function networking_devLatLong() {
+            header('Content-Type: application/json');
+            $token = $this->decode_token();
+
+            if(isset($token)) {
+                $response = $this->Sample_model->networking_devLatLong();
+                echo json_encode($response);
+            }
+        }
+
         //Profile API
         public function transacted_dev() {
             header('Content-Type: application/json');
@@ -366,6 +402,16 @@
 
             if(isset($token)) {
                 $response = $this->Sample_model->transaction_logs();
+                echo json_encode($response);
+            }
+        }
+        //Admin Transaction Logs
+        public function admin_trans_logs() {
+            header('Content-Type: application/json');
+            $token = $this->decode_token();
+
+            if(isset($token)) {
+                $response = $this->Sample_model->admin_trans_logs();
                 echo json_encode($response);
             }
         }
@@ -559,12 +605,30 @@
         }
 
         //Notification API 
-        public function notif_status() {
+        public function admin_notif_status() {
             header('Content-Type: application/json');
             $token = $this->decode_token();
 
             if(isset($token)) {
-                $response = $this->Sample_model->get_notif_status();
+                $response = $this->Sample_model->get_admin_notif_status();
+                echo json_encode($response);
+            }
+        }
+        public function exec_notif_status() {
+            header('Content-Type: application/json');
+            $token = $this->decode_token();
+
+            if(isset($token)) {
+                $response = $this->Sample_model->get_exec_notif_status();
+                echo json_encode($response);
+            }
+        }
+        public function employee_notif_status() {
+            header('Content-Type: application/json');
+            $token = $this->decode_token();
+
+            if(isset($token)) {
+                $response = $this->Sample_model->get_employee_notif_status();
                 echo json_encode($response);
             }
         }
@@ -584,6 +648,31 @@
                     $this->Sample_model->upd_notif_status($notif_status, $trans_id);
                     echo json_encode(['message' => TRUE]);
                 }
+            }
+        }
+
+
+
+        //Employee Side (Borrowable Device List)
+        public function emp_borrowDev_list() {
+            header('Content-Type: application/json');
+            $token = $this->decode_token();
+
+            if(isset($token)) {
+                $response = $this->Sample_model->emp_borrowable_list();
+                echo json_encode($response);
+            }
+        }
+
+
+        //Executive Side (Borrowable Device List)
+        public function exec_borrowDev_list() {
+            header('Content-Type: application/json');
+            $token = $this->decode_token();
+
+            if(isset($token)) {
+                $response = $this->Sample_model->exec_borrowable_list();
+                echo json_encode($response);
             }
         }
     }

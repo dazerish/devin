@@ -63,6 +63,10 @@
                     <div class="alert alert-danger">
                         <?= $this->session->userdata('decom'); ?>
                     </div>
+            <?php elseif ($this->session->has_userdata('status_err')): ?>
+                    <div class="alert alert-danger">
+                        <?= $this->session->userdata('status_err'); ?>
+                    </div>
             <?php endif; ?>
                     
             <div class="action-btn-div">
