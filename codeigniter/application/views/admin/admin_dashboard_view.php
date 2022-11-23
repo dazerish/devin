@@ -53,8 +53,9 @@
     <div class="detail-flex">
     
 
-        
+    
         <div class="detail-container">
+            
             <div class="d-detail-container">
                 <!-- str_replace removes the double quotes from the echoed data -->
                 <h2>In Storage</h2>
@@ -79,8 +80,8 @@
         </div>
 
         <div class="pie-container">
+            <h4 class="pie-title">Distribution Per Device Category</h4>
             <div id="device_types_pie_div"></div>
-            
         </div>
 
 
